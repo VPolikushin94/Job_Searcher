@@ -8,7 +8,7 @@ import ru.practicum.android.diploma.di.interactorModule
 import ru.practicum.android.diploma.di.repositoryModule
 import ru.practicum.android.diploma.di.viewModeModule
 
-class App: Application() {
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {

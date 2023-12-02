@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation ("io.insert-koin:koin-android:3.3.0")
+
 
     implementation(libs.androidX.core)
     implementation(libs.androidX.appCompat)
