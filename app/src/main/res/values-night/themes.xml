@@ -4,7 +4,10 @@
 
         <item name="colorPrimary">@color/black_universal</item>
         <item name="colorOnPrimary">@color/white_universal</item>
+
         <item name="colorSecondary">@color/white_universal</item>
+        <item name="colorSecondaryContainer">@color/gray</item>
+        <item name="colorSecondaryVariant">@color/white_universal</item>
 
         <item name="android:statusBarColor">?attr/colorPrimary</item>
 
