@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="size_8">8dp</dimen>
-    <dimen name="size_16">16dp</dimen>
-    <dimen name="size_20">20dp</dimen>
-    <dimen name="size_32">32dp</dimen>
-    <dimen name="size_44">44dp</dimen>
+    <dimen name="team_member_top_margi_8">8dp</dimen>
+    <dimen name="team_member_top_margi_16">16dp</dimen>
+    <dimen name="team_member_top_margi_20">20dp</dimen>
+    <dimen name="team_member_top_margi_32">32dp</dimen>
+    <dimen name="team_member_top_margi_44">44dp</dimen>
 
-    <dimen name="text_16">16sp</dimen>
-    <dimen name="text_22">22sp</dimen>
-    <dimen name="text_32">32sp</dimen>
+    <dimen name="team_member_size_text_16">16sp</dimen>
+    <dimen name="team_member_size_text_22">22sp</dimen>
+    <dimen name="team_member_size_text_32">32sp</dimen>
 </resources>
