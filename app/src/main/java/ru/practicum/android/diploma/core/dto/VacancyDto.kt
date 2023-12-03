@@ -24,5 +24,5 @@ data class EmployerDto(
     val id: String,
     val name: String?,
     val url: String?,
-    val logo_urls: Map<String, String?>
+    val logoUrls: Map<String, String?>
 )

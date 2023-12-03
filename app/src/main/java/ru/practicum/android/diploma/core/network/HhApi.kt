@@ -6,8 +6,10 @@ import retrofit2.http.Path
 import ru.practicum.android.diploma.core.dto.Response
 
 interface HhApi {
-    @Headers("Authorization: Bearer HH_ACCESS_TOKEN",
-        "HH-User-Agent: Practicum vacancy")
+    @Headers(
+        "Authorization: Bearer HH_ACCESS_TOKEN",
+        "HH-User-Agent: Practicum vacancy"
+    )
     @GET("/vacancies/{vacancy_id}")
     suspend fun getVacancy(@Path("vacancy_id") id: String): Response
 }
