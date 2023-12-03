@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="team_member_top_margin_8">8dp</dimen>
+    <dimen name="arrow_back_start_margin_8">8dp</dimen>
     <dimen name="team_member_top_margin_16">16dp</dimen>
+    <dimen name="header_tv_start_margin_16">16dp</dimen>
+    <dimen name="header_tv_top_margin_18">18dp</dimen>
     <dimen name="team_member_top_margin_20">20dp</dimen>
+    <dimen name="arrow_back_top_margin_20">20dp</dimen>
     <dimen name="team_member_top_margin_32">32dp</dimen>
     <dimen name="team_member_top_margin_44">44dp</dimen>
 
+    <dimen name="bottom_nav_size_text_12">12sp</dimen>
     <dimen name="team_member_size_text_16">16sp</dimen>
+    <dimen name="search_et_size_text_16">16sp</dimen>
     <dimen name="team_member_size_text_22">22sp</dimen>
+    <dimen name="header_tv_size_text_22">22sp</dimen>
     <dimen name="team_member_size_text_32">32sp</dimen>
+
 </resources>
