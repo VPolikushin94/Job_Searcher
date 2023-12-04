@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.databinding.FragmentSearchBinding
-import ru.practicum.android.diploma.search.ui.view_model.SearchViewModel
+import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment() {
 

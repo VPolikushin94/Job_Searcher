@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.databinding.FragmentVacancyBinding
-import ru.practicum.android.diploma.vacancy.ui.view_model.VacancyViewModel
+import ru.practicum.android.diploma.vacancy.ui.viewmodel.VacancyViewModel
 
 class VacancyFragment : Fragment() {
 
