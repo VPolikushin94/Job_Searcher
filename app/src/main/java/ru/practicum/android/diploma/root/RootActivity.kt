@@ -1,6 +1,13 @@
 package ru.practicum.android.diploma.root
 
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.View
+import android.view.Window
+import android.view.WindowInsetsController
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
@@ -23,6 +30,70 @@ class RootActivity : AppCompatActivity() {
         networkRequestExample(accessToken = BuildConfig.HH_ACCESS_TOKEN)
 
         setBottomNavigation()
+
+        setSystemNavigationBarColor()
+    }
+
+    private fun setSystemNavigationBarColor() {
+        val bgColor = TypedValue().let {
+            theme.resolveAttribute(android.R.attr.colorPrimary, it, true)
+            getColor(it.resourceId)
+        }
+
+        val isLight = !isDarkThemeDefault()
+
+        window.navigationBarColor = bgColor
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.navigationBarDividerColor = bgColor
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            setNavBarContentColorNewApi(window, isLight)
+            setStatusBarContentColorNewApi(window, isLight)
+        } else {
+            setNavBarContentColorOldApi(window, isLight)
+        }
+    }
+
+    private fun isDarkThemeDefault(): Boolean {
+        return resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun setNavBarContentColorOldApi(window: Window, isLight: Boolean) {
+        val decorView = window.decorView
+        decorView.systemUiVisibility =
+            if (isLight) {
+                decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            } else {
+                decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
+            }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun setNavBarContentColorNewApi(window: Window, isLight: Boolean) {
+        val navBarFlag = if (isLight) {
+            WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+        } else {
+            0
+        }
+        window.insetsController?.setSystemBarsAppearance(
+            navBarFlag,
+            WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun setStatusBarContentColorNewApi(window: Window, isLight: Boolean) {
+        val statusBarFlag = if (isLight) {
+            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+        } else {
+            0
+        }
+        window.insetsController?.setSystemBarsAppearance(
+            statusBarFlag,
+            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+        )
     }
 
     private fun setBottomNavigation() {

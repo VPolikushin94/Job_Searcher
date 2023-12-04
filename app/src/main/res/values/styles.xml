@@ -47,6 +47,9 @@
     <style name="bottom_navigation_view_style">
         <item name="itemIconTint">@color/bottom_nav_item</item>
         <item name="itemTextColor">@color/bottom_nav_item</item>
+        <item name="itemActiveIndicatorStyle">@null</item>
+        <item name="itemPaddingTop">@dimen/bottom_nav_top_padding_8</item>
+        <item name="itemPaddingBottom">@dimen/bottom_nav_bottom_padding_8</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:fontFamily">@font/ys_text_regular</item>
         <item name="android:textSize">@dimen/bottom_nav_size_text_12</item>

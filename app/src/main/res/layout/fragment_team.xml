@@ -4,7 +4,8 @@
     android:theme="@style/Base.Theme.PracticumAndroidDiploma"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/colorPrimary">
 
     <TextView
         android:id="@+id/tv_team"

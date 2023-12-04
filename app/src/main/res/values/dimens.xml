@@ -9,6 +9,8 @@
     <dimen name="arrow_back_top_margin_20">20dp</dimen>
     <dimen name="team_member_top_margin_32">32dp</dimen>
     <dimen name="team_member_top_margin_44">44dp</dimen>
+    <dimen name="bottom_nav_top_padding_8">8dp</dimen>
+    <dimen name="bottom_nav_bottom_padding_8">8dp</dimen>
 
     <dimen name="bottom_nav_size_text_12">12sp</dimen>
     <dimen name="team_member_size_text_16">16sp</dimen>
