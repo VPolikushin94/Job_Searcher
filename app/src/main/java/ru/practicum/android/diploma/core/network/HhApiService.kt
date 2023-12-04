@@ -5,7 +5,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import ru.practicum.android.diploma.core.dto.Response
 
-interface HhApi {
+interface HhApiService {
     @Headers(
         "Authorization: Bearer HH_ACCESS_TOKEN",
         "HH-User-Agent: Practicum vacancy"
