@@ -36,12 +36,24 @@
 
     <style name="search_et_style">
         <item name="android:background">@drawable/et_background</item>
-        <item name="android:backgroundTint">?attr/colorAccent</item>
         <item name="android:maxLines">1</item>
+        <item name="singleLine">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:importantForAutofill">no</item>
         <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
         <item name="android:fontFamily">@font/ys_text_regular</item>
         <item name="android:textColor">@color/black_universal</item>
         <item name="android:textSize">@dimen/search_et_size_text_16</item>
+        <item name="android:textCursorDrawable">@drawable/et_cursor</item>
+        <item name="android:layout_marginVertical">8dp</item>
+        <item name="android:layout_marginHorizontal">16dp</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">16dp</item>
+        <item name="android:hint">@string/enter_request</item>
+        <item name="android:drawableTint">@color/black_universal</item>
+        <item name="android:drawableEnd">@drawable/icon_search</item>
+        <item name="android:drawablePadding">8dp</item>
     </style>
 
     <style name="bottom_navigation_view_style">
@@ -55,4 +67,36 @@
         <item name="android:textSize">@dimen/bottom_nav_size_text_12</item>
     </style>
 
+    <style name="search_btn_filter_style">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="tint">?attr/colorOnPrimary</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">18dp</item>
+        <item name="android:layout_marginVertical">8dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+
+    <style name="search_tv_header_style" parent="header_tv_style">
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="search_btn_clear_style">
+        <item name="android:layout_gravity">end|center_vertical</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:paddingHorizontal">12dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="tint">@color/black_universal</item>
+    </style>
+
+    <style name="search_tv_vacancy_counter_style">
+        <item name="android:background">@drawable/tv_vacancy_counter_background</item>
+        <item name="android:fontFamily">@font/ys_text_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingVertical">4dp</item>
+        <item name="android:paddingHorizontal">12dp</item>
+        <item name="android:textColor">@color/white_universal</item>
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
 </resources>

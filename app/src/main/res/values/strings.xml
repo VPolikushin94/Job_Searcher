@@ -7,4 +7,8 @@
     <string name="developer1">Греков Иван</string>
     <string name="developer2">Поликушин Владислав</string>
     <string name="developer3">Козловский Дмитрий</string>
+    <string name="search_vacancy">Поиск вакансий</string>
+    <string name="filter_btn">Кнопка фильтр</string>
+    <string name="enter_request">Введите запрос</string>
+    <string name="clear_search_text">Кнопка отчистить поиск</string>
 </resources>
