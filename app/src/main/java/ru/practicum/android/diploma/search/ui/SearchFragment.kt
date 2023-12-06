@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.FragmentSearchBinding
+import ru.practicum.android.diploma.search.ui.adapter.VacancyListAdapter
 import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment() {
@@ -23,6 +24,8 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: SearchViewModel by viewModel()
+
+    private var vacancyListAdapter: VacancyListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,11 +43,20 @@ class SearchFragment : Fragment() {
         setListTouchListeners()
         setEditorActionListener()
         setClickListeners()
+
+        setRecyclerViewAdapter()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.rvVacancy.adapter = null
+        vacancyListAdapter = null
         _binding = null
+    }
+
+    private fun setRecyclerViewAdapter() {
+        vacancyListAdapter = VacancyListAdapter()
+        binding.rvVacancy.adapter = vacancyListAdapter
     }
 
     private fun addTextWatcher() {
@@ -67,10 +79,13 @@ class SearchFragment : Fragment() {
                 binding.etSearch.requestFocus()
                 changeKeyboardVisibility(true)
             } else {
-                changeKeyboardVisibility(false)
                 binding.etSearch.setText("")
                 binding.etSearch.requestFocus()
             }
+        }
+
+        vacancyListAdapter?.onVacancyClickListener = {
+
         }
     }
 
