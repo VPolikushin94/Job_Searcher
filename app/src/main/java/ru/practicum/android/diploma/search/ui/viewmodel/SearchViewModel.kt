@@ -7,4 +7,7 @@ class SearchViewModel : ViewModel() {
 
     private val _screenState = MutableLiveData(false)
 
+    fun searchVacancy() {
+
+    }
 }

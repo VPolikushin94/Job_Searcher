@@ -49,11 +49,10 @@
         <item name="android:layout_marginHorizontal">@dimen/header_tv_start_margin_16</item>
         <item name="android:imeOptions">actionDone</item>
         <item name="android:paddingHorizontal">@dimen/search_et_padding</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">60dp</item>
         <item name="android:paddingVertical">@dimen/search_et_padding</item>
         <item name="android:hint">@string/enter_request</item>
-        <item name="android:drawableTint">@color/black_universal</item>
-        <item name="android:drawableEnd">@drawable/icon_search</item>
-        <item name="android:drawablePadding">8dp</item>
     </style>
 
     <style name="bottom_navigation_view_style">
