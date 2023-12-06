@@ -46,10 +46,10 @@
         <item name="android:textSize">@dimen/search_et_size_text_16</item>
         <item name="android:textCursorDrawable">@drawable/et_cursor</item>
         <item name="android:layout_marginVertical">8dp</item>
-        <item name="android:layout_marginHorizontal">16dp</item>
+        <item name="android:layout_marginHorizontal">@dimen/header_tv_start_margin_16</item>
         <item name="android:imeOptions">actionDone</item>
-        <item name="android:paddingHorizontal">16dp</item>
-        <item name="android:paddingVertical">16dp</item>
+        <item name="android:paddingHorizontal">@dimen/search_et_padding</item>
+        <item name="android:paddingVertical">@dimen/search_et_padding</item>
         <item name="android:hint">@string/enter_request</item>
         <item name="android:drawableTint">@color/black_universal</item>
         <item name="android:drawableEnd">@drawable/icon_search</item>
@@ -98,5 +98,17 @@
         <item name="android:paddingHorizontal">12dp</item>
         <item name="android:textColor">@color/white_universal</item>
         <item name="android:layout_marginTop">3dp</item>
+    </style>
+
+    <style name="search_tv_medium_style">
+        <item name="fontFamily">@font/ys_display_medium</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="search_tv_display_style">
+        <item name="fontFamily">@font/ys_display_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 </resources>

@@ -11,6 +11,7 @@
     <dimen name="team_member_top_margin_44">44dp</dimen>
     <dimen name="bottom_nav_top_padding_8">8dp</dimen>
     <dimen name="bottom_nav_bottom_padding_8">8dp</dimen>
+    <dimen name="search_et_padding">16dp</dimen>
 
     <dimen name="bottom_nav_size_text_12">12sp</dimen>
     <dimen name="team_member_size_text_16">16sp</dimen>
@@ -18,5 +19,7 @@
     <dimen name="team_member_size_text_22">22sp</dimen>
     <dimen name="header_tv_size_text_22">22sp</dimen>
     <dimen name="team_member_size_text_32">32sp</dimen>
+    <dimen name="search_iv_border_padding_1dp">1dp</dimen>
+    <dimen name="search_iv_size_48">48dp</dimen>
 
 </resources>
