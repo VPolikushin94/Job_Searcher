@@ -122,10 +122,7 @@ class SearchFragment : Fragment() {
 
     private fun addTextWatcher() {
         val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 setClearButtonIcon(s)
@@ -133,7 +130,7 @@ class SearchFragment : Fragment() {
                 viewModel.searchVacancyDebounce(s.toString())
             }
 
-            override fun afterTextChanged(p0: Editable?) {}
+            override fun afterTextChanged(p0: Editable?) { }
         }
 
         binding.etSearch.addTextChangedListener(textWatcher)
@@ -149,13 +146,9 @@ class SearchFragment : Fragment() {
                 binding.etSearch.requestFocus()
             }
         }
-        binding.btnFilter.setOnClickListener {
-
-        }
+        binding.btnFilter.setOnClickListener { }
         vacancyListAdapter?.onVacancyClickListener = {
-            if (viewModel.clickDebounce()) {
-
-            }
+            if (viewModel.clickDebounce()) { }
         }
     }
 
