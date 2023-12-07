@@ -11,7 +11,7 @@
     <string name="filter_btn">Кнопка фильтр</string>
     <string name="enter_request">Введите запрос</string>
     <string name="clear_search_text">Кнопка отчистить поиск</string>
-    <string name="vacancy_city">%s, %s</string>
+    <string name="vacancy_area">%1$s, %2$s</string>
     <string name="salary_from">от %d </string>
     <string name="salary_to">до %d </string>
     <string name="salary_empty">Зарплата не указана</string>

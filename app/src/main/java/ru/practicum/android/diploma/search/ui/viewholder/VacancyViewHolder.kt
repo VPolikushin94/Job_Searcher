@@ -14,8 +14,19 @@ class VacancyViewHolder(private val binding: VacancyItemBinding) : RecyclerView.
             .placeholder(R.drawable.icon_vacancy_placeholder)
             .centerCrop()
             .into(binding.ivVacancyImage)
-        binding.tvVacancyAndArea.text = model.vacancy //TODO
-        binding.tvSalary.text = model.salaryFrom.toString() //TODO
+        binding.tvVacancyAndArea.text = itemView.context.getString(R.string.vacancy_area, model.vacancy, model.area)
+        val salary = buildString {
+            if (model.salaryFrom != null) {
+                val salaryFrom = itemView.context.getString(R.string.salary_from, model.salaryFrom)
+                this.append(salaryFrom)
+            }
+            if (model.salaryTo != null) {
+                val salaryTo = itemView.context.getString(R.string.salary_to, model.salaryTo)
+                this.append(salaryTo)
+            }
+            this.append(model.currency)
+        }
+        binding.tvSalary.text = salary
         binding.tvCategory.text = model.category
     }
 }

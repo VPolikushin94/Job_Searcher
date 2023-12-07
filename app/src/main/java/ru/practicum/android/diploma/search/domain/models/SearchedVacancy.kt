@@ -6,7 +6,7 @@ data class SearchedVacancy(
     val vacancy: String,
     val area: String,
     val category: String,
-    val salaryFrom: Int,
-    val salaryTo: Int,
+    val salaryFrom: Int?,
+    val salaryTo: Int?,
     val currency: String
 )
