@@ -64,7 +64,7 @@
         tools:text="Найдено 286 вакансий" />
 
     <ProgressBar
-        android:id="@+id/pb_playlists"
+        android:id="@+id/progress_bar"
         android:layout_width="@dimen/progress_bar_size"
         android:layout_height="@dimen/progress_bar_size"
         android:indeterminateTint="@color/blue"

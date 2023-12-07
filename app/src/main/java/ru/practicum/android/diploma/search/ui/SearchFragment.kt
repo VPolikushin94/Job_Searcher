@@ -10,11 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.FragmentSearchBinding
 import ru.practicum.android.diploma.search.ui.adapter.VacancyListAdapter
+import ru.practicum.android.diploma.search.ui.models.SearchPlaceholderType
+import ru.practicum.android.diploma.search.ui.models.SearchScreenState
 import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment() {
@@ -44,6 +47,13 @@ class SearchFragment : Fragment() {
         setClickListeners()
 
         setRecyclerViewAdapter()
+
+        viewModel.screenState.observe(viewLifecycleOwner) {
+            render(it)
+        }
+        viewModel.btnFilterState.observe(viewLifecycleOwner) {
+            setFilterState(it)
+        }
     }
 
     override fun onDestroyView() {
@@ -51,6 +61,58 @@ class SearchFragment : Fragment() {
         binding.rvVacancy.adapter = null
         vacancyListAdapter = null
         _binding = null
+    }
+
+    private fun render(state: SearchScreenState) {
+        when (state) {
+            is SearchScreenState.Loading -> {
+                showPlaceholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
+                setProgressBarVisibility(true)
+            }
+
+            is SearchScreenState.Content -> {
+                setProgressBarVisibility(false)
+                showPlaceholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
+                vacancyListAdapter?.submitList(state.vacancyList)
+            }
+
+            is SearchScreenState.Placeholder -> {
+                setProgressBarVisibility(false)
+                showPlaceholder(state.placeholderType)
+            }
+        }
+    }
+
+    private fun showPlaceholder(type: SearchPlaceholderType) {
+        when (type) {
+            SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET -> {
+                binding.placeholderNotSearchedYet.isVisible = true
+            }
+
+            SearchPlaceholderType.PLACEHOLDER_NO_INTERNET -> {
+                binding.placeholderNoInternet.isVisible = true
+            }
+
+            SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST -> {
+                binding.placeholderGotEmptyList.isVisible = true
+            }
+
+            SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR -> {
+                binding.placeholderServerError.isVisible = true
+            }
+
+            SearchPlaceholderType.PLACEHOLDER_EMPTY -> {
+                binding.placeholderNotSearchedYet.isVisible = false
+                binding.placeholderNoInternet.isVisible = false
+                binding.placeholderGotEmptyList.isVisible = false
+                binding.placeholderServerError.isVisible = false
+            }
+        }
+    }
+
+    private fun setProgressBarVisibility(isVisible: Boolean) {
+        binding.progressBar.isVisible = isVisible
+        binding.flContent.isVisible = !isVisible
     }
 
     private fun setRecyclerViewAdapter() {

@@ -1,10 +1,13 @@
 package ru.practicum.android.diploma.search.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.search.ui.models.SearchPlaceholderType
+import ru.practicum.android.diploma.search.ui.models.SearchScreenState
 import ru.practicum.android.diploma.util.debounce
 
 class SearchViewModel : ViewModel() {
@@ -16,7 +19,12 @@ class SearchViewModel : ViewModel() {
             searchVacancy(it)
         }
 
-    private val _screenState = MutableLiveData(false)
+    private val _screenState =
+        MutableLiveData<SearchScreenState>(SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET))
+    val screenState: LiveData<SearchScreenState> = _screenState
+
+    private val _btnFilterState = MutableLiveData<Boolean>()
+    val btnFilterState: LiveData<Boolean> = _btnFilterState
 
     fun searchVacancy(searchText: String) {
         if (searchText.isNotEmpty()) {
@@ -27,7 +35,12 @@ class SearchViewModel : ViewModel() {
     }
 
     fun searchVacancyDebounce(searchText: String) {
-        searchDebounce(searchText)
+        if (searchText.isNotEmpty()) {
+            _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
+            searchDebounce(searchText)
+        } else {
+            _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET)
+        }
     }
 
     fun clickDebounce(): Boolean {

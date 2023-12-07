@@ -8,5 +8,5 @@ sealed interface SearchScreenState {
 
     data class Content(val vacancyList: List<SearchedVacancy>) : SearchScreenState
 
-    data class Placeholder(val state: SearchPlaceholderState) : SearchScreenState
+    data class Placeholder(val placeholderType: SearchPlaceholderType) : SearchScreenState
 }
