@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
@@ -65,6 +64,8 @@ class SearchFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 setClearButtonIcon(s)
+
+                viewModel.searchVacancyDebounce(s.toString())
             }
 
             override fun afterTextChanged(p0: Editable?) {}
@@ -87,7 +88,9 @@ class SearchFragment : Fragment() {
 
         }
         vacancyListAdapter?.onVacancyClickListener = {
+            if (viewModel.clickDebounce()) {
 
+            }
         }
     }
 
@@ -119,7 +122,7 @@ class SearchFragment : Fragment() {
     private fun setEditorActionListener() {
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                viewModel.searchVacancy()
+                viewModel.searchVacancy(binding.etSearch.text.toString())
                 binding.etSearch.clearFocus()
             }
             false
