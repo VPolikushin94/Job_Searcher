@@ -83,21 +83,27 @@ class SearchFragment : Fragment() {
                 binding.etSearch.requestFocus()
             }
         }
+        binding.btnFilter.setOnClickListener {
 
+        }
         vacancyListAdapter?.onVacancyClickListener = {
 
         }
     }
 
+    private fun setFilterState(isActivated: Boolean) {
+        if (isActivated) {
+            binding.btnFilter.setImageResource(R.drawable.icon_filter_on)
+        } else {
+            binding.btnFilter.setImageResource(R.drawable.icon_filter_off)
+        }
+    }
+
     private fun setClearButtonIcon(s: CharSequence?) {
         if (s.isNullOrEmpty()) {
-            binding.btnClear.setImageDrawable(
-                AppCompatResources.getDrawable(requireContext(), R.drawable.icon_search)
-            )
+            binding.btnClear.setImageResource(R.drawable.icon_search)
         } else {
-            binding.btnClear.setImageDrawable(
-                AppCompatResources.getDrawable(requireContext(), R.drawable.icon_cross)
-            )
+            binding.btnClear.setImageResource(R.drawable.icon_cross)
         }
     }
 

@@ -19,4 +19,8 @@
     <string name="euro">€</string>
     <string name="dollar">$</string>
     <string name="vacancy_img">Картинка вакансии</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="placeholder_vacancy_empty_list">Не удалось получить\nсписок вакансий</string>
+    <string name="server_error">Ошибка сервера</string>
+    <string name="no_search">Картинка не было поиска</string>
 </resources>

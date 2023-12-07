@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import ru.practicum.android.diploma.databinding.VacancyItemBinding
-import ru.practicum.android.diploma.search.domain.models.Vacancy
+import ru.practicum.android.diploma.search.domain.models.SearchedVacancy
 import ru.practicum.android.diploma.search.ui.diffutil.VacancyDiffUtilCallback
 import ru.practicum.android.diploma.search.ui.viewholder.VacancyViewHolder
 
-class VacancyListAdapter : ListAdapter<Vacancy, VacancyViewHolder>(VacancyDiffUtilCallback()) {
+class VacancyListAdapter : ListAdapter<SearchedVacancy, VacancyViewHolder>(VacancyDiffUtilCallback()) {
 
-    var onVacancyClickListener: ((Vacancy) -> Unit)? = null
+    var onVacancyClickListener: ((SearchedVacancy) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VacancyViewHolder {
         val layoutInspector = LayoutInflater.from(parent.context)
