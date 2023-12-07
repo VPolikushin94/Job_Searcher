@@ -19,8 +19,11 @@ class SearchViewModel : ViewModel() {
             searchVacancy(it)
         }
 
-    private val _screenState =
-        MutableLiveData<SearchScreenState>(SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET))
+    private val _screenState = MutableLiveData<SearchScreenState>(
+        SearchScreenState.Placeholder(
+            SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET
+        )
+    )
     val screenState: LiveData<SearchScreenState> = _screenState
 
     private val _btnFilterState = MutableLiveData<Boolean>()
