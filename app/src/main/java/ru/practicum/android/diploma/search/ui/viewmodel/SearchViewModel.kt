@@ -31,9 +31,7 @@ class SearchViewModel : ViewModel() {
 
     fun searchVacancy(searchText: String) {
         if (searchText.isNotEmpty()) {
-            viewModelScope.launch {
-
-            }
+            viewModelScope.launch {}
         }
     }
 

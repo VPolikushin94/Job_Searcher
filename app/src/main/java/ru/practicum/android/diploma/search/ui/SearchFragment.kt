@@ -147,9 +147,9 @@ class SearchFragment : Fragment() {
             }
         }
         binding.btnFilter.setOnClickListener { }
-        vacancyListAdapter?.onVacancyClickListener = {
-            if (viewModel.clickDebounce()) { }
-        }
+//        vacancyListAdapter?.onVacancyClickListener = {
+//            if (viewModel.clickDebounce()) { }
+//        }
     }
 
     private fun setFilterState(isActivated: Boolean) {
