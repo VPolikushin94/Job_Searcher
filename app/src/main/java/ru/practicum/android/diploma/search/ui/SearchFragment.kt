@@ -3,14 +3,13 @@ package ru.practicum.android.diploma.search.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
@@ -41,7 +40,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        addTextWatcher()
+        setEditTextChangeListener()
         setListTouchListeners()
         setEditorActionListener()
         setClickListeners()
@@ -120,20 +119,11 @@ class SearchFragment : Fragment() {
         binding.rvVacancy.adapter = vacancyListAdapter
     }
 
-    private fun addTextWatcher() {
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
-
-            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                setClearButtonIcon(s)
-
-                viewModel.searchVacancyDebounce(s.toString())
-            }
-
-            override fun afterTextChanged(p0: Editable?) { }
+    private fun setEditTextChangeListener() {
+        binding.etSearch.doOnTextChanged { text, _, _, _ ->
+            setClearButtonIcon(text)
+            viewModel.searchVacancyDebounce(text.toString())
         }
-
-        binding.etSearch.addTextChangedListener(textWatcher)
     }
 
     private fun setClickListeners() {
@@ -146,9 +136,13 @@ class SearchFragment : Fragment() {
                 binding.etSearch.requestFocus()
             }
         }
-        binding.btnFilter.setOnClickListener { }
+//        binding.btnFilter.setOnClickListener {
+//
+//        }
 //        vacancyListAdapter?.onVacancyClickListener = {
-//            if (viewModel.clickDebounce()) { }
+//            if (viewModel.clickDebounce()) {
+//
+//            }
 //        }
     }
 
