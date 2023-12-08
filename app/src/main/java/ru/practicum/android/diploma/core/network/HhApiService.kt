@@ -22,5 +22,4 @@ interface HhApiService {
     )
     @GET("vacancies")
     suspend fun searchVacancy(@QueryMap vacancySearchParams: Map<String, String>): VacancySearchResponse
-    //filters: area: String, salary: Int, industry(или professional_role??): String, only_with_salary: Boolean
 }

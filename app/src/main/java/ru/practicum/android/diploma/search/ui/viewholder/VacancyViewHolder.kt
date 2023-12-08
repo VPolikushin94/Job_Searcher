@@ -27,6 +27,6 @@ class VacancyViewHolder(private val binding: VacancyItemBinding) : RecyclerView.
             this.append(model.currency)
         }
         binding.tvSalary.text = salary
-        binding.tvCategory.text = model.category
+        binding.tvEmployerName.text = model.employerName
     }
 }
