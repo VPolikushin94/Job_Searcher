@@ -36,12 +36,23 @@
 
     <style name="search_et_style">
         <item name="android:background">@drawable/et_background</item>
-        <item name="android:backgroundTint">?attr/colorAccent</item>
         <item name="android:maxLines">1</item>
+        <item name="singleLine">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:importantForAutofill">no</item>
         <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
         <item name="android:fontFamily">@font/ys_text_regular</item>
         <item name="android:textColor">@color/black_universal</item>
         <item name="android:textSize">@dimen/search_et_size_text_16</item>
+        <item name="android:textCursorDrawable">@drawable/et_cursor</item>
+        <item name="android:layout_marginVertical">@dimen/search_et_margin_vertical_8</item>
+        <item name="android:layout_marginHorizontal">@dimen/header_tv_start_margin_16</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:paddingHorizontal">@dimen/search_et_padding</item>
+        <item name="android:paddingStart">@dimen/search_et_padding_start_16</item>
+        <item name="android:paddingEnd">@dimen/search_et_padding_end_60</item>
+        <item name="android:paddingVertical">@dimen/search_et_padding</item>
+        <item name="android:hint">@string/enter_request</item>
     </style>
 
     <style name="bottom_navigation_view_style">
