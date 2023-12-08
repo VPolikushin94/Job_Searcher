@@ -55,4 +55,43 @@
         <item name="android:textSize">@dimen/bottom_nav_size_text_12</item>
     </style>
 
+    <style name="additional_heading_vacancy">
+        <item name="fontFamily">@font/ys_display_medium</item>
+        <item name="android:textSize">@dimen/team_member_size_text_16</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="text_vacancy">
+        <item name="fontFamily">@font/ys_text_regular</item>
+        <item name="android:textSize">@dimen/team_member_size_text_16</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="text_vacancy_blue">
+        <item name="fontFamily">@font/ys_text_regular</item>
+        <item name="android:textSize">@dimen/team_member_size_text_16</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="main_heading_vacancy">
+        <item name="fontFamily">@font/ys_display_medium</item>
+        <item name="android:textSize">@dimen/team_member_size_text_22</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="name_vacancy">
+        <item name="fontFamily">@font/ys_display_bold</item>
+        <item name="android:textSize">@dimen/team_member_size_text_32</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="button_similar">
+        <item name="android:textSize">@dimen/team_member_size_text_16</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">@dimen/margin_12</item>
+        <item name="android:textColor">@color/white_universal</item>
+        <item name="backgroundTint">@color/blue</item>
+    </style>
+
 </resources>
