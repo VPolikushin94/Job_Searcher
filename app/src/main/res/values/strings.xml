@@ -7,4 +7,20 @@
     <string name="developer1">Греков Иван</string>
     <string name="developer2">Поликушин Владислав</string>
     <string name="developer3">Козловский Дмитрий</string>
+    <string name="search_vacancy">Поиск вакансий</string>
+    <string name="filter_btn">Кнопка фильтр</string>
+    <string name="enter_request">Введите запрос</string>
+    <string name="clear_search_text">Кнопка отчистить поиск</string>
+    <string name="vacancy_area">%1$s, %2$s</string>
+    <string name="salary_from">от %d </string>
+    <string name="salary_to">до %d </string>
+    <string name="salary_empty">Зарплата не указана</string>
+    <string name="ruble">₽</string>
+    <string name="euro">€</string>
+    <string name="dollar">$</string>
+    <string name="vacancy_img">Картинка вакансии</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="placeholder_vacancy_empty_list">Не удалось получить\nсписок вакансий</string>
+    <string name="server_error">Ошибка сервера</string>
+    <string name="no_search">Картинка не было поиска</string>
 </resources>
