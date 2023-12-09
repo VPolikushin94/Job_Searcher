@@ -11,6 +11,24 @@
     <dimen name="team_member_top_margin_44">44dp</dimen>
     <dimen name="bottom_nav_top_padding_8">8dp</dimen>
     <dimen name="bottom_nav_bottom_padding_8">8dp</dimen>
+    <dimen name="search_et_padding">16dp</dimen>
+    <dimen name="search_iv_border_padding_1dp">1dp</dimen>
+    <dimen name="search_iv_size_48">48dp</dimen>
+    <dimen name="progress_bar_size">48dp</dimen>
+    <dimen name="search_placeholder_drawable_padding_16">16dp</dimen>
+    <dimen name="search_et_margin_vertical_8">8dp</dimen>
+    <dimen name="search_et_padding_start_16">16dp</dimen>
+    <dimen name="search_et_padding_end_60">60dp</dimen>
+    <dimen name="search_btn_filter_padding_horizontal_16">16dp</dimen>
+    <dimen name="search_btn_filter_padding_vertical_18">18dp</dimen>
+    <dimen name="search_btn_filter_margin_vertical_8">8dp</dimen>
+    <dimen name="search_btn_filter_margin_start_4">4dp</dimen>
+    <dimen name="search_btn_filter_margin_end_8">8dp</dimen>
+    <dimen name="search_btn_clear_padding_12">12dp</dimen>
+    <dimen name="search_btn_clear_margin_end_20">20dp</dimen>
+    <dimen name="search_tv_vacancy_counter_padding_vertical_4">4dp</dimen>
+    <dimen name="search_tv_vacancy_counter_padding_horizontal_12">12dp</dimen>
+    <dimen name="search_tv_vacancy_counter_margin_top_3">3dp</dimen>
 
     <dimen name="bottom_nav_size_text_12">12sp</dimen>
     <dimen name="team_member_size_text_16">16sp</dimen>
@@ -18,5 +36,17 @@
     <dimen name="team_member_size_text_22">22sp</dimen>
     <dimen name="header_tv_size_text_22">22sp</dimen>
     <dimen name="team_member_size_text_32">32sp</dimen>
+
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_36">36dp</dimen>
+    <dimen name="margin_44">44dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
 
 </resources>
