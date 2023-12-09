@@ -23,7 +23,7 @@ class VacancyViewHolder(private val binding: VacancyItemBinding) : RecyclerView.
             .into(binding.ivVacancyImage)
         binding.tvVacancyAndArea.text = itemView.context.getString(R.string.vacancy_area, model.vacancy, model.area)
         val salary = buildString {
-            if ((model.salaryFrom == null) && (model.salaryTo == null)) {
+            if (model.salaryFrom == null && model.salaryTo == null) {
                 this.append(itemView.context.getString(R.string.no_salary))
             } else {
                 model.salaryFrom?.let {
