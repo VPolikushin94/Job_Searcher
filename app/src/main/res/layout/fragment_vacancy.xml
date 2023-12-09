@@ -227,7 +227,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_requirements"
-                style="@style/main_heading_vacancy"
+                style="@style/additional_heading_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
@@ -252,7 +252,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_conditions"
-                style="@style/main_heading_vacancy"
+                style="@style/additional_heading_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
