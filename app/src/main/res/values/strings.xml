@@ -23,10 +23,26 @@
     <string name="placeholder_vacancy_empty_list">Не удалось получить\nсписок вакансий</string>
     <string name="server_error">Ошибка сервера</string>
     <string name="no_search">Картинка не было поиска</string>
+
     <string name="no_salary">Зарплата не указана</string>
     <string name="rur">RUR</string>
     <string name="eur">EUR</string>
     <string name="usd">USD</string>
     <string name="vacancy_found">Найдено %d вакансий</string>
     <string name="logo">лого</string>
+
+    <string name="vacancy">Вакансия</string>
+    <string name="job_description">Описание вакансии</string>
+    <string name="required_experience">Требуемый опыт</string>
+    <string name="responsibilities">Обязанности</string>
+    <string name="requirements">Требования</string>
+    <string name="conditions">Условия</string>
+    <string name="key_skills">Ключевые навыки</string>
+    <string name="contacts">Контакты</string>
+    <string name="contact_person">Контактное лицо</string>
+    <string name="e_mail">E-mail</string>
+    <string name="telephone">Телефон</string>
+    <string name="comment">Комментарий</string>
+    <string name="similar_jobs">Похожие вакансии</string>
+
 </resources>
