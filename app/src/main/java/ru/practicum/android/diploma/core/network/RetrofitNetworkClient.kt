@@ -1,6 +1,7 @@
 package ru.practicum.android.diploma.core.network
 
 import android.content.Context
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.practicum.android.diploma.core.dto.Response
@@ -14,7 +15,7 @@ class RetrofitNetworkClient(
 ) : NetworkClient {
 
     override suspend fun request(dto: Any): Response {
-        if (isInternetConnected(context)) {
+        if (!isInternetConnected(context)) {
             return Response().apply { resultCode = NetworkResultCode.RESULT_NO_INTERNET }
         }
 
@@ -26,6 +27,7 @@ class RetrofitNetworkClient(
                 }
                 response.apply { resultCode = NetworkResultCode.RESULT_OK }
             } catch (e: Throwable) {
+                Log.d("VACANCIES", e.message.toString())
                 Response().apply { resultCode = NetworkResultCode.RESULT_ERROR }
             }
         }

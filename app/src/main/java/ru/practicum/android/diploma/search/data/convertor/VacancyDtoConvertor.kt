@@ -7,7 +7,7 @@ class VacancyDtoConvertor {
     fun map(vacancyDto: VacancyDto): SearchedVacancy {
         return SearchedVacancy(
             vacancyDto.id.toInt(),
-            vacancyDto.employer?.url,
+            vacancyDto.employer?.logoUrls?.get(LOGO_SIZE),
             vacancyDto.name ?: "",
             vacancyDto.area?.name ?: "",
             vacancyDto.employer?.name ?: "",
@@ -15,5 +15,9 @@ class VacancyDtoConvertor {
             vacancyDto.salary?.to,
             vacancyDto.salary?.currency ?: ""
         )
+    }
+
+    companion object {
+        private const val LOGO_SIZE = "240"
     }
 }

@@ -55,6 +55,13 @@ class SearchFragment : Fragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (binding.etSearch.text.isNotEmpty()) {
+            viewModel.getCachedVacancySearchResult()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding.rvVacancy.adapter = null
@@ -66,17 +73,21 @@ class SearchFragment : Fragment() {
         when (state) {
             is SearchScreenState.Loading -> {
                 showPlaceholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
+                binding.tvFound.isVisible = false
                 setProgressBarVisibility(true)
             }
 
             is SearchScreenState.Content -> {
                 setProgressBarVisibility(false)
                 showPlaceholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
+                binding.tvFound.text = getString(R.string.vacancy_found, state.found)
+                binding.tvFound.isVisible = true
                 vacancyListAdapter?.submitList(state.vacancyList)
             }
 
             is SearchScreenState.Placeholder -> {
                 setProgressBarVisibility(false)
+                binding.tvFound.isVisible = false
                 showPlaceholder(state.placeholderType)
             }
         }
@@ -85,18 +96,34 @@ class SearchFragment : Fragment() {
     private fun showPlaceholder(type: SearchPlaceholderType) {
         when (type) {
             SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET -> {
+                vacancyListAdapter?.submitList(null)
+                binding.placeholderServerError.isVisible = false
+                binding.placeholderGotEmptyList.isVisible = false
+                binding.placeholderNoInternet.isVisible = false
                 binding.placeholderNotSearchedYet.isVisible = true
             }
 
             SearchPlaceholderType.PLACEHOLDER_NO_INTERNET -> {
+                vacancyListAdapter?.submitList(null)
+                binding.placeholderNotSearchedYet.isVisible = false
+                binding.placeholderServerError.isVisible = false
+                binding.placeholderGotEmptyList.isVisible = false
                 binding.placeholderNoInternet.isVisible = true
             }
 
             SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST -> {
+                vacancyListAdapter?.submitList(null)
+                binding.placeholderNotSearchedYet.isVisible = false
+                binding.placeholderNoInternet.isVisible = false
+                binding.placeholderServerError.isVisible = false
                 binding.placeholderGotEmptyList.isVisible = true
             }
 
             SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR -> {
+                vacancyListAdapter?.submitList(null)
+                binding.placeholderNotSearchedYet.isVisible = false
+                binding.placeholderNoInternet.isVisible = false
+                binding.placeholderGotEmptyList.isVisible = false
                 binding.placeholderServerError.isVisible = true
             }
 
@@ -116,6 +143,7 @@ class SearchFragment : Fragment() {
 
     private fun setRecyclerViewAdapter() {
         vacancyListAdapter = VacancyListAdapter()
+        binding.rvVacancy.itemAnimator = null
         binding.rvVacancy.adapter = vacancyListAdapter
     }
 
