@@ -28,7 +28,7 @@
     </style>
 
     <style name="arrow_back_iv_style">
-        <item name="android:layout_marginStart">@dimen/arrow_back_start_margin_8</item>
+        <item name="android:layout_marginStart">@dimen/arrow_back_start_margin_16</item>
         <item name="android:layout_marginTop">@dimen/arrow_back_top_margin_20</item>
         <item name="android:src">"@drawable/icon_arrow_back"</item>
 
@@ -53,6 +53,64 @@
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:fontFamily">@font/ys_text_regular</item>
         <item name="android:textSize">@dimen/bottom_nav_size_text_12</item>
+    </style>
+
+    <style name="filtering_text_input_layout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:textColorHint">?attr/colorOnPrimary</item>
+        <item name="hintTextColor">@color/gray</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="endIconMode">custom</item>
+        <item name="endIconContentDescription">\></item>
+        <item name="endIconTint">?attr/colorOnPrimary</item>
+        <item name="android:editable">false</item>
+        <item name="boxStrokeColor">?attr/colorPrimary</item>
+        <item name="boxStrokeErrorColor">?attr/colorPrimary</item>
+        <item name="boxBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="filtering_text_input_et">
+        <item name="android:fontFamily">@font/ys_text_regular</item>
+        <item name="android:textSize">@dimen/team_member_size_text_16</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="salary_filtering_text_input_layout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
+        <item name="boxCollapsedPaddingTop">8dp</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="endIconDrawable">@drawable/icon_cross</item>
+        <item name="endIconMode">custom</item>
+        <item name="endIconTint">@color/black_universal</item>
+        <item name="hintTextColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="hint_salary_filtration">
+        <item name="fontFamily">@font/ys_text_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="salary_filtering_input_edit_text">
+        <item name="android:inputType">number</item>
+        <item name="android:lines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="salary_filtration_edit_text">
+        <item name="fontFamily">@font/ys_text_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:fontWeight">400</item>
     </style>
 
 </resources>

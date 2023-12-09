@@ -7,4 +7,12 @@
     <string name="developer1">Греков Иван</string>
     <string name="developer2">Поликушин Владислав</string>
     <string name="developer3">Козловский Дмитрий</string>
+    <string name="filteringSettings">Настройки фильтрации</string>
+    <string name="workLocation">Место работы</string>
+    <string name="industry">Отрасль</string>
+    <string name="expected_salary">Ожидаемая зарплата</string>
+    <string name="enter_the_sum">Введите сумму</string>
+    <string name="no_salary_no_show">Не показывать без зарплаты</string>
+    <string name="apply">Применить</string>
+    <string name="cancel">Сбросить</string>
 </resources>
