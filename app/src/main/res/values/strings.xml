@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Practicum-Android-Diploma</string>
+    <string name="app_name">Practicum Vacancy</string>
+    <string name="hello_blank_fragment">Blank fragment</string>
+    <string name="bottom_nav_main">Главная</string>
+    <string name="bottom_nav_team">Команда</string>
+    <string name="developers">Над приложением\nработали</string>
+    <string name="developer1">Греков Иван</string>
+    <string name="developer2">Поликушин Владислав</string>
+    <string name="developer3">Козловский Дмитрий</string>
 </resources>
