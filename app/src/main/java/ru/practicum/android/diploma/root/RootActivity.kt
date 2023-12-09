@@ -110,6 +110,8 @@ class RootActivity : AppCompatActivity() {
                     binding.separator.isVisible = false
                 }
 
+                R.id.vacancyFragment -> binding.bottomNav.isVisible = false
+
                 else -> {
                     binding.bottomNav.isVisible = true
                     binding.separator.isVisible = true
