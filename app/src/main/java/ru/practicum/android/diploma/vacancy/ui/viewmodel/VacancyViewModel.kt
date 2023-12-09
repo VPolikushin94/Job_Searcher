@@ -13,6 +13,10 @@ class VacancyViewModel(
     private val vacancyInteractor: VacancyInteractor
 ) : ViewModel() {
 
+    init {
+        getDetailsVacancy()
+    }
+
     private val _screenState = MutableLiveData<VacancyState>(VacancyState.Loading)
     val screenState = _screenState
 
@@ -31,6 +35,7 @@ class VacancyViewModel(
             else -> _screenState.value = VacancyState.Success(detailsVacancy)
         }
     }
+
     companion object {
         const val BUNDLE_KEY = "bundle_key"
         private const val ERROR = "error"
