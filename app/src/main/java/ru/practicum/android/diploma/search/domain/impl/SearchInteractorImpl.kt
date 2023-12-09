@@ -13,7 +13,13 @@ class SearchInteractorImpl(
 
     override fun searchVacancy(searchText: String): Flow<Resource<SearchVacancyResult>> {
         return searchRepository.searchVacancy(
-            VacancySearchParams(searchText)
+            VacancySearchParams(
+                searchText,
+                null,
+                null,
+                null,
+                null
+            )
         )
     }
 

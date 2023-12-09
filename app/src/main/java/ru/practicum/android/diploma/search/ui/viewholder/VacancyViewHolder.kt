@@ -26,11 +26,11 @@ class VacancyViewHolder(private val binding: VacancyItemBinding) : RecyclerView.
             if ((model.salaryFrom == null) && (model.salaryTo == null)) {
                 this.append(itemView.context.getString(R.string.no_salary))
             } else {
-                if (model.salaryFrom != null) {
+                model.salaryFrom?.let {
                     val salaryFrom = itemView.context.getString(R.string.salary_from, formatNumber(model.salaryFrom))
                     this.append("$salaryFrom ")
                 }
-                if (model.salaryTo != null) {
+                model.salaryTo?.let {
                     val salaryTo = itemView.context.getString(R.string.salary_to, formatNumber(model.salaryTo))
                     this.append("$salaryTo ")
                 }

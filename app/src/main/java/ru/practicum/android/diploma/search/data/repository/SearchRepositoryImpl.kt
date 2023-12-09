@@ -17,19 +17,19 @@ import ru.practicum.android.diploma.util.NetworkResultCode
 
 class SearchRepositoryImpl(
     private val networkClient: NetworkClient,
-    private val vacancyDtoConvertor: VacancyDtoConvertor
+    private val vacancyDtoConvertor: VacancyDtoConvertor,
 ) : SearchRepository {
 
     private var vacancyList: List<SearchedVacancy> = emptyList()
     private var found: Int = 0
     override fun searchVacancy(
-        vacancySearchParams: VacancySearchParams
+        vacancySearchParams: VacancySearchParams,
     ): Flow<Resource<SearchVacancyResult>> = flow {
         val response = networkClient.request(VacancySearchRequest(vacancySearchParams.toMap()))
 
-        when(response.resultCode) {
+        when (response.resultCode) {
             NetworkResultCode.RESULT_OK -> {
-                val vacancyResponse = (response as VacancySearchResponse)
+                val vacancyResponse = response as VacancySearchResponse
                 vacancyList = vacancyResponse.vacancyList.map {
                     vacancyDtoConvertor.map(it)
                 }
@@ -40,6 +40,7 @@ class SearchRepositoryImpl(
                     )
                 )
             }
+
             NetworkResultCode.RESULT_NO_INTERNET -> emit(Resource.Error(ErrorType.NO_INTERNET))
             else -> emit(Resource.Error(ErrorType.SERVER_ERROR))
         }

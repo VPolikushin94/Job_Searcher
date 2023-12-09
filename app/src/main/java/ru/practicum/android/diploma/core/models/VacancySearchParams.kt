@@ -2,12 +2,12 @@ package ru.practicum.android.diploma.core.models
 
 data class VacancySearchParams(
     val text: String,
-    var areaId: String? = null,
-    var salary: Int? = null,
-    var isOnlyWithSalary: Boolean? = null,
-    var industryId: String? = null
+    val areaId: String?,
+    val salary: Int?,
+    val isOnlyWithSalary: Boolean?,
+    val industryId: String?
 ) {
-    companion object{
+    companion object {
         const val AREA = "area"
         const val SALARY = "salary"
         const val IS_ONLY_WITH_SALARY = "only_with_salary"
@@ -19,7 +19,7 @@ fun VacancySearchParams.toMap(): Map<String, String> {
     return mutableMapOf<String, String>().apply {
         this["text"] = text
         if (!areaId.isNullOrEmpty()) {
-            this[VacancySearchParams.AREA] = areaId!!
+            this[VacancySearchParams.AREA] = areaId
         }
         if (salary != null) {
             this[VacancySearchParams.SALARY] = salary.toString()
