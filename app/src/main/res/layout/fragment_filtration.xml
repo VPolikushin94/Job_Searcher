@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/filtrationArrowBack"
+        style="@style/arrow_back_iv_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/filtrationHeaderTv"
+        style="@style/header_tv_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filteringSettings"
+        app:layout_constraintStart_toEndOf="@+id/filtrationArrowBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/workLocation"
+        style="@style/filtering_text_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:hint="@string/workLocation"
+        app:endIconDrawable="@drawable/icon_arrow_forward"
+        app:endIconMode="custom"
+        app:endIconTint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filtrationHeaderTv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/workLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/filtering_text_input_et"
+            tools:text="Страна Андройдия" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/workIndustry"
+        style="@style/filtering_text_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="@string/industry"
+        app:endIconDrawable="@drawable/icon_arrow_forward"
+        app:endIconMode="custom"
+        app:endIconTint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workLocation">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/workIndustryEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/filtering_text_input_et"
+            tools:text="Узкий специалист по Kotlin" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/salaryFiltration"
+        style="@style/salary_filtering_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="@string/expected_salary"
+        android:paddingHorizontal="16dp"
+        app:hintTextAppearance="@style/hint_salary_filtration"
+        app:hintTextColor="@color/color_hint_expected_salary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workIndustry">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/salaryFiltrationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:hint="@string/enter_the_sum"
+            android:textAppearance="@style/salary_filtration_edit_text"
+            android:textColorHint="?attr/colorSecondaryVariant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/no_salary_no_show_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/no_salary_no_show"
+        android:textAppearance="@style/salary_filtration_edit_text"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintStart_toStartOf="@+id/salaryFiltration"
+        app:layout_constraintTop_toBottomOf="@+id/salaryFiltration" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/filtration_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:checked="true"
+        app:buttonTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@+id/no_salary_no_show_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/no_salary_no_show_tv" />
+
+    <Button
+        android:id="@+id/apply_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/apply"
+        android:textAppearance="@style/salary_filtration_edit_text"
+        android:textColor="?attr/colorPrimary"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@id/cancel_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:text="@string/cancel"
+        android:textAppearance="@style/salary_filtration_edit_text"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/bottom_button_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="apply_button,cancel_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
