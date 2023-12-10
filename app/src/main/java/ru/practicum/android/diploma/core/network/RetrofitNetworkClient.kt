@@ -15,6 +15,10 @@ class RetrofitNetworkClient(
     private val hhApiService: HhApiService,
 ) : NetworkClient {
 
+    @Suppress(
+        "TooGenericExceptionCaught",
+        "SwallowedException"
+    )
     override suspend fun request(dto: Request): Response {
         if (!isInternetConnected(context)) {
             return Response().apply { resultCode = NetworkResultCode.RESULT_NO_INTERNET }
