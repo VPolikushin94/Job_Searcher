@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.filter.ui
+package ru.practicum.android.diploma.filter.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.practicum.android.diploma.databinding.FragmentFilterSettingsBinding
+import ru.practicum.android.diploma.databinding.FragmentFiltrationBinding
 import ru.practicum.android.diploma.filter.ui.viewmodel.FilterViewModel
 
-class FilterSettingsFragment : Fragment() {
+class FiltrationFragment : Fragment() {
 
-    private var _binding: FragmentFilterSettingsBinding? = null
+    private var _binding: FragmentFiltrationBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: FilterViewModel by viewModel()
@@ -21,7 +21,7 @@ class FilterSettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentFilterSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentFiltrationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
