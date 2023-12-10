@@ -207,5 +207,29 @@
         <item name="android:textColor">@color/white_universal</item>
         <item name="backgroundTint">@color/blue</item>
     </style>
-  
+
+    <style name="track_arrow_country_item">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginTop">@dimen/margin_12</item>
+        <item name="android:layout_marginEnd">@dimen/margin_12</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12</item>
+    </style>
+
+
+    <style name="country_item_tv">
+        <item name="android:fontFamily">@font/ys_text_regular</item>
+        <item name="android:minHeight">@dimen/margin_60</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="get_list_error_placeholder_tv">
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">@dimen/margin_16</item>
+        <item name="fontFamily">@font/ys_display_medium</item>
+        <item name="android:textSize">@dimen/header_tv_size_text_22</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
 </resources>

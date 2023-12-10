@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/filtrationChoiceCountryArrowBack"
+        style="@style/arrow_back_iv_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/filtrationChoiceCountryHeaderTv"
+        style="@style/header_tv_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/work_country_choice"
+        app:layout_constraintStart_toEndOf="@+id/filtrationChoiceCountryArrowBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCountry"
+        android:layout_width="@dimen/margin_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_36"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filtrationChoiceCountryHeaderTv"
+        tools:itemCount="10"
+        tools:listitem="@layout/country_item" />
+
+    <FrameLayout
+        android:id="@+id/get_list_error_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_60"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/get_list_error_placeholder_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/get_list_error"
+            app:drawableTopCompat="@drawable/placeholder_error_region_carpet" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
