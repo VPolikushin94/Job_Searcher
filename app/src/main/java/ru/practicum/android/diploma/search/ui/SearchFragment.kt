@@ -40,7 +40,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setEditTextChangeListener()
+        setEditText()
         setListTouchListeners()
         setEditorActionListener()
         setClickListeners()
@@ -147,11 +147,18 @@ class SearchFragment : Fragment() {
         binding.rvVacancy.adapter = vacancyListAdapter
     }
 
-    private fun setEditTextChangeListener() {
+    private fun setEditText() {
         binding.etSearch.doOnTextChanged { text, _, _, _ ->
             setClearButtonIcon(text)
-            viewModel.searchVacancyDebounce(text.toString())
+
+            if (text.isNullOrEmpty()) {
+                viewModel.blockSearch(true)
+            } else {
+                viewModel.blockSearch(false)
+                viewModel.searchVacancyDebounce(text.toString())
+            }
         }
+        binding.etSearch.requestFocus()
     }
 
     private fun setClickListeners() {
@@ -160,6 +167,7 @@ class SearchFragment : Fragment() {
                 binding.etSearch.requestFocus()
                 changeKeyboardVisibility(true)
             } else {
+                changeKeyboardVisibility(false)
                 binding.etSearch.setText("")
                 binding.etSearch.requestFocus()
             }
@@ -202,6 +210,7 @@ class SearchFragment : Fragment() {
     private fun setEditorActionListener() {
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.blockSearch(false)
                 viewModel.searchVacancy(binding.etSearch.text.toString())
                 binding.etSearch.clearFocus()
             }

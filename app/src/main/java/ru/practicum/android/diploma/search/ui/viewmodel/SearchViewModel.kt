@@ -36,9 +36,10 @@ class SearchViewModel(
     val btnFilterState: LiveData<Boolean> = _btnFilterState
 
     private var searchedText: String = ""
+    private var hasSearchBlocked = false
 
     fun searchVacancy(searchText: String) {
-        if (searchedText == searchText) {
+        if (searchedText == searchText || hasSearchBlocked) {
             return
         }
 
@@ -100,6 +101,16 @@ class SearchViewModel(
                     )
                 }
             }
+        }
+    }
+
+    fun blockSearch(hasBlocked: Boolean) {
+        if (hasBlocked) {
+            hasSearchBlocked = true
+            searchedText = ""
+            _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET)
+        } else {
+            hasSearchBlocked = false
         }
     }
 
