@@ -53,4 +53,11 @@
     <string name="comment">Комментарий</string>
     <string name="similar_jobs">Похожие вакансии</string>
 
+    <string name="work_location_choice">Выбор места работы</string>
+    <string name="country">Страна</string>
+    <string name="region">Регион</string>
+    <string name="select">Выбрать</string>
+    <string name="work_country_choice">Выбор страны</string>
+    <string name="get_list_error">Не удалось получить\nсписок</string>
+
 </resources>
