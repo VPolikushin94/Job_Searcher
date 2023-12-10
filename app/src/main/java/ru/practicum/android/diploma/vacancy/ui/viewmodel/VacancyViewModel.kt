@@ -29,10 +29,13 @@ class VacancyViewModel(
         }
     }
 
-    private fun processResult(detailsVacancy: DetailsVacancy, message: String?) {
+    private fun processResult(detailsVacancy: DetailsVacancy?, message: String?) {
         when (message) {
-            ERROR -> _screenState.value = VacancyState.Error
-            else -> _screenState.value = VacancyState.Success(detailsVacancy)
+            ERROR -> {
+                _screenState.value = VacancyState.Error
+            }
+
+            else -> _screenState.value = detailsVacancy?.let { VacancyState.Success(it) }
         }
     }
 
