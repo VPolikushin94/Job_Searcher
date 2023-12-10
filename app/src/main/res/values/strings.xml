@@ -44,4 +44,7 @@
     <string name="telephone">Телефон</string>
     <string name="comment">Комментарий</string>
     <string name="similar_jobs">Похожие вакансии</string>
+    <string name="work_location_choice">Выбор места работы</string>
+    <string name="country">Страна</string>
+    <string name="region">Регион</string>
 </resources>
