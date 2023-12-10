@@ -6,11 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.search.domain.api.SearchInteractor
+import ru.practicum.android.diploma.search.domain.models.ErrorType
+import ru.practicum.android.diploma.search.domain.models.Resource
+import ru.practicum.android.diploma.search.domain.models.SearchVacancyResult
 import ru.practicum.android.diploma.search.ui.models.SearchPlaceholderType
 import ru.practicum.android.diploma.search.ui.models.SearchScreenState
 import ru.practicum.android.diploma.util.debounce
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel(
+    private val searchInteractor: SearchInteractor,
+) : ViewModel() {
 
     private var isClickAllowed = true
 
@@ -29,9 +35,82 @@ class SearchViewModel : ViewModel() {
     private val _btnFilterState = MutableLiveData<Boolean>()
     val btnFilterState: LiveData<Boolean> = _btnFilterState
 
+    private var searchedText: String = ""
+    private var hasSearchBlocked = false
+
     fun searchVacancy(searchText: String) {
+        if (searchedText == searchText || hasSearchBlocked) {
+            return
+        }
+
         if (searchText.isNotEmpty()) {
-            viewModelScope.launch {}
+            _screenState.value = SearchScreenState.Loading
+            viewModelScope.launch {
+                searchedText = searchText
+                searchInteractor.searchVacancy(searchText)
+                    .collect {
+                        processResult(it)
+                    }
+            }
+        }
+    }
+
+    fun getCachedVacancySearchResult() {
+        _screenState.value = SearchScreenState.Loading
+        viewModelScope.launch {
+            val vacancyList = searchInteractor.getCachedVacancySearchResult()
+            setContentState(vacancyList)
+        }
+    }
+
+    private fun setContentState(searchResult: SearchVacancyResult) {
+        if (searchResult.vacancyList.isEmpty()) {
+            _screenState.postValue(
+                SearchScreenState.Placeholder(
+                    SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST
+                )
+            )
+        } else {
+            _screenState.postValue(
+                SearchScreenState.Content(
+                    searchResult.vacancyList,
+                    searchResult.found
+                )
+            )
+        }
+    }
+
+    private fun processResult(searchedData: Resource<SearchVacancyResult>) {
+        when (searchedData) {
+            is Resource.Success -> {
+                setContentState(searchedData.data)
+            }
+
+            is Resource.Error -> {
+                when (searchedData.errorType) {
+                    ErrorType.NO_INTERNET -> _screenState.postValue(
+                        SearchScreenState.Placeholder(
+                            SearchPlaceholderType.PLACEHOLDER_NO_INTERNET
+                        )
+                    )
+
+                    ErrorType.SERVER_ERROR -> _screenState.postValue(
+                        SearchScreenState.Placeholder(
+                            SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun blockSearch(hasBlocked: Boolean) {
+        if (hasBlocked) {
+            hasSearchBlocked = true
+            searchedText = ""
+            _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET)
+        } else {
+            hasSearchBlocked = false
         }
     }
 

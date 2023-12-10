@@ -53,7 +53,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tv_vacancy_counter"
+        android:id="@+id/tv_found"
         style="@style/search_tv_vacancy_counter_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

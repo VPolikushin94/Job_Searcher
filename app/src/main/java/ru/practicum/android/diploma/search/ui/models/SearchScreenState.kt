@@ -6,7 +6,7 @@ sealed interface SearchScreenState {
 
     data object Loading : SearchScreenState
 
-    data class Content(val vacancyList: List<SearchedVacancy>) : SearchScreenState
+    data class Content(val vacancyList: List<SearchedVacancy>, val found: Int) : SearchScreenState
 
     data class Placeholder(val placeholderType: SearchPlaceholderType) : SearchScreenState
 }
