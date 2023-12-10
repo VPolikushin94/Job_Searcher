@@ -1,3 +1,5 @@
 package ru.practicum.android.diploma.search.data.dto
 
-data class VacancySearchRequest(val vacancySearchParams: Map<String, String>)
+import ru.practicum.android.diploma.core.dto.Request
+
+data class VacancySearchRequest(val vacancySearchParams: Map<String, String>) : Request

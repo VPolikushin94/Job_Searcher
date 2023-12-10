@@ -1,8 +1,10 @@
 package ru.practicum.android.diploma.core.network
 
+import android.accounts.NetworkErrorException
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import ru.practicum.android.diploma.core.dto.Request
 import ru.practicum.android.diploma.core.dto.Response
 import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
 import ru.practicum.android.diploma.util.NetworkResultCode
@@ -13,7 +15,7 @@ class RetrofitNetworkClient(
     private val hhApiService: HhApiService,
 ) : NetworkClient {
 
-    override suspend fun request(dto: Any): Response {
+    override suspend fun request(dto: Request): Response {
         if (!isInternetConnected(context)) {
             return Response().apply { resultCode = NetworkResultCode.RESULT_NO_INTERNET }
         }
@@ -22,7 +24,7 @@ class RetrofitNetworkClient(
             try {
                 val response = when (dto) {
                     is VacancySearchRequest -> hhApiService.searchVacancy(dto.vacancySearchParams)
-                    else -> throw RuntimeException("Wrong dto")
+                    else -> throw NetworkErrorException("Wrong dto")
                 }
                 response.apply { resultCode = NetworkResultCode.RESULT_OK }
             } catch (e: Throwable) {
