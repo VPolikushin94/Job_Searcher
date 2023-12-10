@@ -1,6 +1,6 @@
 package ru.practicum.android.diploma.vacancy.data
 
-import ru.practicum.android.diploma.vacancy.data.vacancyDto.DetailVacancyDto
+import ru.practicum.android.diploma.vacancy.data.details.DetailVacancyDto
 import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 
 class DetailsVacancyConverter {
@@ -27,4 +27,4 @@ class DetailsVacancyConverter {
             telephone = this.phone.number,
             comment = this.phone.comment
         )
-    }
+}
