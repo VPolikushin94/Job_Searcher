@@ -29,6 +29,7 @@
     <dimen name="search_tv_vacancy_counter_padding_vertical_4">4dp</dimen>
     <dimen name="search_tv_vacancy_counter_padding_horizontal_12">12dp</dimen>
     <dimen name="search_tv_vacancy_counter_margin_top_3">3dp</dimen>
+    <dimen name="radius_12">12dp</dimen>
 
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
