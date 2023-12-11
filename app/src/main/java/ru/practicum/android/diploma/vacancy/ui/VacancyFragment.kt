@@ -79,7 +79,6 @@ class VacancyFragment : Fragment() {
         val from = resources.getString(salary_from)
         val to = resources.getString(R.string.salary_to)
         val noSalary = resources.getString(R.string.no_salary)
-
         binding.progressBar.isVisible = false
         binding.imPlaceholderServerErrorCat.isVisible = false
         binding.tvVacancyErrorServer.isVisible = false
@@ -118,12 +117,12 @@ class VacancyFragment : Fragment() {
         } else {
             binding.tvKeySkillsText.text = data.keySkills
         }
-        if (data.contactPerson == null && data.email == null && data.telephone == null && data.comment == null) {
+        if (data.contactPerson == null
+            && data.email == null
+            && data.telephone == null
+            && data.comment == null
+        ) {
             binding.tvContacts.isVisible = false
-            binding.tvContactPerson.isVisible = false
-            binding.tvEMail.isVisible = false
-            binding.tvTelephone.isVisible = false
-            binding.tvComment.isVisible = false
         }
         if (data.contactPerson == null) {
             binding.tvContactPerson.isVisible = false
