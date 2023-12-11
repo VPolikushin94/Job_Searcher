@@ -11,13 +11,14 @@ data class DetailsVacancy(
     val employmentName: String?,
     val experienceId: Int,
     val experienceName: String?,
-    val salaryTo: String?,
-    val salaryFrom: String?,
+    val salaryTo: Int?,
+    val salaryFrom: Int?,
     val salaryCurrency: String?,
     val description: String?,
     val keySkills: String?,
     val contactPerson: String?,
     val email: String?,
     val telephone: String?,
-    val comment: String?
+    val comment: String?,
+    val url: String?
 )
