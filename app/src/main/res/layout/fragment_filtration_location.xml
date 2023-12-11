@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".filter.ui.fragment.FiltrationLocationFragment">
 
     <ImageView
         android:id="@+id/filtrationLocationArrowBack"
@@ -40,6 +41,7 @@
             android:id="@+id/workLocationCountryEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:textAppearance="@style/filtering_text_input_et"
             tools:text="Страна Андройдия" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -62,6 +64,7 @@
             android:id="@+id/workLocationRegionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:textAppearance="@style/filtering_text_input_et"
             tools:text="Крайний Юг" />
     </com.google.android.material.textfield.TextInputLayout>

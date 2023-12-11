@@ -27,11 +27,11 @@
         <item name="android:textSize">@dimen/margin_22</item>
     </style>
 
-    <style name="arrow_back_iv_style">
+    <style name="arrow_back_iv_style" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_marginStart">@dimen/margin_16</item>
         <item name="android:layout_marginTop">@dimen/margin_20</item>
-        <item name="android:src">"@drawable/icon_arrow_back"</item>
-
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="srcCompat">@drawable/icon_arrow_back</item>
     </style>
 
     <style name="search_et_style">
