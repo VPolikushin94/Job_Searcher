@@ -93,8 +93,31 @@ class VacancyFragment : Fragment() {
             binding.tvVacancySalary.text =
                 "$from ${formatNumber(data.salaryFrom)} $to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
         }
+
+        showEmployer(data)
+        showDescription(data)
+        showKeySkills(data)
+        showContact(data)
+
+        binding.tvEMailText.setOnClickListener {
+            actionEmail(data.email)
+        }
+
+        binding.tvTelephoneText.setOnClickListener {
+            actionTelephone(data.telephone)
+        }
+
+        binding.vacancyShare.setOnClickListener {
+            viewModel.clickDebounce()
+            if (isClickAllowed) actionShare(data.url)
+        }
+    }
+
+    private fun showEmployer(data: DetailsVacancy) {
         if (data.employerLogo != null) {
-            Glide.with(requireActivity()).load(data.employerLogo).into(binding.ivFrameLogo)
+            Glide.with(requireActivity())
+                .load(data.employerLogo)
+                .into(binding.ivFrameLogo)
         }
         if (data.employerName == null) {
             binding.tvHeadlineCard.isVisible = false
@@ -107,22 +130,29 @@ class VacancyFragment : Fragment() {
         } else {
             binding.tvRequiredExperienceYear.text = data.experienceName
         }
+    }
+
+    private fun showDescription(data: DetailsVacancy) {
         if (data.description == null) {
             binding.tvJobDescription.isVisible = false
         } else {
             binding.tvResponsibilitiesText.text = Html.fromHtml(data.description, HtmlCompat.FROM_HTML_MODE_COMPACT)
         }
+    }
+
+    private fun showKeySkills(data: DetailsVacancy) {
         if (data.keySkills == null) {
             binding.tvKeySkills.isVisible = false
         } else {
             binding.tvKeySkillsText.text = data.keySkills
         }
-        if (data.contactPerson == null
-            && data.email == null
-            && data.telephone == null
-            && data.comment == null
-        ) {
-            binding.tvContacts.isVisible = false
+    }
+
+    private fun showContact(data: DetailsVacancy) {
+        if (data.contactPerson == null && data.email == null) {
+            if (data.telephone == null && data.comment == null) {
+                binding.tvContacts.isVisible = false
+            }
         }
         if (data.contactPerson == null) {
             binding.tvContactPerson.isVisible = false
@@ -143,19 +173,6 @@ class VacancyFragment : Fragment() {
             binding.tvComment.isVisible = false
         } else {
             binding.tvCommentText.text = data.comment
-        }
-
-        binding.tvEMailText.setOnClickListener {
-            actionEmail(data.email)
-        }
-
-        binding.tvTelephoneText.setOnClickListener {
-            actionTelephone(data.telephone)
-        }
-
-        binding.vacancyShare.setOnClickListener {
-            viewModel.clickDebounce()
-            if (isClickAllowed) actionShare(data.url)
         }
     }
 
