@@ -29,7 +29,6 @@ class VacancyFragment : Fragment() {
 
     private val viewModel: VacancyViewModel by viewModel()
     private var isClickAllowed = true
-    private  var contactHeader = 4
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -154,6 +153,7 @@ class VacancyFragment : Fragment() {
     }
 
     private fun showContact(data: DetailsVacancy) {
+        var contactHeader = CONTACT
         if (data.contactPerson == null) {
             binding.tvContactPerson.isVisible = false
             contactHeader -= 1
@@ -208,5 +208,9 @@ class VacancyFragment : Fragment() {
             startActivity(intent)
         } catch (_: Exception) {
         }
+    }
+
+    companion object {
+        const val CONTACT = 4
     }
 }
