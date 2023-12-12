@@ -29,6 +29,7 @@ class VacancyFragment : Fragment() {
 
     private val viewModel: VacancyViewModel by viewModel()
     private var isClickAllowed = true
+    private  var contactHeader = 4
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -153,33 +154,31 @@ class VacancyFragment : Fragment() {
     }
 
     private fun showContact(data: DetailsVacancy) {
-        var showContactHeader = 4
-
         if (data.contactPerson == null) {
             binding.tvContactPerson.isVisible = false
-            showContactHeader -= 1
+            contactHeader -= 1
         } else {
             binding.tvContactPersonText.text = data.contactPerson
         }
         if (data.email == null) {
             binding.tvEMail.isVisible = false
-            showContactHeader -= 1
+            contactHeader -= 1
         } else {
             binding.tvEMailText.text = data.email
         }
         if (data.telephone == null) {
             binding.tvTelephone.isVisible = false
-            showContactHeader -= 1
+            contactHeader -= 1
         } else {
             binding.tvTelephone.text = data.telephone
         }
         if (data.comment == null) {
             binding.tvComment.isVisible = false
-            showContactHeader -= 1
+            contactHeader -= 1
         } else {
             binding.tvCommentText.text = data.comment
         }
-        if (showContactHeader == 0) {
+        if (contactHeader == 0) {
             binding.tvContacts.isVisible = false
         }
     }
