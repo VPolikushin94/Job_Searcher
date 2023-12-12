@@ -17,14 +17,15 @@ class DetailsVacancyConverter {
             employmentName = this.employment.name,
             experienceId = this.experience.id.toInt(),
             experienceName = this.experience.name,
-            salaryTo = this.salary?.to.toString(),
-            salaryFrom = this.salary?.from.toString(),
+            salaryTo = this.salary?.to,
+            salaryFrom = this.salary?.from,
             salaryCurrency = this.salary?.currency,
             description = this.description,
             keySkills = this.keySkills,
             contactPerson = this.contacts?.name,
             email = this.contacts?.email,
             telephone = this.phone.number,
-            comment = this.phone.comment
+            comment = this.phone.comment,
+            url = this.url
         )
 }

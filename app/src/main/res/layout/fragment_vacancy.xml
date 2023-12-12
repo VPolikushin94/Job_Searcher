@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vacancy.ui.VacancyFragment"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    tools:context=".vacancy.ui.VacancyFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -17,18 +17,18 @@
         android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="@string/app_name"
         android:src="@drawable/icon_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/tv_vacancy_fragment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_vacancy_fragment"
-        app:layout_constraintBottom_toBottomOf="@id/tv_vacancy_fragment"/>
+        app:layout_constraintTop_toTopOf="@id/tv_vacancy_fragment" />
 
     <TextView
         android:id="@+id/tv_vacancy_fragment"
         style="@style/main_heading_vacancy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/vacancy"
-        android:layout_marginTop="@dimen/margin_20"
         android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_20"
+        android:text="@string/vacancy"
         app:layout_constraintStart_toEndOf="@id/iv_vacancy_back"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,9 +40,9 @@
         android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="@string/app_name"
         android:src="@drawable/icon_like_off"
+        app:layout_constraintBottom_toBottomOf="@id/tv_vacancy_fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_vacancy_fragment"
-        app:layout_constraintBottom_toBottomOf="@id/tv_vacancy_fragment"/>
+        app:layout_constraintTop_toTopOf="@id/tv_vacancy_fragment" />
 
     <ImageView
         android:id="@+id/vacancy_share"
@@ -52,9 +52,9 @@
         android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="@string/app_name"
         android:src="@drawable/icon_share"
+        app:layout_constraintBottom_toBottomOf="@id/tv_vacancy_fragment"
         app:layout_constraintEnd_toStartOf="@id/vacancy_favourite"
-        app:layout_constraintTop_toTopOf="@id/tv_vacancy_fragment"
-        app:layout_constraintBottom_toBottomOf="@id/tv_vacancy_fragment"/>
+        app:layout_constraintTop_toTopOf="@id/tv_vacancy_fragment" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -62,34 +62,34 @@
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/blue"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/im_placeholder_server_error_cat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/placeholder_server_error_cat"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:contentDescription="@string/app_name"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_vacancy_error_server"
         style="@style/main_heading_vacancy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
         android:text="@string/server_error"
         android:visibility="gone"
-        android:layout_marginTop="@dimen/margin_20"
-        app:layout_constraintTop_toBottomOf="@id/im_placeholder_server_error_cat"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/im_placeholder_server_error_cat" />
 
     <ScrollView
         android:id="@+id/scroll"
@@ -102,7 +102,6 @@
             android:id="@+id/screen_detail_vacancy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:layout_marginHorizontal="@dimen/margin_16">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -127,29 +126,29 @@
                 android:layout_height="@dimen/margin_80"
                 android:layout_marginTop="@dimen/margin_24"
                 android:background="@drawable/frame_logo_card"
-                app:layout_constraintTop_toBottomOf="@id/tv_vacancy_salary"
-                android:contentDescription="@string/app_name"/>
+                android:contentDescription="@string/app_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_vacancy_salary" />
 
             <ImageView
                 android:id="@+id/iv_frame_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_16"
                 android:background="@drawable/frame_logo"
+                android:contentDescription="@string/app_name"
                 app:layout_constraintStart_toStartOf="@id/iv_frame_logo_card"
-                app:layout_constraintTop_toTopOf="@id/iv_frame_logo_card"
-                android:contentDescription="@string/app_name"/>
+                app:layout_constraintTop_toTopOf="@id/iv_frame_logo_card" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_headline_card"
                 style="@style/main_heading_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginStart="@dimen/margin_8"
-                app:layout_constraintTop_toTopOf="@id/iv_frame_logo_card"
+                android:layout_marginTop="@dimen/margin_16"
                 app:layout_constraintStart_toEndOf="@id/iv_frame_logo"
+                app:layout_constraintTop_toTopOf="@id/iv_frame_logo_card"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -158,8 +157,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_8"
-                app:layout_constraintTop_toBottomOf="@id/tv_headline_card"
                 app:layout_constraintStart_toEndOf="@id/iv_frame_logo"
+                app:layout_constraintTop_toBottomOf="@id/tv_headline_card"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -207,8 +206,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
-                android:visibility="visible"
                 android:text="@string/responsibilities"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/tv_job_description"
                 app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
@@ -218,11 +217,10 @@
                 style="@style/text_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_4"
                 android:layout_marginStart="@dimen/margin_24"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_responsibilities"
+                android:layout_marginTop="@dimen/margin_4"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_responsibilities"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -231,10 +229,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
-                android:visibility="visible"
                 android:text="@string/requirements"
-                app:layout_constraintTop_toBottomOf="@id/tv_responsibilities_text"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_responsibilities_text"
                 app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
@@ -243,11 +241,10 @@
                 style="@style/text_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_4"
                 android:layout_marginStart="@dimen/margin_24"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_requirements"
+                android:layout_marginTop="@dimen/margin_4"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_requirements"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -256,10 +253,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
-                android:visibility="visible"
                 android:text="@string/conditions"
-                app:layout_constraintTop_toBottomOf="@id/tv_requirements_text"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_requirements_text"
                 app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
@@ -268,11 +265,10 @@
                 style="@style/text_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_4"
                 android:layout_marginStart="@dimen/margin_24"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_conditions"
+                android:layout_marginTop="@dimen/margin_4"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_conditions"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -281,10 +277,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_24"
-                android:visibility="visible"
                 android:text="@string/key_skills"
-                app:layout_constraintTop_toBottomOf="@id/tv_conditions_text"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_conditions_text"
                 app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
@@ -293,11 +288,10 @@
                 style="@style/text_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginStart="@dimen/margin_24"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_key_skills"
+                android:layout_marginTop="@dimen/margin_16"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_key_skills"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -306,10 +300,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_24"
-                android:visibility="visible"
                 android:text="@string/contacts"
-                app:layout_constraintTop_toBottomOf="@id/tv_key_skills_text"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_key_skills_text"
                 app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
@@ -319,7 +312,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
-                android:visibility="visible"
                 android:text="@string/contact_person"
                 app:layout_constraintTop_toBottomOf="@id/tv_contacts"
                 app:layout_goneMarginTop="@dimen/margin_32"
@@ -331,9 +323,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_contact_person"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_contact_person"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -342,7 +333,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
-                android:visibility="visible"
                 android:text="@string/e_mail"
                 app:layout_constraintTop_toBottomOf="@id/tv_contact_person_text"
                 app:layout_goneMarginTop="@dimen/margin_32"
@@ -354,9 +344,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_e_mail"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_e_mail"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -366,7 +355,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/telephone"
-                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@id/tv_e_mail_text"
                 app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
@@ -377,9 +365,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_telephone"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_telephone"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -388,7 +375,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
-                android:visibility="visible"
                 android:text="@string/comment"
                 app:layout_constraintTop_toBottomOf="@id/tv_telephone_text"
                 app:layout_goneMarginTop="@dimen/margin_32"
@@ -400,9 +386,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/tv_comment"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_comment"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <Button
@@ -412,11 +397,10 @@
                 android:layout_height="60dp"
                 android:layout_marginBottom="@dimen/margin_24"
                 android:text="@string/similar_jobs"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
