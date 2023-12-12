@@ -153,33 +153,33 @@ class VacancyFragment : Fragment() {
     }
 
     private fun showContact(data: DetailsVacancy) {
-        var showContact = 4
+        var showContactHeader = 4
 
         if (data.contactPerson == null) {
             binding.tvContactPerson.isVisible = false
-            showContact -= 1
+            showContactHeader -= 1
         } else {
             binding.tvContactPersonText.text = data.contactPerson
         }
         if (data.email == null) {
             binding.tvEMail.isVisible = false
-            showContact -= 1
+            showContactHeader -= 1
         } else {
             binding.tvEMailText.text = data.email
         }
         if (data.telephone == null) {
             binding.tvTelephone.isVisible = false
-            showContact -= 1
+            showContactHeader -= 1
         } else {
             binding.tvTelephone.text = data.telephone
         }
         if (data.comment == null) {
             binding.tvComment.isVisible = false
-            showContact -= 1
+            showContactHeader -= 1
         } else {
             binding.tvCommentText.text = data.comment
         }
-        if (showContact == 0) {
+        if (showContactHeader == 0) {
             binding.tvContacts.isVisible = false
         }
     }
