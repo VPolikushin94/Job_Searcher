@@ -75,7 +75,6 @@ class VacancyFragment : Fragment() {
     }
 
     private fun showVacancy(data: DetailsVacancy) {
-
         binding.progressBar.isVisible = false
         binding.imPlaceholderServerErrorCat.isVisible = false
         binding.tvVacancyErrorServer.isVisible = false
@@ -155,9 +154,7 @@ class VacancyFragment : Fragment() {
 
     private fun showContact(data: DetailsVacancy) {
         var showContact = 4
-        if (data.contactPerson == null && data.email == null && data.telephone == null && data.comment == null) {
-            binding.tvContacts.isVisible = false
-        }
+
         if (data.contactPerson == null) {
             binding.tvContactPerson.isVisible = false
             showContact -= 1
