@@ -178,12 +178,12 @@ class SearchFragment : Fragment() {
 //        binding.btnFilter.setOnClickListener {
 //
 //        }
-       vacancyListAdapter?.onVacancyClickListener = {
+        vacancyListAdapter?.onVacancyClickListener = {
             if (viewModel.clickDebounce()) {
                 val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id)
                 view?.findNavController()?.navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
             }
-       }
+        }
     }
 
     private fun setFilterState(isActivated: Boolean) {

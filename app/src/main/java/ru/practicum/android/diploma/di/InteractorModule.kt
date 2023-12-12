@@ -14,7 +14,7 @@ val interactorModule = module {
         )
     }
 
-    single<VacancyInteractor>{
+    single<VacancyInteractor> {
         VacancyInteractorImpl(get())
     }
 }
