@@ -74,26 +74,14 @@ class VacancyFragment : Fragment() {
         binding.tvVacancyErrorServer.isVisible = true
     }
 
-    @SuppressLint("SetTextI18n")
     private fun showVacancy(data: DetailsVacancy) {
-        val from = resources.getString(salary_from)
-        val to = resources.getString(R.string.salary_to)
-        val noSalary = resources.getString(R.string.no_salary)
+
         binding.progressBar.isVisible = false
         binding.imPlaceholderServerErrorCat.isVisible = false
         binding.tvVacancyErrorServer.isVisible = false
         binding.tvVacancyName.text = data.name
-        if (data.salaryFrom == null && data.salaryTo == null) {
-            binding.tvVacancySalary.text = noSalary
-        } else if (data.salaryFrom != null && data.salaryTo == null) {
-            binding.tvVacancySalary.text = "$from ${formatNumber(data.salaryFrom)} ${data.salaryCurrency}"
-        } else if (data.salaryFrom == null && data.salaryTo != null) {
-            binding.tvVacancySalary.text = "$to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
-        } else if (data.salaryFrom != null && data.salaryTo != null) {
-            binding.tvVacancySalary.text =
-                "$from ${formatNumber(data.salaryFrom)} $to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
-        }
 
+        showSalary(data)
         showEmployer(data)
         showDescription(data)
         showKeySkills(data)
@@ -110,6 +98,23 @@ class VacancyFragment : Fragment() {
         binding.vacancyShare.setOnClickListener {
             viewModel.clickDebounce()
             if (isClickAllowed) actionShare(data.url)
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showSalary(data: DetailsVacancy) {
+        val from = resources.getString(salary_from)
+        val to = resources.getString(R.string.salary_to)
+        val noSalary = resources.getString(R.string.no_salary)
+        if (data.salaryFrom == null && data.salaryTo == null) {
+            binding.tvVacancySalary.text = noSalary
+        } else if (data.salaryFrom != null && data.salaryTo == null) {
+            binding.tvVacancySalary.text = "$from ${formatNumber(data.salaryFrom)} ${data.salaryCurrency}"
+        } else if (data.salaryFrom == null && data.salaryTo != null) {
+            binding.tvVacancySalary.text = "$to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
+        } else if (data.salaryFrom != null && data.salaryTo != null) {
+            binding.tvVacancySalary.text =
+                "$from ${formatNumber(data.salaryFrom)} $to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
         }
     }
 
@@ -149,28 +154,36 @@ class VacancyFragment : Fragment() {
     }
 
     private fun showContact(data: DetailsVacancy) {
+        var showContact = 4
         if (data.contactPerson == null && data.email == null && data.telephone == null && data.comment == null) {
             binding.tvContacts.isVisible = false
         }
         if (data.contactPerson == null) {
             binding.tvContactPerson.isVisible = false
+            showContact -= 1
         } else {
             binding.tvContactPersonText.text = data.contactPerson
         }
         if (data.email == null) {
             binding.tvEMail.isVisible = false
+            showContact -= 1
         } else {
             binding.tvEMailText.text = data.email
         }
         if (data.telephone == null) {
             binding.tvTelephone.isVisible = false
+            showContact -= 1
         } else {
             binding.tvTelephone.text = data.telephone
         }
         if (data.comment == null) {
             binding.tvComment.isVisible = false
+            showContact -= 1
         } else {
             binding.tvCommentText.text = data.comment
+        }
+        if (showContact == 0) {
+            binding.tvContacts.isVisible = false
         }
     }
 
