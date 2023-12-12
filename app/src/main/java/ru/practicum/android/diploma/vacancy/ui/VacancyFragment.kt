@@ -1,6 +1,5 @@
 package ru.practicum.android.diploma.vacancy.ui
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -74,7 +73,7 @@ class VacancyFragment : Fragment() {
         binding.tvVacancyErrorServer.isVisible = true
     }
 
-    @SuppressLint("SetTextI18n")
+
     private fun showVacancy(data: DetailsVacancy) {
         val from = resources.getString(salary_from)
         val to = resources.getString(R.string.salary_to)
@@ -86,12 +85,35 @@ class VacancyFragment : Fragment() {
         if (data.salaryFrom == null && data.salaryTo == null) {
             binding.tvVacancySalary.text = noSalary
         } else if (data.salaryFrom != null && data.salaryTo == null) {
-            binding.tvVacancySalary.text = "$from ${formatNumber(data.salaryFrom)} ${data.salaryCurrency}"
+            binding.tvVacancySalary.text = buildString {
+                append(from)
+                append(" ")
+                append(formatNumber(data.salaryFrom))
+                append(" ")
+                append(data.salaryCurrency)
+            }
+
         } else if (data.salaryFrom == null && data.salaryTo != null) {
-            binding.tvVacancySalary.text = "$to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
+            binding.tvVacancySalary.text = buildString {
+                append(to)
+                append(" ")
+                append(formatNumber(data.salaryTo))
+                append(" ")
+                append(data.salaryCurrency)
+            }
         } else if (data.salaryFrom != null && data.salaryTo != null) {
             binding.tvVacancySalary.text =
-                "$from ${formatNumber(data.salaryFrom)} $to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
+                buildString {
+                    append(from)
+                    append(" ")
+                    append(formatNumber(data.salaryFrom))
+                    append(" ")
+                    append(to)
+                    append(" ")
+                    append(formatNumber(data.salaryTo))
+                    append(" ")
+                    append(data.salaryCurrency)
+                }
         }
 
         showEmployer(data)
@@ -149,9 +171,13 @@ class VacancyFragment : Fragment() {
     }
 
     private fun showContact(data: DetailsVacancy) {
-        if (data.contactPerson == null && data.email == null) {
-            if (data.telephone == null && data.comment == null) {
-                binding.tvContacts.isVisible = false
+        if (data.contactPerson == null) {
+            if (data.email == null) {
+                if (data.telephone == null) {
+                    if (data.comment == null) {
+                        binding.tvContacts.isVisible = false
+                    }
+                }
             }
         }
         if (data.contactPerson == null) {
