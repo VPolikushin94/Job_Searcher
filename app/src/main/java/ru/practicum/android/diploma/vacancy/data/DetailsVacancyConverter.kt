@@ -3,8 +3,6 @@ package ru.practicum.android.diploma.vacancy.data
 import ru.practicum.android.diploma.vacancy.data.details.DetailVacancyDto
 import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 
-class DetailsVacancyConverter {
-
     fun DetailVacancyDto.mapToDetailsVacancy(): DetailsVacancy =
         DetailsVacancy(
             id = this.id.toInt(),
@@ -28,4 +26,3 @@ class DetailsVacancyConverter {
             comment = this.phone.comment,
             url = this.url
         )
-}

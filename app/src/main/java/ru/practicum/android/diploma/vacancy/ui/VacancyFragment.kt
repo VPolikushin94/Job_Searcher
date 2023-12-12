@@ -193,7 +193,7 @@ class VacancyFragment : Fragment() {
     }
 
     private fun actionTelephone(phoneNumber: String?) {
-        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("telphone:$phoneNumber"))
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("telephone:$phoneNumber"))
         try {
             startActivity(intent)
         } catch (_: Exception) {
@@ -208,6 +208,11 @@ class VacancyFragment : Fragment() {
             startActivity(intent)
         } catch (_: Exception) {
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

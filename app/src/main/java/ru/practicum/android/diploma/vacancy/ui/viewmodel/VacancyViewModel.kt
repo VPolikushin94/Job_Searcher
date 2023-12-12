@@ -37,7 +37,7 @@ class VacancyViewModel(
 
     private fun processResult(detailsVacancy: DetailsVacancy?, message: String?) {
         when (message) {
-            ERROR -> {
+            SERVER_ERROR -> {
                 _screenState.value = VacancyState.Error
             }
 
@@ -59,7 +59,7 @@ class VacancyViewModel(
 
     companion object {
         const val BUNDLE_KEY = "bundle_key"
-        private const val ERROR = "error"
+        private const val SERVER_ERROR = "server error"
         private const val CLICK_DEBOUNCE_DELAY_MILLIS = 1000L
     }
 }
