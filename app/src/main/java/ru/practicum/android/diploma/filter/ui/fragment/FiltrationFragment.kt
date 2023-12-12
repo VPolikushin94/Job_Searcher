@@ -35,9 +35,8 @@ class FiltrationFragment : Fragment() {
     }
 
     private fun setClickListeners() {
-
         binding.filtrationArrowBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
 
         binding.workLocationEditText.setOnClickListener {

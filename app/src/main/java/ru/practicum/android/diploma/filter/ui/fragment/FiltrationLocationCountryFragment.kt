@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.FragmentFiltrationLocationCountryBinding
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationLocationCountryViewModel
 
@@ -35,9 +34,8 @@ class FiltrationLocationCountryFragment : Fragment() {
     }
 
     private fun setClickListeners() {
-
         binding.filtrationChoiceCountryArrowBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
 
         //   binding.workLocationCountry.setOnClickListener {
