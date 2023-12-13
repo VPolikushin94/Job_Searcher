@@ -4,26 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.practicum.android.diploma.R
-import ru.practicum.android.diploma.databinding.FragmentFiltrationBinding
-import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationViewModel
+import ru.practicum.android.diploma.databinding.FragmentFiltrationIndustryBinding
+import ru.practicum.android.diploma.filter.ui.models.FilterIndustryScreenState
+import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationIndustryViewModel
 
-class FiltrationFragment : Fragment() {
+class FiltrationIndustryFragment : Fragment() {
 
-    private var _binding: FragmentFiltrationBinding? = null
+    private var _binding: FragmentFiltrationIndustryBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: FiltrationViewModel by viewModel()
+    private val viewModel: FiltrationIndustryViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentFiltrationBinding.inflate(inflater, container, false)
+        _binding = FragmentFiltrationIndustryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,17 +36,14 @@ class FiltrationFragment : Fragment() {
     }
 
     private fun setClickListeners() {
-        binding.filtrationArrowBack.setOnClickListener {
+        binding.filtrationIndustryArrowBack.setOnClickListener {
             findNavController().navigateUp()
         }
 
-        binding.workLocationEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_filtrationFragment_to_filtrationLocationFragment)
+        binding.applyButtonIndustry.setOnClickListener {
+            findNavController().navigateUp()
         }
 
-        binding.workIndustryEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_filtrationFragment_to_filtrationIndustryFragment)
-        }
     }
 
 }

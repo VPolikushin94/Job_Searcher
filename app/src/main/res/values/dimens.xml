@@ -54,6 +54,7 @@
     <dimen name="margin_44">44dp</dimen>
     <dimen name="margin_48">48dp</dimen>
     <dimen name="margin_60">60dp</dimen>
+    <dimen name="margin_64">64dp</dimen>
     <dimen name="margin_80">80dp</dimen>
 
 </resources>

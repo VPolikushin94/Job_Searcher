@@ -59,5 +59,7 @@
     <string name="select">Выбрать</string>
     <string name="work_country_choice">Выбор страны</string>
     <string name="get_list_error">Не удалось получить\nсписок</string>
-
+    <string name="incorrect_request_error">Такой отрасли нет</string>
+    <string name="work_industry_choice">Выбор отрасли</string>
+    <string name="enter_industry">Введите отрасль</string>
 </resources>
