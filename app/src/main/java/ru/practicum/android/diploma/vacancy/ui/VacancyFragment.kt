@@ -29,6 +29,7 @@ class VacancyFragment : Fragment() {
 
     private val viewModel: VacancyViewModel by viewModel()
     private var isClickAllowed = true
+    private var isFavourites = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -86,6 +87,22 @@ class VacancyFragment : Fragment() {
         showKeySkills(data)
         showContact(data)
 
+        viewModel.inFavourites(data.id.toString())
+        viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
+            isFavourites = it
+        }
+
+        binding.vacancyFavourite.setOnClickListener {
+            isFavourites = if (isFavourites) {
+                binding.vacancyFavourite.setImageResource(R.drawable.icon_like_off)
+                false
+            } else {
+                binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
+                true
+            }
+            viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
+        }
+
         binding.tvEMailText.setOnClickListener {
             actionEmail(data.email)
         }
@@ -102,19 +119,28 @@ class VacancyFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun showSalary(data: DetailsVacancy) {
-        val from = resources.getString(salary_from)
-        val to = resources.getString(R.string.salary_to)
-        val noSalary = resources.getString(R.string.no_salary)
-        if (data.salaryFrom == null && data.salaryTo == null) {
-            binding.tvVacancySalary.text = noSalary
-        } else if (data.salaryFrom != null && data.salaryTo == null) {
-            binding.tvVacancySalary.text = "$from ${formatNumber(data.salaryFrom)} ${data.salaryCurrency}"
-        } else if (data.salaryFrom == null && data.salaryTo != null) {
-            binding.tvVacancySalary.text = "$to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
-        } else if (data.salaryFrom != null && data.salaryTo != null) {
-            binding.tvVacancySalary.text =
-                "$from ${formatNumber(data.salaryFrom)} $to ${formatNumber(data.salaryTo)} ${data.salaryCurrency}"
+        val salary = buildString {
+            if (data.salaryFrom == null && data.salaryTo == null) {
+                this.append(getString(R.string.no_salary))
+            } else {
+                data.salaryFrom?.let {
+                    val salaryFrom = getString(salary_from, formatNumber(data.salaryFrom))
+                    this.append("$salaryFrom ")
+                }
+                data.salaryTo?.let {
+                    val salaryTo = getString(R.string.salary_to, formatNumber(data.salaryTo))
+                    this.append("$salaryTo ")
+                }
+                val currency = when (data.salaryCurrency) {
+                    getString(R.string.rur) -> getString(R.string.ruble)
+                    getString(R.string.eur) -> getString(R.string.euro)
+                    getString(R.string.usd) -> getString(R.string.dollar)
+                    else -> data.salaryCurrency
+                }
+                this.append(currency)
+            }
         }
+        binding.tvVacancySalary.text = salary
     }
 
     private fun showEmployer(data: DetailsVacancy) {

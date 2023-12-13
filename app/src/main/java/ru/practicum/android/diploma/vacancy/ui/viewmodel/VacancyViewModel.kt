@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.favorites.domain.api.FavoritesInteractor
 import ru.practicum.android.diploma.vacancy.domain.api.VacancyInteractor
 import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 
 class VacancyViewModel(
     private val savedStateHandle: SavedStateHandle,
+    private val favoritesInteractor: FavoritesInteractor,
     private val vacancyInteractor: VacancyInteractor
 ) : ViewModel() {
 
@@ -25,6 +27,9 @@ class VacancyViewModel(
 
     private val _onClickDebounce = MutableLiveData<Boolean>()
     val onClickDebounce = _onClickDebounce
+
+    private var _inFavouritesMutable = MutableLiveData<Boolean>()
+    val inFavouritesMutable = _inFavouritesMutable
 
     private fun getDetailsVacancy() {
         viewModelScope.launch {
@@ -42,6 +47,19 @@ class VacancyViewModel(
             }
 
             else -> _screenState.value = detailsVacancy?.let { VacancyState.Success(it) }
+        }
+    }
+
+    fun inFavourites(id: String) {
+        viewModelScope.launch {
+            _inFavouritesMutable.value = favoritesInteractor.inFavourites(id)
+        }
+    }
+
+    fun addFavourites(vacancy: DetailsVacancy, isFavourites: Boolean) {
+        viewModelScope.launch {
+            if (isFavourites) favoritesInteractor.insertVacancy(vacancy)
+            else favoritesInteractor.deleteVacancy(vacancy)
         }
     }
 
