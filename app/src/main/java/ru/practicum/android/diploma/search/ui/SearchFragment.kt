@@ -16,7 +16,7 @@ import androidx.navigation.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.FragmentSearchBinding
-import ru.practicum.android.diploma.search.ui.adapter.VacancyListAdapter
+import ru.practicum.android.diploma.core.ui.adapter.VacancyListAdapter
 import ru.practicum.android.diploma.search.ui.models.SearchPlaceholderType
 import ru.practicum.android.diploma.search.ui.models.SearchScreenState
 import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel

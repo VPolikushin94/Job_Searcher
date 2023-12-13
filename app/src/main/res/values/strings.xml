@@ -59,5 +59,8 @@
     <string name="select">Выбрать</string>
     <string name="work_country_choice">Выбор страны</string>
     <string name="get_list_error">Не удалось получить\nсписок</string>
+    <string name="favorites">Избранное</string>
+    <string name="favorites_empty">Список пуст</string>
+    <string name="placeholder_favorites_error">Не удалось получить\nсписок вакансий</string>
 
 </resources>
