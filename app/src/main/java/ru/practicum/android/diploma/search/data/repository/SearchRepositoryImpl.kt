@@ -12,7 +12,7 @@ import ru.practicum.android.diploma.search.domain.api.SearchRepository
 import ru.practicum.android.diploma.search.domain.models.ErrorType
 import ru.practicum.android.diploma.search.domain.models.Resource
 import ru.practicum.android.diploma.search.domain.models.SearchVacancyResult
-import ru.practicum.android.diploma.search.domain.models.SearchedVacancy
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.util.NetworkResultCode
 
 class SearchRepositoryImpl(

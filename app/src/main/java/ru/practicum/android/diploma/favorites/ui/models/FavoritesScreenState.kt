@@ -1,6 +1,6 @@
 package ru.practicum.android.diploma.favorites.ui.models
 
-import ru.practicum.android.diploma.search.domain.models.SearchedVacancy
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 
 sealed interface FavoritesScreenState {
 

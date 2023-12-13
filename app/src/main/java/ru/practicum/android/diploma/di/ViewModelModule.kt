@@ -24,6 +24,8 @@ val viewModeModule = module {
     }
 
     viewModel {
-        FavoritesViewModel()
+        FavoritesViewModel(
+            favoritesInteractor = get()
+        )
     }
 }

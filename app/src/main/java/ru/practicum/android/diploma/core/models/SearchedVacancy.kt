@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.search.domain.models
+package ru.practicum.android.diploma.core.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

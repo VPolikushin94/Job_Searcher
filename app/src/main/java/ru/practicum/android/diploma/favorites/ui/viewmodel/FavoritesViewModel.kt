@@ -6,10 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.favorites.domain.api.FavoritesInteractor
+import ru.practicum.android.diploma.favorites.domain.models.Resource
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesPlaceholderType
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesScreenState
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 
-class FavoritesViewModel : ViewModel() {
+class FavoritesViewModel(
+    private val favoritesInteractor: FavoritesInteractor
+) : ViewModel() {
 
     private var isClickAllowed = true
 
@@ -19,6 +24,52 @@ class FavoritesViewModel : ViewModel() {
         )
     )
     val screenState: LiveData<FavoritesScreenState> = _screenState
+
+    init {
+        getVacancyList()
+    }
+
+    private fun getVacancyList() {
+        _screenState.value = FavoritesScreenState.Loading
+        viewModelScope.launch {
+            favoritesInteractor.getVacancyList()
+                .collect {
+                    processResult(it)
+                }
+        }
+    }
+
+    private fun processResult(resource: Resource<List<SearchedVacancy>>) {
+        when (resource) {
+            is Resource.Success -> {
+                setContentState(resource.data)
+            }
+
+            is Resource.Error -> {
+                _screenState.postValue(
+                    FavoritesScreenState.Placeholder(
+                        FavoritesPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST_ERROR
+                    )
+                )
+            }
+        }
+    }
+
+    private fun setContentState(vacancyList: List<SearchedVacancy>) {
+        if (vacancyList.isEmpty()) {
+            _screenState.postValue(
+                FavoritesScreenState.Placeholder(
+                    FavoritesPlaceholderType.PLACEHOLDER_EMPTY_LIST
+                )
+            )
+        } else {
+            _screenState.postValue(
+                FavoritesScreenState.Content(
+                    vacancyList
+                )
+            )
+        }
+    }
 
     fun clickDebounce(): Boolean {
         val current = isClickAllowed
