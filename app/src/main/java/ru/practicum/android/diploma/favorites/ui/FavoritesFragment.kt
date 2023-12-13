@@ -13,7 +13,6 @@ import ru.practicum.android.diploma.favorites.ui.models.FavoritesPlaceholderType
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesScreenState
 import ru.practicum.android.diploma.favorites.ui.viewmodel.FavoritesViewModel
 
-
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
@@ -24,7 +23,8 @@ class FavoritesFragment : Fragment() {
     private var vacancyListAdapter: VacancyListAdapter? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
