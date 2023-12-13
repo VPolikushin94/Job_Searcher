@@ -2,6 +2,7 @@ package ru.practicum.android.diploma.search.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.core.models.VacancySearchParams
 import ru.practicum.android.diploma.core.models.toMap
 import ru.practicum.android.diploma.core.network.NetworkClient
@@ -12,7 +13,6 @@ import ru.practicum.android.diploma.search.domain.api.SearchRepository
 import ru.practicum.android.diploma.search.domain.models.ErrorType
 import ru.practicum.android.diploma.search.domain.models.Resource
 import ru.practicum.android.diploma.search.domain.models.SearchVacancyResult
-import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.util.NetworkResultCode
 
 class SearchRepositoryImpl(
