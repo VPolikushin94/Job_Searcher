@@ -1,7 +1,7 @@
 package ru.practicum.android.diploma.search.data.convertor
 
 import ru.practicum.android.diploma.core.dto.VacancyDto
-import ru.practicum.android.diploma.search.domain.models.SearchedVacancy
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 
 class VacancyDtoConvertor {
     fun map(vacancyDto: VacancyDto): SearchedVacancy {
