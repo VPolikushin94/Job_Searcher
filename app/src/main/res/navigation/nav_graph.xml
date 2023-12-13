@@ -13,7 +13,15 @@
         <action
             android:id="@+id/action_searchFragment_to_filtrationFragment"
             app:destination="@id/filtrationFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_vacancyFragment"
+            app:destination="@id/vacancyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/filterSettingsFragment"
+        android:name="ru.practicum.android.diploma.filter.ui.FilterSettingsFragment"
+        android:label="fragment_filter_settings"
+        tools:layout="@layout/fragment_filter_settings" />
     <fragment
         android:id="@+id/vacancyFragment"
         android:name="ru.practicum.android.diploma.vacancy.ui.VacancyFragment"

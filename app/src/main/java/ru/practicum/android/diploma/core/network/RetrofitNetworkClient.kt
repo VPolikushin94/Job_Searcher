@@ -9,6 +9,7 @@ import ru.practicum.android.diploma.core.dto.Response
 import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
 import ru.practicum.android.diploma.util.NetworkResultCode
 import ru.practicum.android.diploma.util.isInternetConnected
+import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsRequest
 
 class RetrofitNetworkClient(
     private val context: Context,
@@ -28,6 +29,7 @@ class RetrofitNetworkClient(
             try {
                 val response = when (dto) {
                     is VacancySearchRequest -> hhApiService.searchVacancy(dto.vacancySearchParams)
+                    is VacancyDetailsRequest -> hhApiService.getVacancy(dto.id)
                     else -> throw NetworkErrorException("Wrong dto")
                 }
                 response.apply { resultCode = NetworkResultCode.RESULT_OK }

@@ -13,7 +13,7 @@ class VacancyInteractorImpl(private val vacancyRepository: VacancyRepository) : 
         return vacancyRepository.getSelectedVacancy(id).map { result ->
             when (result) {
                 is Resource.Success -> Pair(result.data, "")
-                is Resource.Error -> Pair(null, result.message)
+                else -> Pair(null, result.message)
             }
         }
     }

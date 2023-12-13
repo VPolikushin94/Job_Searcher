@@ -24,7 +24,7 @@ val viewModeModule = module {
     }
 
     viewModel {
-        VacancyViewModel(get(), get())
+        VacancyViewModel(get(), get(), get())
     }
 
     viewModel {
