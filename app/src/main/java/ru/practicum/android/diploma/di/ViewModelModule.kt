@@ -7,7 +7,6 @@ import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationLocationCountr
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationLocationViewModel
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationViewModel
 import ru.practicum.android.diploma.favorites.ui.viewmodel.FavoritesViewModel
-import ru.practicum.android.diploma.filter.ui.viewmodel.FilterViewModel
 import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel
 import ru.practicum.android.diploma.vacancy.ui.viewmodel.VacancyViewModel
 
@@ -38,8 +37,10 @@ val viewModeModule = module {
     viewModel {
         FiltrationIndustryViewModel()
     }
-    
+
+    viewModel {
         FavoritesViewModel(
             favoritesInteractor = get()
         )
+    }
 }
