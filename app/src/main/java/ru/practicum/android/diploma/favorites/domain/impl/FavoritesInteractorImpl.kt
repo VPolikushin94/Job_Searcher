@@ -13,14 +13,14 @@ class FavoritesInteractorImpl : FavoritesInteractor {
     }
 
     override suspend fun insertVacancy(searchVacancy: DetailsVacancy) {
-        TODO("Not yet implemented")
+        TODO()
     }
 
     override suspend fun deleteVacancy(searchVacancy: DetailsVacancy) {
-        TODO("Not yet implemented")
+        TODO()
     }
 
     override suspend fun inFavourites(id: String): Boolean {
-        TODO("Not yet implemented")
+        TODO()
     }
 }

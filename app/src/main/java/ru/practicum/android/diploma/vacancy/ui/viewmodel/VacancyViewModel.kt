@@ -58,8 +58,11 @@ class VacancyViewModel(
 
     fun addFavourites(vacancy: DetailsVacancy, isFavourites: Boolean) {
         viewModelScope.launch {
-            if (isFavourites) favoritesInteractor.insertVacancy(vacancy)
-            else favoritesInteractor.deleteVacancy(vacancy)
+            if (isFavourites) {
+                favoritesInteractor.insertVacancy(vacancy)
+            } else {
+                favoritesInteractor.deleteVacancy(vacancy)
+            }
         }
     }
 
