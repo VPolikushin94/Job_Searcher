@@ -25,4 +25,9 @@
         android:name="ru.practicum.android.diploma.team.ui.TeamFragment"
         android:label="fragment_team"
         tools:layout="@layout/fragment_team" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="ru.practicum.android.diploma.favorites.ui.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

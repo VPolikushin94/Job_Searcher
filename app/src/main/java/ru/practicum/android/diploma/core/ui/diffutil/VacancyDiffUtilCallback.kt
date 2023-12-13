@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.search.ui.diffutil
+package ru.practicum.android.diploma.core.ui.diffutil
 
 import androidx.recyclerview.widget.DiffUtil
 import ru.practicum.android.diploma.search.domain.models.SearchedVacancy
