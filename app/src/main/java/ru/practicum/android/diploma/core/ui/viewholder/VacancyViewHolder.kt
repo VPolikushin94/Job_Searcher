@@ -1,11 +1,11 @@
-package ru.practicum.android.diploma.search.ui.viewholder
+package ru.practicum.android.diploma.core.ui.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.VacancyItemBinding
-import ru.practicum.android.diploma.search.domain.models.SearchedVacancy
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.util.formatNumber
 
 class VacancyViewHolder(private val binding: VacancyItemBinding) : RecyclerView.ViewHolder(binding.root) {

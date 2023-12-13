@@ -7,6 +7,11 @@
         android:title="@string/bottom_nav_main"/>
 
     <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/ic_favorites"
+        android:title="@string/favorites"/>
+
+    <item
         android:id="@+id/teamFragment"
         android:icon="@drawable/ic_team"
         android:title="@string/bottom_nav_team"/>

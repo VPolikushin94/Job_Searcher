@@ -62,4 +62,8 @@
     <string name="incorrect_request_error">Такой отрасли нет</string>
     <string name="work_industry_choice">Выбор отрасли</string>
     <string name="enter_industry">Введите отрасль</string>
+    <string name="favorites">Избранное</string>
+    <string name="favorites_empty">Список пуст</string>
+    <string name="placeholder_favorites_error">Не удалось получить\nсписок вакансий</string>
+
 </resources>
