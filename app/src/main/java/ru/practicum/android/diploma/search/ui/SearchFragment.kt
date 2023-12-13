@@ -12,11 +12,11 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
-import ru.practicum.android.diploma.databinding.FragmentSearchBinding
 import ru.practicum.android.diploma.core.ui.adapter.VacancyListAdapter
+import ru.practicum.android.diploma.databinding.FragmentSearchBinding
 import ru.practicum.android.diploma.search.ui.models.SearchPlaceholderType
 import ru.practicum.android.diploma.search.ui.models.SearchScreenState
 import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel
@@ -46,9 +46,8 @@ class SearchFragment : Fragment() {
         setEditText()
         setListTouchListeners()
         setEditorActionListener()
-        setClickListeners()
-
         setRecyclerViewAdapter()
+        setClickListeners()
 
         viewModel.screenState.observe(viewLifecycleOwner) {
             render(it)
@@ -180,8 +179,8 @@ class SearchFragment : Fragment() {
 //        }
         vacancyListAdapter?.onVacancyClickListener = {
             if (viewModel.clickDebounce()) {
-                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id)
-                view?.findNavController()?.navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
+                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
+                findNavController().navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
             }
         }
     }
