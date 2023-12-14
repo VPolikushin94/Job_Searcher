@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.search.domain.api.SearchInteractor
 import ru.practicum.android.diploma.search.domain.models.ErrorType
 import ru.practicum.android.diploma.search.domain.models.Resource
@@ -22,7 +23,7 @@ class SearchViewModel(
 
     private val searchDebounce =
         debounce<String>(SEARCH_DEBOUNCE_DELAY_MILLIS, viewModelScope, true) {
-            searchVacancy(it)
+            searchVacancy(it, false)
         }
 
     private val _screenState = MutableLiveData<SearchScreenState>(
@@ -35,33 +36,70 @@ class SearchViewModel(
     private val _btnFilterState = MutableLiveData<Boolean>()
     val btnFilterState: LiveData<Boolean> = _btnFilterState
 
-    private var searchedText: String = ""
+    private var _searchedText: String = ""
+    var searchedText = _searchedText
     private var hasSearchBlocked = false
 
     private var page = 0
+    private var pages = 0
+    private var isNextPageLoading = false
+    var rvPosition = 0
 
-    fun searchVacancy(searchText: String) {
-        if (searchedText == searchText || hasSearchBlocked) {
+    fun searchVacancy(searchText: String, isPagingSearch: Boolean) {
+        if (isSearchCanceled(searchText, isPagingSearch)) {
             return
+        }
+        if (_searchedText != searchText) {
+            page = 0
+            pages = 0
         }
 
         if (searchText.isNotEmpty()) {
-            _screenState.value = SearchScreenState.Loading
+            if (isPagingSearch) {
+                isNextPageLoading = true
+                _screenState.value = SearchScreenState.Loading(true)
+            } else {
+                _screenState.value = SearchScreenState.Loading(false)
+            }
             viewModelScope.launch {
-                searchedText = searchText
+                _searchedText = searchText
                 searchInteractor.searchVacancy(
                     searchText,
                     page,
-                    ITEMS_NUMBER
+                    PAGE_SIZE
                 ).collect {
+                    isNextPageLoading = false
                     processResult(it)
                 }
             }
         }
     }
 
+    private fun isSearchCanceled(searchText: String, isPagingSearch: Boolean): Boolean {
+        if (
+            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR) &&
+            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET) &&
+            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST)
+        ) {
+            if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch) {
+                return true
+            }
+        }
+
+        if (isNextPageLoading) {
+            return true
+        }
+        return page == pages && pages != 0
+    }
+
+    fun cacheVacancyList(vacancyList: List<SearchedVacancy>) {
+        viewModelScope.launch {
+            searchInteractor.cacheVacancyList(vacancyList)
+        }
+    }
+
     fun getCachedVacancySearchResult() {
-        _screenState.value = SearchScreenState.Loading
+//        _screenState.value = SearchScreenState.Loading(false)
         viewModelScope.launch {
             val vacancyList = searchInteractor.getCachedVacancySearchResult()
             setContentState(vacancyList)
@@ -82,6 +120,8 @@ class SearchViewModel(
                     searchResult.found
                 )
             )
+            page = searchResult.page + 1
+            pages = searchResult.pages
         }
     }
 
@@ -112,7 +152,7 @@ class SearchViewModel(
     fun blockSearch(hasBlocked: Boolean) {
         if (hasBlocked) {
             hasSearchBlocked = true
-            searchedText = ""
+            _searchedText = ""
             _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET)
         } else {
             hasSearchBlocked = false
@@ -144,6 +184,6 @@ class SearchViewModel(
         private const val CLICK_DEBOUNCE_DELAY_MILLIS = 1000L
         private const val SEARCH_DEBOUNCE_DELAY_MILLIS = 2000L
 
-        private const val ITEMS_NUMBER = 20
+        private const val PAGE_SIZE = 20
     }
 }

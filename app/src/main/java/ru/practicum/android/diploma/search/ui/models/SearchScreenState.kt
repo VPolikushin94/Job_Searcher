@@ -4,7 +4,7 @@ import ru.practicum.android.diploma.core.models.SearchedVacancy
 
 sealed interface SearchScreenState {
 
-    data object Loading : SearchScreenState
+    data class Loading(val isPaging: Boolean) : SearchScreenState
 
     data class Content(val vacancyList: List<SearchedVacancy>, val found: Int) : SearchScreenState
 
