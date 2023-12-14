@@ -11,14 +11,16 @@ class SearchInteractorImpl(
     private val searchRepository: SearchRepository
 ) : SearchInteractor {
 
-    override fun searchVacancy(searchText: String): Flow<Resource<SearchVacancyResult>> {
+    override fun searchVacancy(searchText: String, page: Int, perPage: Int): Flow<Resource<SearchVacancyResult>> {
         return searchRepository.searchVacancy(
             VacancySearchParams(
                 searchText,
                 null,
                 null,
                 null,
-                null
+                null,
+                page,
+                perPage
             )
         )
     }

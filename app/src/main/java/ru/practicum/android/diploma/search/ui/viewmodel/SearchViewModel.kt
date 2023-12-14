@@ -38,6 +38,8 @@ class SearchViewModel(
     private var searchedText: String = ""
     private var hasSearchBlocked = false
 
+    private var page = 0
+
     fun searchVacancy(searchText: String) {
         if (searchedText == searchText || hasSearchBlocked) {
             return
@@ -47,10 +49,13 @@ class SearchViewModel(
             _screenState.value = SearchScreenState.Loading
             viewModelScope.launch {
                 searchedText = searchText
-                searchInteractor.searchVacancy(searchText)
-                    .collect {
-                        processResult(it)
-                    }
+                searchInteractor.searchVacancy(
+                    searchText,
+                    page,
+                    ITEMS_NUMBER
+                ).collect {
+                    processResult(it)
+                }
             }
         }
     }
@@ -138,5 +143,7 @@ class SearchViewModel(
     companion object {
         private const val CLICK_DEBOUNCE_DELAY_MILLIS = 1000L
         private const val SEARCH_DEBOUNCE_DELAY_MILLIS = 2000L
+
+        private const val ITEMS_NUMBER = 20
     }
 }
