@@ -1,9 +1,7 @@
 package ru.practicum.android.diploma.search.data.repository
 
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.core.models.VacancySearchParams
 import ru.practicum.android.diploma.core.models.toMap
 import ru.practicum.android.diploma.core.network.NetworkClient
@@ -21,7 +19,6 @@ class SearchRepositoryImpl(
     private val vacancyDtoConvertor: VacancyDtoConvertor,
 ) : SearchRepository {
 
-    private var cachedVacancyList: List<SearchedVacancy> = listOf()
     private var found: Int = 0
     private var page: Int = 0
     private var pages: Int = 0
@@ -55,18 +52,5 @@ class SearchRepositoryImpl(
             NetworkResultCode.RESULT_NO_INTERNET -> emit(Resource.Error(ErrorType.NO_INTERNET))
             else -> emit(Resource.Error(ErrorType.SERVER_ERROR))
         }
-    }
-
-    override suspend fun getCachedVacancySearchResult(): SearchVacancyResult {
-        return SearchVacancyResult(
-            cachedVacancyList,
-            found,
-            page,
-            pages
-        )
-    }
-
-    override suspend fun cacheVacancyList(vacancyList: List<SearchedVacancy>) {
-        cachedVacancyList = vacancyList
     }
 }

@@ -1,12 +1,12 @@
 package ru.practicum.android.diploma.search.ui.viewmodel
 
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.search.domain.api.SearchInteractor
 import ru.practicum.android.diploma.search.domain.models.ErrorType
 import ru.practicum.android.diploma.search.domain.models.Resource
@@ -36,22 +36,25 @@ class SearchViewModel(
     private val _btnFilterState = MutableLiveData<Boolean>()
     val btnFilterState: LiveData<Boolean> = _btnFilterState
 
+    private val _triggerClearAdapter = MutableLiveData(false)
+    val triggerClearAdapter: LiveData<Boolean> = _triggerClearAdapter
+
     private var _searchedText: String = ""
-    var searchedText = _searchedText
     private var hasSearchBlocked = false
 
     private var page = 0
     private var pages = 0
     private var isNextPageLoading = false
-    var rvPosition = 0
+    var rvState: Parcelable? = null
 
     fun searchVacancy(searchText: String, isPagingSearch: Boolean) {
-        if (isSearchCanceled(searchText, isPagingSearch)) {
-            return
-        }
-        if (_searchedText != searchText) {
+        if (_searchedText != searchText && !isPagingSearch) {
             page = 0
             pages = 0
+            _triggerClearAdapter.value = true
+        }
+        if (isSearchCanceled(searchText, isPagingSearch)) {
+            return
         }
 
         if (searchText.isNotEmpty()) {
@@ -61,6 +64,7 @@ class SearchViewModel(
             } else {
                 _screenState.value = SearchScreenState.Loading(false)
             }
+            _triggerClearAdapter.value = false
             viewModelScope.launch {
                 _searchedText = searchText
                 searchInteractor.searchVacancy(
@@ -74,12 +78,18 @@ class SearchViewModel(
             }
         }
     }
-
+    @Suppress(
+        "ReturnCount",
+        "CollapsibleIfStatements"
+    )
     private fun isSearchCanceled(searchText: String, isPagingSearch: Boolean): Boolean {
+        if (searchText.isEmpty()) {
+            _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST)
+            return true
+        }
         if (
             screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR) &&
-            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET) &&
-            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST)
+            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET)
         ) {
             if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch) {
                 return true
@@ -90,20 +100,6 @@ class SearchViewModel(
             return true
         }
         return page == pages && pages != 0
-    }
-
-    fun cacheVacancyList(vacancyList: List<SearchedVacancy>) {
-        viewModelScope.launch {
-            searchInteractor.cacheVacancyList(vacancyList)
-        }
-    }
-
-    fun getCachedVacancySearchResult() {
-//        _screenState.value = SearchScreenState.Loading(false)
-        viewModelScope.launch {
-            val vacancyList = searchInteractor.getCachedVacancySearchResult()
-            setContentState(vacancyList)
-        }
     }
 
     private fun setContentState(searchResult: SearchVacancyResult) {
@@ -161,7 +157,6 @@ class SearchViewModel(
 
     fun searchVacancyDebounce(searchText: String) {
         if (searchText.isNotEmpty()) {
-            _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
             searchDebounce(searchText)
         } else {
             _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET)
