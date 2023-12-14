@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.search.domain.api.SearchInteractor
 import ru.practicum.android.diploma.search.domain.models.ErrorType
 import ru.practicum.android.diploma.search.domain.models.Resource
@@ -78,6 +79,7 @@ class SearchViewModel(
             }
         }
     }
+
     @Suppress(
         "ReturnCount",
         "CollapsibleIfStatements"
@@ -100,6 +102,20 @@ class SearchViewModel(
             return true
         }
         return page == pages && pages != 0
+    }
+
+    fun cacheVacancyList(vacancyList: List<SearchedVacancy>) {
+        viewModelScope.launch {
+            searchInteractor.cacheVacancyList(vacancyList)
+        }
+    }
+
+    fun getCachedVacancySearchResult() {
+        _screenState.value = SearchScreenState.Loading(false)
+        viewModelScope.launch {
+            val vacancyList = searchInteractor.getCachedVacancySearchResult()
+            setContentState(vacancyList)
+        }
     }
 
     private fun setContentState(searchResult: SearchVacancyResult) {

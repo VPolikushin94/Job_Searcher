@@ -70,6 +70,7 @@ class SearchFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         viewModel.rvState = binding.rvVacancy.layoutManager?.onSaveInstanceState()
+        viewModel.cacheVacancyList(vacancyListAdapter?.currentList as List<SearchedVacancy>)
         binding.rvVacancy.adapter = null
         vacancyListAdapter = null
         _binding = null
@@ -179,7 +180,11 @@ class SearchFragment : Fragment() {
     private fun setRecyclerViewAdapter() {
         vacancyListAdapter = VacancyListAdapter()
         binding.rvVacancy.itemAnimator = null
-        binding.rvVacancy.layoutManager?.onRestoreInstanceState(viewModel.rvState)
+
+        binding.rvVacancy.layoutManager?.let {
+            it.onRestoreInstanceState(viewModel.rvState)
+            viewModel.getCachedVacancySearchResult()
+        }
         binding.rvVacancy.adapter = vacancyListAdapter
     }
 
