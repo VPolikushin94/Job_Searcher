@@ -183,7 +183,9 @@ class SearchFragment : Fragment() {
 
         binding.rvVacancy.layoutManager?.let {
             it.onRestoreInstanceState(viewModel.rvState)
-            viewModel.getCachedVacancySearchResult()
+            if (viewModel.getSearchedText().isNotEmpty()) {
+                viewModel.getCachedVacancySearchResult()
+            }
         }
         binding.rvVacancy.adapter = vacancyListAdapter
     }

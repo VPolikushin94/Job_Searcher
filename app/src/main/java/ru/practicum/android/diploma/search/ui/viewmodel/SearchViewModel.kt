@@ -80,6 +80,9 @@ class SearchViewModel(
         }
     }
 
+    fun getSearchedText(): String {
+        return _searchedText
+    }
     @Suppress(
         "ReturnCount",
         "CollapsibleIfStatements"
