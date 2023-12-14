@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.practicum.android.diploma.core.dto.Request
 import ru.practicum.android.diploma.core.dto.Response
+import ru.practicum.android.diploma.filter.data.dto.IndustryResponse
 import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
 import ru.practicum.android.diploma.util.NetworkResultCode
 import ru.practicum.android.diploma.util.isInternetConnected
@@ -30,6 +31,7 @@ class RetrofitNetworkClient(
                 val response = when (dto) {
                     is VacancySearchRequest -> hhApiService.searchVacancy(dto.vacancySearchParams)
                     is VacancyDetailsRequest -> hhApiService.getVacancy(dto.id)
+                    is Request.IndustryRequest -> IndustryResponse(hhApiService.getIndustry())
                     else -> throw NetworkErrorException("Wrong dto")
                 }
                 response.apply { resultCode = NetworkResultCode.RESULT_OK }
