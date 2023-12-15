@@ -24,7 +24,7 @@ class SearchViewModel(
 
     private val searchDebounce =
         debounce<String>(SEARCH_DEBOUNCE_DELAY_MILLIS, viewModelScope, true) {
-            searchVacancy(it, false)
+            searchVacancy(it, false, true)
         }
 
     private val _screenState = MutableLiveData<SearchScreenState>(
@@ -48,13 +48,13 @@ class SearchViewModel(
     private var isNextPageLoading = false
     var rvState: Parcelable? = null
 
-    fun searchVacancy(searchText: String, isPagingSearch: Boolean) {
+    fun searchVacancy(searchText: String, isPagingSearch: Boolean, isDebounceSearch: Boolean) {
         if (_searchedText != searchText && !isPagingSearch) {
             page = 0
             pages = 0
             _triggerClearAdapter.value = true
         }
-        if (isSearchCanceled(searchText, isPagingSearch)) {
+        if (isSearchCanceled(searchText, isPagingSearch, isDebounceSearch)) {
             return
         }
 
@@ -83,18 +83,20 @@ class SearchViewModel(
     fun getSearchedText(): String {
         return _searchedText
     }
+
     @Suppress(
         "ReturnCount",
         "CollapsibleIfStatements"
     )
-    private fun isSearchCanceled(searchText: String, isPagingSearch: Boolean): Boolean {
+    private fun isSearchCanceled(searchText: String, isPagingSearch: Boolean, isDebounceSearch: Boolean): Boolean {
         if (searchText.isEmpty()) {
             _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST)
             return true
         }
         if (
             screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR) &&
-            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET)
+            screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET) ||
+            isDebounceSearch
         ) {
             if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch) {
                 return true
@@ -175,11 +177,7 @@ class SearchViewModel(
     }
 
     fun searchVacancyDebounce(searchText: String) {
-        if (searchText.isNotEmpty()) {
-            searchDebounce(searchText)
-        } else {
-            _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET)
-        }
+        searchDebounce(searchText)
     }
 
     fun clickDebounce(): Boolean {
