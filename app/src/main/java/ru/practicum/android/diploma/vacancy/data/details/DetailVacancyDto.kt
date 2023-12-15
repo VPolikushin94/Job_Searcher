@@ -1,4 +1,5 @@
 package ru.practicum.android.diploma.vacancy.data.details
+
 import com.google.gson.annotations.SerializedName
 
 data class DetailVacancyDto(
@@ -25,5 +26,5 @@ data class DetailVacancyDto(
     @SerializedName("phone")
     val phone: Phone,
     @SerializedName("alternate_url")
-    val url: String?
+    val url: String?,
 )

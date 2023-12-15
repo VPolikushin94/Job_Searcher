@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.favorites.domain.api.FavoritesInteractor
 import ru.practicum.android.diploma.favorites.domain.models.Resource
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesPlaceholderType
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesScreenState
-import ru.practicum.android.diploma.core.models.SearchedVacancy
 
 class FavoritesViewModel(
-    private val favoritesInteractor: FavoritesInteractor
+    private val favoritesInteractor: FavoritesInteractor,
 ) : ViewModel() {
 
     private var isClickAllowed = true
