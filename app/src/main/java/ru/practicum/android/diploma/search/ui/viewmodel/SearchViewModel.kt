@@ -86,7 +86,8 @@ class SearchViewModel(
 
     @Suppress(
         "ReturnCount",
-        "CollapsibleIfStatements"
+        "CollapsibleIfStatements",
+        "CyclomaticComplexMethod"
     )
     private fun isSearchCanceled(
         searchText: String,
@@ -106,7 +107,6 @@ class SearchViewModel(
                 return true
             }
         }
-
         if (isNextPageLoading) {
             return true
         }
