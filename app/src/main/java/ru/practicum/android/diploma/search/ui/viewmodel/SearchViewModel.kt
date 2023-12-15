@@ -88,7 +88,11 @@ class SearchViewModel(
         "ReturnCount",
         "CollapsibleIfStatements"
     )
-    private fun isSearchCanceled(searchText: String, isPagingSearch: Boolean, isDebounceSearch: Boolean): Boolean {
+    private fun isSearchCanceled(
+        searchText: String,
+        isPagingSearch: Boolean,
+        isDebounceSearch: Boolean
+    ): Boolean {
         if (searchText.isEmpty()) {
             _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST)
             return true
