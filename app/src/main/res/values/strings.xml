@@ -62,5 +62,7 @@
     <string name="favorites">Избранное</string>
     <string name="favorites_empty">Список пуст</string>
     <string name="placeholder_favorites_error">Не удалось получить\nсписок вакансий</string>
+    <string name="check_internet">Проверьте подключение\nк интернету</string>
+    <string name="error_occured">Произошла ошибка</string>
 
 </resources>

@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
@@ -87,7 +89,8 @@ class SearchFragment : Fragment() {
                         if (lastItemPos >= it - 1) {
                             viewModel.searchVacancy(
                                 binding.etSearch.text.toString(),
-                                true
+                                true,
+                                false
                             )
                         }
                     }
@@ -128,6 +131,14 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private fun showToast(@StringRes res: Int) {
+        Toast.makeText(
+            requireContext(),
+            res,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
     private fun showPlaceholder(type: SearchPlaceholderType) {
         when (type) {
             SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET -> {
@@ -139,6 +150,7 @@ class SearchFragment : Fragment() {
             }
 
             SearchPlaceholderType.PLACEHOLDER_NO_INTERNET -> {
+                showToast(R.string.check_internet)
                 binding.rvVacancy.isVisible = false
                 binding.placeholderNotSearchedYet.isVisible = false
                 binding.placeholderServerError.isVisible = false
@@ -155,6 +167,7 @@ class SearchFragment : Fragment() {
             }
 
             SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR -> {
+                showToast(R.string.error_occured)
                 binding.rvVacancy.isVisible = false
                 binding.placeholderNotSearchedYet.isVisible = false
                 binding.placeholderNoInternet.isVisible = false
@@ -244,6 +257,11 @@ class SearchFragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListTouchListeners() {
+        binding.flContent.setOnTouchListener { _, _ ->
+            changeKeyboardVisibility(false)
+            binding.etSearch.clearFocus()
+            false
+        }
         binding.rvVacancy.setOnTouchListener { _, _ ->
             changeKeyboardVisibility(false)
             binding.etSearch.clearFocus()
@@ -255,7 +273,7 @@ class SearchFragment : Fragment() {
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.blockSearch(false)
-                viewModel.searchVacancy(binding.etSearch.text.toString(), false)
+                viewModel.searchVacancy(binding.etSearch.text.toString(), false, false)
                 binding.etSearch.clearFocus()
             }
             false
