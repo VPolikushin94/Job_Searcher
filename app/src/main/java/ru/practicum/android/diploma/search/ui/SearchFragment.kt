@@ -14,10 +14,14 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
-import ru.practicum.android.diploma.databinding.FragmentSearchBinding
+import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.core.ui.adapter.VacancyListAdapter
+import ru.practicum.android.diploma.databinding.FragmentSearchBinding
 import ru.practicum.android.diploma.search.ui.models.SearchPlaceholderType
 import ru.practicum.android.diploma.search.ui.models.SearchScreenState
 import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel
@@ -47,9 +51,9 @@ class SearchFragment : Fragment() {
         setEditText()
         setListTouchListeners()
         setEditorActionListener()
-        setClickListeners()
-
         setRecyclerViewAdapter()
+        setRvScrollListener()
+        setClickListeners()
 
         viewModel.screenState.observe(viewLifecycleOwner) {
             render(it)
@@ -57,40 +61,68 @@ class SearchFragment : Fragment() {
         viewModel.btnFilterState.observe(viewLifecycleOwner) {
             setFilterState(it)
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (binding.etSearch.text.isNotEmpty()) {
-            viewModel.getCachedVacancySearchResult()
+        viewModel.triggerClearAdapter.observe(viewLifecycleOwner) {
+            if (it) {
+                vacancyListAdapter?.submitList(null)
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.rvState = binding.rvVacancy.layoutManager?.onSaveInstanceState()
+        viewModel.cacheVacancyList(vacancyListAdapter?.currentList as List<SearchedVacancy>)
         binding.rvVacancy.adapter = null
         vacancyListAdapter = null
         _binding = null
+    }
+
+    private fun setRvScrollListener() {
+        binding.rvVacancy.addOnScrollListener(object : OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    val lastItemPos = (binding.rvVacancy.layoutManager as LinearLayoutManager)
+                        .findLastVisibleItemPosition()
+                    vacancyListAdapter?.itemCount?.let {
+                        if (lastItemPos >= it - 1) {
+                            viewModel.searchVacancy(
+                                binding.etSearch.text.toString(),
+                                true
+                            )
+                        }
+                    }
+
+                }
+            }
+        })
     }
 
     private fun render(state: SearchScreenState) {
         when (state) {
             is SearchScreenState.Loading -> {
                 showPlaceholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
-                binding.tvFound.isVisible = false
-                setProgressBarVisibility(true)
+                if (state.isPaging) {
+                    binding.progressBarPaging.isVisible = true
+                } else {
+                    binding.tvFound.isVisible = false
+                    setMiddleProgressBarVisibility(true)
+                }
             }
 
             is SearchScreenState.Content -> {
-                setProgressBarVisibility(false)
+                setMiddleProgressBarVisibility(false)
+                binding.progressBarPaging.isVisible = false
                 showPlaceholder(SearchPlaceholderType.PLACEHOLDER_EMPTY)
                 binding.tvFound.text = getString(R.string.vacancy_found, state.found)
                 binding.tvFound.isVisible = true
-                vacancyListAdapter?.submitList(state.vacancyList)
+                val vacancyList = vacancyListAdapter?.currentList as List<SearchedVacancy> + state.vacancyList
+                vacancyListAdapter?.submitList(vacancyList)
             }
 
             is SearchScreenState.Placeholder -> {
-                setProgressBarVisibility(false)
+                setMiddleProgressBarVisibility(false)
+                binding.progressBarPaging.isVisible = false
                 binding.tvFound.isVisible = false
                 showPlaceholder(state.placeholderType)
             }
@@ -100,7 +132,7 @@ class SearchFragment : Fragment() {
     private fun showPlaceholder(type: SearchPlaceholderType) {
         when (type) {
             SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET -> {
-                vacancyListAdapter?.submitList(null)
+                binding.rvVacancy.isVisible = false
                 binding.placeholderServerError.isVisible = false
                 binding.placeholderGotEmptyList.isVisible = false
                 binding.placeholderNoInternet.isVisible = false
@@ -108,7 +140,7 @@ class SearchFragment : Fragment() {
             }
 
             SearchPlaceholderType.PLACEHOLDER_NO_INTERNET -> {
-                vacancyListAdapter?.submitList(null)
+                binding.rvVacancy.isVisible = false
                 binding.placeholderNotSearchedYet.isVisible = false
                 binding.placeholderServerError.isVisible = false
                 binding.placeholderGotEmptyList.isVisible = false
@@ -116,7 +148,7 @@ class SearchFragment : Fragment() {
             }
 
             SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST -> {
-                vacancyListAdapter?.submitList(null)
+                binding.rvVacancy.isVisible = false
                 binding.placeholderNotSearchedYet.isVisible = false
                 binding.placeholderNoInternet.isVisible = false
                 binding.placeholderServerError.isVisible = false
@@ -124,7 +156,7 @@ class SearchFragment : Fragment() {
             }
 
             SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR -> {
-                vacancyListAdapter?.submitList(null)
+                binding.rvVacancy.isVisible = false
                 binding.placeholderNotSearchedYet.isVisible = false
                 binding.placeholderNoInternet.isVisible = false
                 binding.placeholderGotEmptyList.isVisible = false
@@ -132,6 +164,7 @@ class SearchFragment : Fragment() {
             }
 
             SearchPlaceholderType.PLACEHOLDER_EMPTY -> {
+                binding.rvVacancy.isVisible = true
                 binding.placeholderNotSearchedYet.isVisible = false
                 binding.placeholderNoInternet.isVisible = false
                 binding.placeholderGotEmptyList.isVisible = false
@@ -140,7 +173,7 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setProgressBarVisibility(isVisible: Boolean) {
+    private fun setMiddleProgressBarVisibility(isVisible: Boolean) {
         binding.progressBar.isVisible = isVisible
         binding.flContent.isVisible = !isVisible
     }
@@ -148,6 +181,13 @@ class SearchFragment : Fragment() {
     private fun setRecyclerViewAdapter() {
         vacancyListAdapter = VacancyListAdapter()
         binding.rvVacancy.itemAnimator = null
+
+        binding.rvVacancy.layoutManager?.let {
+            it.onRestoreInstanceState(viewModel.rvState)
+            if (viewModel.getSearchedText().isNotEmpty()) {
+                viewModel.getCachedVacancySearchResult()
+            }
+        }
         binding.rvVacancy.adapter = vacancyListAdapter
     }
 
@@ -190,8 +230,8 @@ class SearchFragment : Fragment() {
 //        }
         vacancyListAdapter?.onVacancyClickListener = {
             if (viewModel.clickDebounce()) {
-                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id)
-                view?.findNavController()?.navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
+                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
+                findNavController().navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
             }
         }
     }
@@ -225,7 +265,7 @@ class SearchFragment : Fragment() {
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.blockSearch(false)
-                viewModel.searchVacancy(binding.etSearch.text.toString())
+                viewModel.searchVacancy(binding.etSearch.text.toString(), false)
                 binding.etSearch.clearFocus()
             }
             false
