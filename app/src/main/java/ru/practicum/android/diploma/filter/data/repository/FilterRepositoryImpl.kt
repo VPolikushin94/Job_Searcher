@@ -12,8 +12,8 @@ import ru.practicum.android.diploma.util.NetworkResultCode
 import ru.practicum.android.diploma.util.Resource
 
 class FilterRepositoryImpl(
-    val networkClient: NetworkClient,
-    val mapper: Mapper
+    private val networkClient: NetworkClient,
+    private val mapper: Mapper
 ) : FilterRepository {
     override fun getIndustries(): Flow<Resource<List<Industry>>> = flow {
         val response = networkClient.request(Request.IndustryRequest)
@@ -24,7 +24,7 @@ class FilterRepositoryImpl(
 
             NetworkResultCode.RESULT_OK -> {
                 with(response as IndustryResponse) {
-                    val industryList = results.map { mapper.mapIndustry(it) }
+                    val industryList = industries.map { mapper.mapIndustry(it) }
                     emit(Resource.Success(industryList))
                 }
 

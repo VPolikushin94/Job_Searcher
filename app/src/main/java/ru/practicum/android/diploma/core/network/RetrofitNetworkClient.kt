@@ -32,7 +32,7 @@ class RetrofitNetworkClient(
                 val response = when (dto) {
                     is VacancySearchRequest -> hhApiService.searchVacancy(dto.vacancySearchParams)
                     is VacancyDetailsRequest -> hhApiService.getVacancy(dto.id)
-                    is Request.IndustryRequest -> IndustryResponse(hhApiService.getIndustry())
+                    is Request.IndustryRequest -> hhApiService.getIndustry()
                     else -> throw NetworkErrorException("Wrong dto")
                 }
                 response.apply { resultCode = NetworkResultCode.RESULT_OK }

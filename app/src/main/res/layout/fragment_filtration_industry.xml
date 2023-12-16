@@ -34,7 +34,7 @@
 
         <EditText
             android:id="@+id/et_filtration_industry"
-            style="@style/filtration_industry_et_style"
+            style="@style/search_et_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_industry" />
