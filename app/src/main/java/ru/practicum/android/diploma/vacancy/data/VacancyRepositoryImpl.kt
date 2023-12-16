@@ -14,8 +14,8 @@ class VacancyRepositoryImpl(
     private val networkClient: NetworkClient,
 ) : VacancyRepository {
 
-    override suspend fun getSelectedVacancy(id: String?): Flow<Resource<DetailsVacancy>> = flow {
-        val response = networkClient.request(VacancyDetailsRequest(id.toString()))
+    override suspend fun getSelectedVacancy(id: String): Flow<Resource<DetailsVacancy>> = flow {
+        val response = networkClient.request(VacancyDetailsRequest(id))
         when (response.resultCode) {
             NetworkResultCode.RESULT_OK -> {
                 val vacancyDetailsResponse = (response as VacancyDetailsResponse).vacancyItem.mapToDetailsVacancy()

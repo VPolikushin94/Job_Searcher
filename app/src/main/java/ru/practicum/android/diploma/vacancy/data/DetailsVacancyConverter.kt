@@ -1,6 +1,9 @@
 package ru.practicum.android.diploma.vacancy.data
 
+import ru.practicum.android.diploma.vacancy.data.details.Contacts
 import ru.practicum.android.diploma.vacancy.data.details.DetailVacancyDto
+import ru.practicum.android.diploma.vacancy.data.details.KeySkills
+import ru.practicum.android.diploma.vacancy.data.details.Phone
 import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 
 fun DetailVacancyDto.mapToDetailsVacancy(): DetailsVacancy =
@@ -9,30 +12,48 @@ fun DetailVacancyDto.mapToDetailsVacancy(): DetailsVacancy =
         name = this.name,
         employerId = this.employer.id,
         employerName = this.employer.name,
-        employerLogo = this.employer.logoUrls.toString(),
+        employerLogo = this.employer.logoUrls?.original,
         employerCity = this.area.name,
-        employmentId = this.employment.id.toInt(),
+        employmentId = this.employment.id,
         employmentName = this.employment.name,
-        experienceId = this.experience.id.toInt(),
+        experienceId = this.experience.id,
         experienceName = this.experience.name,
         salaryTo = this.salary?.to,
         salaryFrom = this.salary?.from,
         salaryCurrency = this.salary?.currency,
         description = this.description,
-        keySkills = mapKeySkillToString(this.keySkills),
+        keySkills = this.keySkills?.mapKeySkillToString(),
         contactPerson = this.contacts?.name,
         email = this.contacts?.email,
-        telephone = this.phone.number,
-        comment = this.phone.comment,
+        telephone = getTelephone(this.contacts?.phone),
+        comment = getComment(this.contacts),
         url = this.url
     )
 
-private fun mapKeySkillToString(skill: String?): String {
-    return if (skill.isNullOrEmpty()) {
+private fun List<KeySkills>?.mapKeySkillToString(): String? {
+    return if (this.isNullOrEmpty()) {
+        null
+    } else {
+        val marker = "  •   "
+        val enter = "\n"
+        this.joinToString("") { marker + it.name + enter }
+    }
+}
+
+private fun getTelephone(phone: List<Phone>?): String {
+    return if (phone == null) {
         ""
     } else {
-        val marker = "• "
-        val enter = "\n"
-        marker + skill + enter
+        phone.first().country +
+            phone.first().city +
+            phone.first().number
+    }
+}
+
+private fun getComment(contacts: Contacts?): String? {
+    return if (contacts?.phone == null) {
+        ""
+    } else {
+        contacts.phone.first().comment
     }
 }
