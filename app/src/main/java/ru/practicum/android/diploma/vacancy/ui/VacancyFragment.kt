@@ -95,10 +95,10 @@ class VacancyFragment : Fragment() {
         showKeySkills(data)
         showContact(data)
 
-        //viewModel.inFavourites(data.id.toString())
-        /*viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
+        // viewModel.inFavourites(data.id.toString())
+        /* viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
             isFavourites = it
-        }*/
+        } */
 
         binding.vacancyFavourite.setOnClickListener {
             isFavourites = if (isFavourites) {
