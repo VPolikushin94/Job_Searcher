@@ -10,7 +10,7 @@ import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsResponse
 
 interface HhApiService {
     @Headers(
-        "Authorization: ${BuildConfig.HH_ACCESS_TOKEN}",
+        "Authorization: Bearer ${BuildConfig.HH_ACCESS_TOKEN}",
         "HH-User-Agent: Practicum vacancy"
     )
     @GET("/vacancies/{vacancy_id}")
