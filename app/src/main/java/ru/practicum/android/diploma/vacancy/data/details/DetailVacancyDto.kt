@@ -9,8 +9,8 @@ data class DetailVacancyDto(
     val name: String,
     @SerializedName("description")
     val description: String?,
-    @SerializedName("keySkills")
-    val keySkills: String?,
+    @SerializedName("key_skills")
+    val keySkills: List<KeySkills>?,
     @SerializedName("area")
     val area: Area,
     @SerializedName("employer")
