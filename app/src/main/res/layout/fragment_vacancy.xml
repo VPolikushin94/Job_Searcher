@@ -7,8 +7,6 @@
     android:background="?attr/colorPrimary"
     tools:context=".vacancy.ui.VacancyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <ImageView
         android:id="@+id/iv_vacancy_back"
         android:layout_width="wrap_content"
@@ -94,8 +92,8 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_44"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_80"
         app:layout_constraintTop_toBottomOf="@id/tv_vacancy_fragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,11 +120,14 @@
 
             <ImageView
                 android:id="@+id/iv_frame_logo_card"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_80"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="@dimen/margin_24"
                 android:background="@drawable/frame_logo_card"
                 android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toTopOf="@id/tv_required_experience"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_vacancy_salary" />
 
             <ImageView
@@ -134,19 +135,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_16"
-                android:layout_marginTop="@dimen/margin_16"
-                android:background="@drawable/frame_logo"
                 android:contentDescription="@string/app_name"
+                android:src="@drawable/frame_logo"
+                app:layout_constraintBottom_toBottomOf="@id/iv_frame_logo_card"
                 app:layout_constraintStart_toStartOf="@id/iv_frame_logo_card"
                 app:layout_constraintTop_toTopOf="@id/iv_frame_logo_card" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_headline_card"
                 style="@style/main_heading_vacancy"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/margin_0"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_8"
                 android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:textAlignment="textStart"
+                android:textColor="@color/black_universal"
+                app:layout_constraintEnd_toEndOf="@id/iv_frame_logo_card"
                 app:layout_constraintStart_toEndOf="@id/iv_frame_logo"
                 app:layout_constraintTop_toTopOf="@id/iv_frame_logo_card"
                 tools:ignore="MissingConstraints,NotSibling" />
@@ -157,6 +162,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:textColor="@color/black_universal"
+                app:layout_constraintBottom_toBottomOf="@id/iv_frame_logo_card"
                 app:layout_constraintStart_toEndOf="@id/iv_frame_logo"
                 app:layout_constraintTop_toBottomOf="@id/tv_headline_card"
                 tools:ignore="MissingConstraints,NotSibling" />
@@ -197,78 +205,17 @@
                 android:layout_marginTop="@dimen/margin_32"
                 android:text="@string/job_description"
                 app:layout_constraintTop_toBottomOf="@id/tv_required_experience_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_responsibilities"
-                style="@style/additional_heading_vacancy"
+                android:id="@+id/tv_description_text"
+                style="@style/text_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_24"
                 android:layout_marginTop="@dimen/margin_16"
-                android:text="@string/responsibilities"
-                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_job_description"
-                app:layout_goneMarginTop="@dimen/margin_32"
-                tools:ignore="MissingConstraints,NotSibling" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_responsibilities_text"
-                style="@style/text_vacancy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_24"
-                android:layout_marginTop="@dimen/margin_4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_responsibilities"
-                tools:ignore="MissingConstraints,NotSibling" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_requirements"
-                style="@style/additional_heading_vacancy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16"
-                android:text="@string/requirements"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_responsibilities_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
-                tools:ignore="MissingConstraints,NotSibling" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_requirements_text"
-                style="@style/text_vacancy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_24"
-                android:layout_marginTop="@dimen/margin_4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_requirements"
-                tools:ignore="MissingConstraints,NotSibling" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_conditions"
-                style="@style/additional_heading_vacancy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16"
-                android:text="@string/conditions"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_requirements_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
-                tools:ignore="MissingConstraints,NotSibling" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_conditions_text"
-                style="@style/text_vacancy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_24"
-                android:layout_marginTop="@dimen/margin_4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_conditions"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -276,11 +223,10 @@
                 style="@style/main_heading_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_24"
+                android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/key_skills"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_conditions_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
+                app:layout_constraintTop_toBottomOf="@id/tv_description_text"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -288,7 +234,7 @@
                 style="@style/text_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_24"
+                android:layout_marginStart="@dimen/margin_8"
                 android:layout_marginTop="@dimen/margin_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_key_skills"
@@ -299,11 +245,10 @@
                 style="@style/main_heading_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_24"
+                android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/contacts"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_key_skills_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -335,7 +280,6 @@
                 android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/e_mail"
                 app:layout_constraintTop_toBottomOf="@id/tv_contact_person_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -356,7 +300,6 @@
                 android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/telephone"
                 app:layout_constraintTop_toBottomOf="@id/tv_e_mail_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -377,7 +320,6 @@
                 android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/comment"
                 app:layout_constraintTop_toBottomOf="@id/tv_telephone_text"
-                app:layout_goneMarginTop="@dimen/margin_32"
                 tools:ignore="MissingConstraints,NotSibling" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -395,16 +337,15 @@
                 style="@style/button_similar"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginTop="@dimen/margin_24"
                 android:layout_marginBottom="@dimen/margin_24"
                 android:text="@string/similar_jobs"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintTop_toBottomOf="@id/tv_comment_text"
+                app:layout_goneMarginTop="@dimen/margin_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

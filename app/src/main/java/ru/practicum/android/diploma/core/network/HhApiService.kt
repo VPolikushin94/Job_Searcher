@@ -6,15 +6,15 @@ import retrofit2.http.Path
 import retrofit2.http.QueryMap
 import ru.practicum.android.diploma.BuildConfig
 import ru.practicum.android.diploma.search.data.dto.VacancySearchResponse
-import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsResponse
+import ru.practicum.android.diploma.vacancy.data.details.DetailVacancyDto
 
 interface HhApiService {
     @Headers(
-        "Authorization: ${BuildConfig.HH_ACCESS_TOKEN}",
-        "HH-User-Agent: Practicum vacancy"
+        "Authorization: Bearer ${BuildConfig.HH_ACCESS_TOKEN}",
+        "HH-User-Agent: Practicum Vacancy"
     )
     @GET("/vacancies/{vacancy_id}")
-    suspend fun getVacancy(@Path("vacancy_id") id: String): VacancyDetailsResponse
+    suspend fun getVacancy(@Path("vacancy_id") id: String): DetailVacancyDto
 
     @Headers(
         "Authorization: Bearer ${BuildConfig.HH_ACCESS_TOKEN}",

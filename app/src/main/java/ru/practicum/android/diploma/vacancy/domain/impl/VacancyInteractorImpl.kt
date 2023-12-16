@@ -9,7 +9,7 @@ import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 
 class VacancyInteractorImpl(private val vacancyRepository: VacancyRepository) : VacancyInteractor {
 
-    override suspend fun getSelectedVacancy(id: String?): Flow<Pair<DetailsVacancy?, String?>> {
+    override suspend fun getSelectedVacancy(id: String): Flow<Pair<DetailsVacancy?, String?>> {
         return vacancyRepository.getSelectedVacancy(id).map { result ->
             when (result) {
                 is Resource.Success -> Pair(result.data, "")

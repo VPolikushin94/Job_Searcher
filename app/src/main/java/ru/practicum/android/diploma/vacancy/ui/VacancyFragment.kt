@@ -8,7 +8,6 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.text.HtmlCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -58,9 +57,17 @@ class VacancyFragment : Fragment() {
 
     private fun render(state: VacancyState) {
         when (state) {
-            is VacancyState.Loading -> showLoading()
-            is VacancyState.Error -> showError()
-            is VacancyState.Success -> showVacancy(state.data)
+            is VacancyState.Loading -> {
+                showLoading()
+            }
+
+            is VacancyState.Error -> {
+                showError()
+            }
+
+            is VacancyState.Success -> {
+                showVacancy(state.data)
+            }
         }
     }
 
@@ -79,6 +86,7 @@ class VacancyFragment : Fragment() {
         binding.progressBar.isVisible = false
         binding.imPlaceholderServerErrorCat.isVisible = false
         binding.tvVacancyErrorServer.isVisible = false
+        binding.screenDetailVacancy.isVisible = true
         binding.tvVacancyName.text = data.name
 
         showSalary(data)
@@ -87,10 +95,10 @@ class VacancyFragment : Fragment() {
         showKeySkills(data)
         showContact(data)
 
-        viewModel.inFavourites(data.id.toString())
-        viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
+        //viewModel.inFavourites(data.id.toString())
+        /*viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
             isFavourites = it
-        }
+        }*/
 
         binding.vacancyFavourite.setOnClickListener {
             isFavourites = if (isFavourites) {
@@ -103,17 +111,17 @@ class VacancyFragment : Fragment() {
             viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
         }
 
+        binding.vacancyShare.setOnClickListener {
+            viewModel.clickDebounce()
+            if (isClickAllowed) actionShare(data.url)
+        }
+
         binding.tvEMailText.setOnClickListener {
             actionEmail(data.email)
         }
 
         binding.tvTelephoneText.setOnClickListener {
             actionTelephone(data.telephone)
-        }
-
-        binding.vacancyShare.setOnClickListener {
-            viewModel.clickDebounce()
-            if (isClickAllowed) actionShare(data.url)
         }
     }
 
@@ -145,8 +153,10 @@ class VacancyFragment : Fragment() {
 
     private fun showEmployer(data: DetailsVacancy) {
         if (data.employerLogo != null) {
-            Glide.with(requireActivity())
+            Glide
+                .with(requireActivity())
                 .load(data.employerLogo)
+                .placeholder(R.drawable.logo1)
                 .into(binding.ivFrameLogo)
         }
         if (data.employerName == null) {
@@ -155,10 +165,11 @@ class VacancyFragment : Fragment() {
             binding.tvHeadlineCard.text = data.employerName
         }
         binding.tvHeadlineCity.text = data.employerCity
-        if (data.experienceName == null) {
+        if (data.experienceName == null && data.employmentName == null) {
             binding.tvRequiredExperience.isVisible = false
         } else {
             binding.tvRequiredExperienceYear.text = data.experienceName
+            binding.tvRequiredExperienceText.text = data.employmentName
         }
     }
 
@@ -166,7 +177,7 @@ class VacancyFragment : Fragment() {
         if (data.description == null) {
             binding.tvJobDescription.isVisible = false
         } else {
-            binding.tvResponsibilitiesText.text = Html.fromHtml(data.description, HtmlCompat.FROM_HTML_MODE_COMPACT)
+            binding.tvDescriptionText.setText(Html.fromHtml(data.description, Html.FROM_HTML_MODE_COMPACT))
         }
     }
 
@@ -192,13 +203,13 @@ class VacancyFragment : Fragment() {
         } else {
             binding.tvEMailText.text = data.email
         }
-        if (data.telephone == null) {
+        if (data.telephone == "") {
             binding.tvTelephone.isVisible = false
             contactHeader -= 1
         } else {
-            binding.tvTelephone.text = data.telephone
+            binding.tvTelephoneText.text = data.telephone
         }
-        if (data.comment == null) {
+        if (data.comment == "") {
             binding.tvComment.isVisible = false
             contactHeader -= 1
         } else {

@@ -34,7 +34,7 @@ class VacancyViewModel(
     private fun getDetailsVacancy() {
         viewModelScope.launch {
             val id = savedStateHandle.get<String>(BUNDLE_KEY)
-            vacancyInteractor.getSelectedVacancy(id).collect { pair ->
+            vacancyInteractor.getSelectedVacancy(id.toString()).collect { pair ->
                 processResult(pair.first, pair.second)
             }
         }
@@ -46,7 +46,13 @@ class VacancyViewModel(
                 _screenState.value = VacancyState.Error
             }
 
-            else -> _screenState.value = detailsVacancy?.let { VacancyState.Success(it) }
+            else -> {
+                if (detailsVacancy != null) {
+                    _screenState.value = VacancyState.Success(detailsVacancy)
+                } else {
+                    _screenState.value = VacancyState.Error
+                }
+            }
         }
     }
 
