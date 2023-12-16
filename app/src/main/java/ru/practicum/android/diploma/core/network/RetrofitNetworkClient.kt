@@ -2,6 +2,7 @@ package ru.practicum.android.diploma.core.network
 
 import android.accounts.NetworkErrorException
 import android.content.Context
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.practicum.android.diploma.core.dto.Request
@@ -35,6 +36,7 @@ class RetrofitNetworkClient(
                 }
                 response.apply { resultCode = NetworkResultCode.RESULT_OK }
             } catch (e: Throwable) {
+                Log.d("SEARCH_VACANCY", e.toString())
                 Response().apply { resultCode = NetworkResultCode.RESULT_ERROR }
             }
         }
