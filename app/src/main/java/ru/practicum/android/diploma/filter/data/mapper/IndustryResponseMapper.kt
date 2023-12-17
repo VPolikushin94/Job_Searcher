@@ -8,10 +8,6 @@ object IndustryResponseMapper {
         if (industryResponseDto == null)
             return emptyList()
 
-        val root = listOf(Mapper.map(industryResponseDto))
-        val result = industryResponseDto.industries.map { Mapper.map(it) }
-
-
-        return listOf(root, result).flatten()
+        return industryResponseDto.industries.map { Mapper.map(it) }
     }
 }

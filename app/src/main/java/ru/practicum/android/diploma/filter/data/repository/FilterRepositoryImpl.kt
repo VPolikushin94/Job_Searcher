@@ -22,11 +22,11 @@ class FilterRepositoryImpl(
             }
 
             NetworkResultCode.RESULT_OK -> {
-                val flattenIndustry =
-                    ((response as IndustryResponse).industries.flatMap { industryListDto ->
-                        IndustryResponseMapper.map(industryListDto)
+                val result =
+                    ((response as IndustryResponse).industries.flatMap { industryResponseDto ->
+                        IndustryResponseMapper.map(industryResponseDto)
                     }).sortedBy { it.name }
-                Resource.Success(flattenIndustry)
+                Resource.Success(result)
             }
 
             else -> emit(Resource.Error(SERVER_ERROR))

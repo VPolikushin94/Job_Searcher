@@ -12,10 +12,10 @@ object Mapper {
         )
     }
 
-    fun map(industryTreeDto: IndustryResponseDto): Industry {
+    fun map(industryResponseDto: IndustryResponseDto): Industry {
         return Industry(
-            id = industryTreeDto.id,
-            name = industryTreeDto.name
+            id = industryResponseDto.id,
+            name = industryResponseDto.name
         )
     }
 }
