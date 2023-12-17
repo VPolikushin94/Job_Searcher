@@ -1,17 +1,14 @@
 package ru.practicum.android.diploma.filter.ui.fragment
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.FragmentFiltrationBinding
-import ru.practicum.android.diploma.filter.domain.models.Industry
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationViewModel
 
 class FiltrationFragment : Fragment() {
@@ -50,5 +47,4 @@ class FiltrationFragment : Fragment() {
             findNavController().navigate(R.id.action_filtrationFragment_to_filtrationIndustryFragment)
         }
     }
-
 }

@@ -7,6 +7,6 @@ sealed interface FilterIndustryScreenState {
 
     object Error : FilterIndustryScreenState
 
-    data class Content(val industryList: List<Industry>, val checkedIndustry: Industry?) :
+    data class Content(val industryList: List<Industry>) :
         FilterIndustryScreenState
 }

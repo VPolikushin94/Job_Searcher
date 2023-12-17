@@ -24,11 +24,7 @@ class FiltrationIndustryFragment : Fragment() {
 
     private val viewModel: FiltrationIndustryViewModel by viewModel()
 
-    private val adapter = IndustryAdapter(listOf()).apply {
-        clickListener = IndustryAdapter.IndustryClickListener { industry ->
-            viewModel.onIndustryChecked(industry)
-        }
-    }
+    private var adapter: IndustryAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,12 +57,6 @@ class FiltrationIndustryFragment : Fragment() {
         binding.incorrectErrorPlaceholder.isVisible = state is FilterIndustryScreenState.Incorrect
         binding.getListErrorPlaceholder.isVisible = state is FilterIndustryScreenState.Error
         binding.rvIndustry.isVisible = state is FilterIndustryScreenState.Content
-
-
-        if (state is FilterIndustryScreenState.Content) {
-            adapter.addItems(state.industryList, state.checkedIndustry)
-            binding.applyButtonIndustry.isVisible = state.checkedIndustry != null
-        } else binding.applyButtonIndustry.isVisible = false
     }
 
     private fun applyFilter(industry: Industry?) {

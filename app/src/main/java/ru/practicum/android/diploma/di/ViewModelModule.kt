@@ -35,8 +35,8 @@ val viewModeModule = module {
         FiltrationLocationCountryViewModel()
     }
 
-    viewModel { (industry: Industry?) ->
-        FiltrationIndustryViewModel(industry, get())
+    viewModel {
+        FiltrationIndustryViewModel(get())
     }
 
     viewModel {
