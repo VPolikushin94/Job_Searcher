@@ -210,7 +210,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_description_text"
                 style="@style/text_vacancy"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_24"
                 android:layout_marginTop="@dimen/margin_16"
