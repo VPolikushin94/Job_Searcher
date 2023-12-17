@@ -44,7 +44,7 @@
         <item name="android:fontFamily">@font/ys_text_regular</item>
         <item name="android:textColor">@color/black_universal</item>
         <item name="android:textSize">@dimen/margin_16</item>
-        <item name="android:textCursorDrawable">@drawable/et_cursor</item>
+        <item name="cursorColor">@drawable/et_cursor</item>
         <item name="android:layout_marginVertical">@dimen/margin_8</item>
         <item name="android:layout_marginHorizontal">@dimen/margin_16</item>
         <item name="android:imeOptions">actionDone</item>
