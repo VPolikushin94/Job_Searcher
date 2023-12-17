@@ -1,10 +1,9 @@
 package ru.practicum.android.diploma.search.data.repository
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.practicum.android.diploma.core.models.SearchedVacancy
-import ru.practicum.android.diploma.core.models.VacancySearchParams
-import ru.practicum.android.diploma.core.models.toMap
+import kotlinx.coroutines.flow.flowOn
 import ru.practicum.android.diploma.core.network.NetworkClient
 import ru.practicum.android.diploma.search.data.convertor.VacancyDtoConvertor
 import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
@@ -13,6 +12,8 @@ import ru.practicum.android.diploma.search.domain.api.SearchRepository
 import ru.practicum.android.diploma.search.domain.models.ErrorType
 import ru.practicum.android.diploma.search.domain.models.Resource
 import ru.practicum.android.diploma.search.domain.models.SearchVacancyResult
+import ru.practicum.android.diploma.search.domain.models.VacancySearchParams
+import ru.practicum.android.diploma.search.domain.models.toMap
 import ru.practicum.android.diploma.util.NetworkResultCode
 
 class SearchRepositoryImpl(
@@ -20,10 +21,6 @@ class SearchRepositoryImpl(
     private val vacancyDtoConvertor: VacancyDtoConvertor,
 ) : SearchRepository {
 
-    private var cachedVacancyList: List<SearchedVacancy> = listOf()
-    private var found: Int = 0
-    private var page: Int = 0
-    private var pages: Int = 0
     override fun searchVacancy(
         vacancySearchParams: VacancySearchParams,
     ): Flow<Resource<SearchVacancyResult>> = flow {
@@ -36,16 +33,13 @@ class SearchRepositoryImpl(
                     vacancyDtoConvertor.map(it)
                 }
 
-                found = vacancyResponse.found
-                page = vacancyResponse.page
-                pages = vacancyResponse.pages
                 emit(
                     Resource.Success(
                         SearchVacancyResult(
                             vacancyList,
-                            found,
-                            page,
-                            pages
+                            vacancyResponse.found,
+                            vacancyResponse.page,
+                            vacancyResponse.pages
                         )
                     )
                 )
@@ -54,18 +48,5 @@ class SearchRepositoryImpl(
             NetworkResultCode.RESULT_NO_INTERNET -> emit(Resource.Error(ErrorType.NO_INTERNET))
             else -> emit(Resource.Error(ErrorType.SERVER_ERROR))
         }
-    }
-
-    override suspend fun getCachedVacancySearchResult(): SearchVacancyResult {
-        return SearchVacancyResult(
-            cachedVacancyList,
-            found,
-            page,
-            pages
-        )
-    }
-
-    override suspend fun cacheVacancyList(vacancyList: List<SearchedVacancy>) {
-        cachedVacancyList = vacancyList
-    }
+    }.flowOn(Dispatchers.IO)
 }

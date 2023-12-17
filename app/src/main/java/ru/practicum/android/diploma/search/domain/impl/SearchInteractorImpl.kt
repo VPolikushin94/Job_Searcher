@@ -1,15 +1,14 @@
 package ru.practicum.android.diploma.search.domain.impl
 
 import kotlinx.coroutines.flow.Flow
-import ru.practicum.android.diploma.core.models.SearchedVacancy
-import ru.practicum.android.diploma.core.models.VacancySearchParams
 import ru.practicum.android.diploma.search.domain.api.SearchInteractor
 import ru.practicum.android.diploma.search.domain.api.SearchRepository
 import ru.practicum.android.diploma.search.domain.models.Resource
 import ru.practicum.android.diploma.search.domain.models.SearchVacancyResult
+import ru.practicum.android.diploma.search.domain.models.VacancySearchParams
 
 class SearchInteractorImpl(
-    private val searchRepository: SearchRepository
+    private val searchRepository: SearchRepository,
 ) : SearchInteractor {
 
     override fun searchVacancy(searchText: String, page: Int, perPage: Int): Flow<Resource<SearchVacancyResult>> {
@@ -24,13 +23,5 @@ class SearchInteractorImpl(
                 perPage
             )
         )
-    }
-
-    override suspend fun getCachedVacancySearchResult(): SearchVacancyResult {
-        return searchRepository.getCachedVacancySearchResult()
-    }
-
-    override suspend fun cacheVacancyList(vacancyList: List<SearchedVacancy>) {
-        searchRepository.cacheVacancyList(vacancyList)
     }
 }
