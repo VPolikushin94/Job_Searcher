@@ -6,4 +6,9 @@ data class FiltrationSettings(
     val industry: Industry?,
     val salary: Int,
     val fSalaryRequired: Boolean = false
-)
+) {
+
+    fun isEmpty(): Boolean {
+        return this.country == null && this.region == null && this.industry == null && this.salary == null && !this.fSalaryRequired
+    }
+}

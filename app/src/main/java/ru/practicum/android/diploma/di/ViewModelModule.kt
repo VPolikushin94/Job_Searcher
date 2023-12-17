@@ -13,8 +13,8 @@ import ru.practicum.android.diploma.vacancy.ui.viewmodel.VacancyViewModel
 
 val viewModeModule = module {
 
-    viewModel {
-        FiltrationViewModel()
+    viewModel { (filterParameters: FilterParameters?) ->
+        FiltrationViewModel(filterParameters, get())
     }
 
     viewModel {

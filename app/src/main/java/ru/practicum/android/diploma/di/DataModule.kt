@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.di
 
+import android.content.Context
 import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -10,6 +11,7 @@ import ru.practicum.android.diploma.core.network.NetworkClient
 import ru.practicum.android.diploma.core.network.RetrofitNetworkClient
 
 private const val BASE_URL = "https://api.hh.ru/"
+private const val SHARED_PREFS = "app_preferences"
 
 val dataModule = module {
 
@@ -28,5 +30,10 @@ val dataModule = module {
             androidContext(),
             hhApiService = get()
         )
+    }
+
+    single {
+        androidContext()
+            .getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
     }
 }
