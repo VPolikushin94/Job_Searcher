@@ -36,7 +36,9 @@ val viewModeModule = module {
     }
 
     viewModel {
-        FiltrationIndustryViewModel(get())
+        FiltrationIndustryViewModel(
+            filterInteractor = get()
+        )
     }
 
     viewModel {

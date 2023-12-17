@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.practicum.android.diploma.core.network.HhApiService
 import ru.practicum.android.diploma.core.network.NetworkClient
 import ru.practicum.android.diploma.core.network.RetrofitNetworkClient
+import ru.practicum.android.diploma.filter.data.Mapper
 
 private const val BASE_URL = "https://api.hh.ru/"
 
@@ -22,6 +23,8 @@ val dataModule = module {
     }
 
     factory { Gson() }
+
+    factory { Mapper() }
 
     single<NetworkClient> {
         RetrofitNetworkClient(
