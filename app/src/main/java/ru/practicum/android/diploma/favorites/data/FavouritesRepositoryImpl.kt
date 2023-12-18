@@ -33,14 +33,10 @@ class FavouritesRepositoryImpl(
         val listVacancy = vacancyListEntity.map {
             vacancyDbMapper.map(it)
         }
-        try {
-            if (listVacancy.isEmpty()) {
-                emit(Resource.Error(errorType = ErrorType.CANT_GET_LIST))
-            } else {
-                emit(Resource.Success(listVacancy))
-            }
-        } catch (e: Throwable) {
-            emit(Resource.Error(errorType = ErrorType.LIST_EMPTY))
+        if (listVacancy.isEmpty()) {
+            emit(Resource.Error(errorType = ErrorType.CANT_GET_LIST))
+        } else {
+            emit(Resource.Success(listVacancy))
         }
     }
 
