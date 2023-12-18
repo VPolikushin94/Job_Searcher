@@ -29,11 +29,11 @@ class FavouritesRepositoryImpl(
     }
 
     override suspend fun getVacancyList(): Flow<Resource<List<SearchedVacancy>>> = flow {
+        val vacancyListEntity = appDatabase.vacancyDao().getVacancyList()
+        val listVacancy = vacancyListEntity.map {
+            vacancyDbMapper.map(it)
+        }
         try {
-            val vacancyListEntity = appDatabase.vacancyDao().getVacancyList()
-            val listVacancy = vacancyListEntity.map {
-                vacancyDbMapper.map(it)
-            }
             if (listVacancy.isEmpty()) {
                 emit(Resource.Error(errorType = ErrorType.CANT_GET_LIST))
             } else {

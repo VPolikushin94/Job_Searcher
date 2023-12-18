@@ -100,8 +100,7 @@ class VacancyFragment : Fragment() {
             isFavourites = it
             if (isFavourites) {
                 binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
-            }
-            else {
+            } else {
                 binding.vacancyFavourite.setImageResource(R.drawable.icon_like_off)
             }
         }
