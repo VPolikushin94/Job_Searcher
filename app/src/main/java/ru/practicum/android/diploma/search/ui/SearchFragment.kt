@@ -231,10 +231,11 @@ class SearchFragment : Fragment() {
 //
 //        }
         vacancyListAdapter?.onVacancyClickListener = {
-        onVacancyClickListener = {
-            if (viewModel.clickDebounce()) {
-                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
-                findNavController().navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
+            onVacancyClickListener = {
+                if (viewModel.clickDebounce()) {
+                    val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
+                    findNavController().navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
+                }
             }
         }
     }
