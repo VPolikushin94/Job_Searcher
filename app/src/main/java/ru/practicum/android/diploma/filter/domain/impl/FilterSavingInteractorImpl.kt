@@ -11,9 +11,10 @@ class FilterSavingInteractorImpl(private val filterLocalRepository: FilterSaving
     }
 
     override fun saveFiltrationSettings(filtrationSettings: FiltrationSettings?) {
-        if ((filtrationSettings == null) || filtrationSettings.isEmpty())
+        if (filtrationSettings == null || filtrationSettings.isEmpty()) {
             filterLocalRepository.removeFiltrationSettings()
-        else
+        } else {
             filterLocalRepository.saveFiltrationSettings(filtrationSettings)
+        }
     }
 }

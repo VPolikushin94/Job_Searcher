@@ -9,6 +9,10 @@ data class FiltrationSettings(
 ) {
 
     fun isEmpty(): Boolean {
-        return this.country == null && this.region == null && this.industry == null && this.salary == null && !this.fSalaryRequired
+        return this.country == null &&
+            this.region == null &&
+            this.industry == null &&
+            this.salary == null &&
+            !this.fSalaryRequired // что это? оно всегда будет false
     }
 }
