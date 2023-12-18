@@ -5,9 +5,9 @@ import ru.practicum.android.diploma.filter.domain.models.Industry
 
 object IndustryResponseMapper {
     fun map(industryResponseDto: IndustryResponseDto?): List<Industry> {
-        if (industryResponseDto == null)
+        if (industryResponseDto == null) {
             return emptyList()
-
+        }
         return industryResponseDto.industries.map { Mapper.map(it) }
     }
 }

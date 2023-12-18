@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
 import ru.practicum.android.diploma.filter.domain.models.Industry
 import ru.practicum.android.diploma.filter.ui.utils.SingleLiveEvent
 import ru.practicum.android.diploma.util.debounce

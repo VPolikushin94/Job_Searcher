@@ -23,9 +23,9 @@ class FilterRepositoryImpl(
 
             NetworkResultCode.RESULT_OK -> {
                 val result =
-                    ((response as IndustryResponse).industries.flatMap { industryResponseDto ->
+                    (response as IndustryResponse).industries.flatMap { industryResponseDto ->
                         IndustryResponseMapper.map(industryResponseDto)
-                    }).sortedBy { it.name }
+                    }.sortedBy { it.name }
                 Resource.Success(result)
             }
 
