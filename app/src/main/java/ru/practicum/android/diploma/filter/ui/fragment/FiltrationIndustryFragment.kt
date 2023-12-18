@@ -126,7 +126,8 @@ class FiltrationIndustryFragment : Fragment() {
 
     private fun applyFilter(industry: Industry?) {
         setFragmentResult(
-            INDUSTRY_RESULT_KEY, bundleOf(INDUSTRY_RESULT_VAL to industry)
+            INDUSTRY_RESULT_KEY,
+            bundleOf(INDUSTRY_RESULT_VAL to industry)
         )
         findNavController().navigateUp()
     }

@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.di
 
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationIndustryViewModel
@@ -7,7 +8,6 @@ import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationLocationCountr
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationLocationViewModel
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationViewModel
 import ru.practicum.android.diploma.favorites.ui.viewmodel.FavoritesViewModel
-import ru.practicum.android.diploma.filter.domain.models.Industry
 import ru.practicum.android.diploma.search.ui.viewmodel.SearchViewModel
 import ru.practicum.android.diploma.vacancy.ui.viewmodel.VacancyViewModel
 
@@ -19,7 +19,8 @@ val viewModeModule = module {
 
     viewModel {
         SearchViewModel(
-            searchInteractor = get()
+            searchInteractor = get(),
+            application = androidApplication()
         )
     }
 
@@ -43,7 +44,8 @@ val viewModeModule = module {
 
     viewModel {
         FavoritesViewModel(
-            favoritesInteractor = get()
+            favoritesInteractor = get(),
+            application = androidApplication()
         )
     }
 }
