@@ -95,10 +95,12 @@ class VacancyFragment : Fragment() {
         showKeySkills(data)
         showContact(data)
 
-        // viewModel.inFavourites(data.id.toString())
-        /* viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
+        viewModel.inFavourites(data.id.toString())
+        viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
             isFavourites = it
-        } */
+            if (isFavourites) binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
+            else binding.vacancyFavourite.setImageResource(R.drawable.icon_like_off)
+        }
 
         binding.vacancyFavourite.setOnClickListener {
             isFavourites = if (isFavourites) {
@@ -108,7 +110,7 @@ class VacancyFragment : Fragment() {
                 binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
                 true
             }
-            // viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
+            viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
         }
 
         binding.vacancyShare.setOnClickListener {

@@ -25,11 +25,7 @@ class FavoritesViewModel(
     )
     val screenState: LiveData<FavoritesScreenState> = _screenState
 
-    init {
-        getVacancyList()
-    }
-
-    private fun getVacancyList() {
+    fun getVacancyList() {
         _screenState.value = FavoritesScreenState.Loading
         viewModelScope.launch {
             favoritesInteractor.getVacancyList()
@@ -48,7 +44,7 @@ class FavoritesViewModel(
             is Resource.Error -> {
                 _screenState.postValue(
                     FavoritesScreenState.Placeholder(
-                        FavoritesPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST_ERROR
+                        FavoritesPlaceholderType.PLACEHOLDER_EMPTY_LIST
                     )
                 )
             }
@@ -59,7 +55,7 @@ class FavoritesViewModel(
         if (vacancyList.isEmpty()) {
             _screenState.postValue(
                 FavoritesScreenState.Placeholder(
-                    FavoritesPlaceholderType.PLACEHOLDER_EMPTY_LIST
+                    FavoritesPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST_ERROR
                 )
             )
         } else {

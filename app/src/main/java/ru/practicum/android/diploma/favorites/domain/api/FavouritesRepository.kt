@@ -5,7 +5,7 @@ import ru.practicum.android.diploma.core.models.SearchedVacancy
 import ru.practicum.android.diploma.favorites.domain.models.Resource
 import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 
-interface FavoritesInteractor {
+interface FavouritesRepository {
 
     suspend fun getVacancyList(): Flow<Resource<List<SearchedVacancy>>>
     suspend fun inFavourites(id: String): Boolean

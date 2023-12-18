@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.ui.adapter.VacancyListAdapter
 import ru.practicum.android.diploma.databinding.FragmentFavoritesBinding
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesPlaceholderType
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesScreenState
 import ru.practicum.android.diploma.favorites.ui.viewmodel.FavoritesViewModel
+import ru.practicum.android.diploma.vacancy.ui.viewmodel.VacancyViewModel
 
 class FavoritesFragment : Fragment() {
 
@@ -35,9 +39,17 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setRecyclerViewAdapter()
+        viewModel.getVacancyList()
 
         viewModel.screenState.observe(viewLifecycleOwner) {
             render(it)
+        }
+
+        vacancyListAdapter?.onVacancyClickListener = {
+            if (viewModel.clickDebounce()) {
+                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
+                findNavController().navigate(R.id.action_favoritesFragment_to_vacancyFragment, bundle)
+            }
         }
     }
 
