@@ -40,7 +40,7 @@ class FavouritesRepositoryImpl(
                 emit(Resource.Success(listVacancy))
             }
         } catch (e: Throwable) {
-            emit(Resource.Error(errorType = ErrorType.CANT_GET_LIST))
+            emit(Resource.Error(errorType = ErrorType.LIST_EMPTY))
         }
     }
 

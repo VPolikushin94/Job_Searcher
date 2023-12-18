@@ -98,8 +98,12 @@ class VacancyFragment : Fragment() {
         viewModel.inFavourites(data.id.toString())
         viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
             isFavourites = it
-            if (isFavourites) binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
-            else binding.vacancyFavourite.setImageResource(R.drawable.icon_like_off)
+            if (isFavourites) {
+                binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
+            }
+            else {
+                binding.vacancyFavourite.setImageResource(R.drawable.icon_like_off)
+            }
         }
 
         binding.vacancyFavourite.setOnClickListener {
