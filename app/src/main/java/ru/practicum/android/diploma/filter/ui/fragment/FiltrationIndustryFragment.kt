@@ -53,6 +53,12 @@ class FiltrationIndustryFragment : Fragment() {
         setRecyclerView()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rvIndustry.adapter = null
+        adapter = null
+        _binding = null
+    }
     private fun setRecyclerView() {
         binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
         adapter = IndustryAdapter(
