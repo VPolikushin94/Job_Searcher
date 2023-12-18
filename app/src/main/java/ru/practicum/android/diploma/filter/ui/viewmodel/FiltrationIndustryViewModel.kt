@@ -24,6 +24,7 @@ class FiltrationIndustryViewModel(private val filterInteractor: FilterInteractor
     }
 
     private fun getIndustries() {
+        screenState.value = FilterIndustryScreenState.Loading
         viewModelScope.launch {
             filterInteractor.getIndustries().collect { result ->
                 if (result.isError) {
@@ -42,6 +43,6 @@ class FiltrationIndustryViewModel(private val filterInteractor: FilterInteractor
 
 
     private fun setState(state: FilterIndustryScreenState) {
-        screenState.value = state
+        screenState.postValue(state)
     }
 }

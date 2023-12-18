@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.filter.data.repository
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ru.practicum.android.diploma.core.dto.Request
@@ -26,7 +27,8 @@ class FilterRepositoryImpl(
                     ((response as IndustryResponse).industries.flatMap { industryResponseDto ->
                         IndustryResponseMapper.map(industryResponseDto)
                     }).sortedBy { it.name }
-                Resource.Success(result)
+                Log.d("FILTER_RES", result.toString())
+                emit(Resource.Success(result))
             }
 
             else -> emit(Resource.Error(SERVER_ERROR))

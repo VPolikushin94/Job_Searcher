@@ -49,6 +49,7 @@ class FiltrationIndustryFragment : Fragment() {
         }
 
         binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
+        adapter = IndustryAdapter(emptyList())
         binding.rvIndustry.adapter = adapter
 
     }
@@ -56,8 +57,15 @@ class FiltrationIndustryFragment : Fragment() {
     private fun render(state: FilterIndustryScreenState) {
         binding.incorrectErrorPlaceholder.isVisible = state is FilterIndustryScreenState.Incorrect
         binding.getListErrorPlaceholder.isVisible = state is FilterIndustryScreenState.Error
-        binding.rvIndustry.isVisible = state is FilterIndustryScreenState.Content
+        binding.progressBar.isVisible = state is FilterIndustryScreenState.Loading
+        binding.rvIndustry.isVisible = if (state is FilterIndustryScreenState.Content) {
+            adapter?.addItems(state.industryList)
+            true
+        } else {
+            false
+        }
     }
+
 
     private fun applyFilter(industry: Industry?) {
         setFragmentResult(
