@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
+import ru.practicum.android.diploma.core.models.Vacancy
 import ru.practicum.android.diploma.core.ui.adapter.VacancyListAdapter
 import ru.practicum.android.diploma.databinding.FragmentFavoritesBinding
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesPlaceholderType
@@ -25,6 +26,7 @@ class FavoritesFragment : Fragment() {
     private val viewModel: FavoritesViewModel by viewModel()
 
     private var vacancyListAdapter: VacancyListAdapter? = null
+    private var onVacancyClickListener: ((Vacancy) -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +40,9 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onVacancyClickListener = {
+            it
+        }
         setRecyclerViewAdapter()
         viewModel.getVacancyList()
 
@@ -61,7 +66,9 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun setRecyclerViewAdapter() {
-        vacancyListAdapter = VacancyListAdapter()
+        vacancyListAdapter = VacancyListAdapter(
+            onVacancyClickListener ?: throw NullPointerException("onVacancyClickListener equals null")
+        )
         binding.rvFavorites.itemAnimator = null
         binding.rvFavorites.adapter = vacancyListAdapter
     }

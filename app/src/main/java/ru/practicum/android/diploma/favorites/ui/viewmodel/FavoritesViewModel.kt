@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.favorites.ui.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.practicum.android.diploma.core.models.SearchedVacancy
+import ru.practicum.android.diploma.core.models.toVacancy
 import ru.practicum.android.diploma.favorites.domain.api.FavoritesInteractor
 import ru.practicum.android.diploma.favorites.domain.models.Resource
 import ru.practicum.android.diploma.favorites.ui.models.FavoritesPlaceholderType
@@ -14,6 +16,7 @@ import ru.practicum.android.diploma.favorites.ui.models.FavoritesScreenState
 
 class FavoritesViewModel(
     private val favoritesInteractor: FavoritesInteractor,
+    private val application: Application
 ) : ViewModel() {
 
     private var isClickAllowed = true
@@ -61,7 +64,7 @@ class FavoritesViewModel(
         } else {
             _screenState.postValue(
                 FavoritesScreenState.Content(
-                    vacancyList
+                    vacancyList.map { it.toVacancy(application) }
                 )
             )
         }
