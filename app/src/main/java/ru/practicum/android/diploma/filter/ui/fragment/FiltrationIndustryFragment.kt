@@ -92,7 +92,7 @@ class FiltrationIndustryFragment : Fragment() {
         }
 
         onIndustryClickListener = IndustryAdapter.IndustryClickListener {
-
+            it
         }
     }
 

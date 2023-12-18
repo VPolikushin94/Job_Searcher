@@ -13,6 +13,6 @@ data class FiltrationSettings(
             this.region == null &&
             this.industry == null &&
             this.salary == null &&
-            !this.fSalaryRequired //что это? оно всегда будет false
+            !this.fSalaryRequired // что это? оно всегда будет false
     }
 }
