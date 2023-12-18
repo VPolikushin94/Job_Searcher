@@ -108,7 +108,7 @@ class VacancyFragment : Fragment() {
                 binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
                 true
             }
-            viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
+            // viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
         }
 
         binding.vacancyShare.setOnClickListener {
