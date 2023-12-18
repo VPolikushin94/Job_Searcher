@@ -112,6 +112,7 @@
         android:layout_marginBottom="@dimen/margin_24"
         android:backgroundTint="@color/blue"
         android:text="@string/select"
+        android:visibility="gone"
         android:textAppearance="@style/salary_filtration_edit_text"
         android:textColor="?attr/colorPrimary"
         app:cornerRadius="@dimen/margin_12"

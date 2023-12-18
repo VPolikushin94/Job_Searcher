@@ -107,7 +107,8 @@ class RootActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.filtrationFragment,
                 R.id.filtrationLocationFragment,
-                R.id.filtrationLocationCountryFragment -> {
+                R.id.filtrationLocationCountryFragment,
+                R.id.filtrationIndustryFragment -> {
                     binding.bottomNav.isVisible = false
                     binding.separator.isVisible = false
                 }
