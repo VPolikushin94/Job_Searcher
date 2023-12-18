@@ -59,6 +59,7 @@ class FiltrationIndustryFragment : Fragment() {
         adapter = null
         _binding = null
     }
+
     private fun setRecyclerView() {
         binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
         adapter = IndustryAdapter(
