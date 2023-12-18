@@ -26,6 +26,8 @@ class FiltrationIndustryFragment : Fragment() {
 
     private var adapter: IndustryAdapter? = null
 
+    private var onIndustryClickListener: IndustryAdapter.IndustryClickListener? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,10 +50,16 @@ class FiltrationIndustryFragment : Fragment() {
             applyFilter(industry)
         }
 
-        binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
-        adapter = IndustryAdapter(emptyList())
-        binding.rvIndustry.adapter = adapter
+        setRecyclerView()
+    }
 
+    private fun setRecyclerView() {
+        binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
+        adapter = IndustryAdapter(
+            emptyList(),
+            onIndustryClickListener ?: throw NullPointerException("onIndustryClickListener equals null")
+        )
+        binding.rvIndustry.adapter = adapter
     }
 
     private fun render(state: FilterIndustryScreenState) {
@@ -81,6 +89,10 @@ class FiltrationIndustryFragment : Fragment() {
 
         binding.applyButtonIndustry.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        onIndustryClickListener = IndustryAdapter.IndustryClickListener {
+
         }
     }
 

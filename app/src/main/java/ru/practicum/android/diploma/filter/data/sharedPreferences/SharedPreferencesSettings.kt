@@ -7,7 +7,8 @@ import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
 import java.lang.reflect.Type
 
 class SharedPreferencesSettings(
-    private val sharedPreferences: SharedPreferences, private val gson: Gson
+    private val sharedPreferences: SharedPreferences,
+    private val gson: Gson
 ) {
 
     fun createFiltrationSettingsFromJson(json: String): FiltrationSettings {

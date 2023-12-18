@@ -12,7 +12,7 @@ class IndustryViewHolder(parentView: ViewGroup) : RecyclerView.ViewHolder(
         .inflate(R.layout.industry_item, parentView, false)
 ) {
 
-    private val industryNameView: RadioButton by lazy { itemView.findViewById(R.id.industry_item) }
+    private val industryNameView: RadioButton = itemView.findViewById(R.id.industry_item)
 
     fun bind(model: Industry, checkedIndustry: Industry?) {
         industryNameView.text = model.name
