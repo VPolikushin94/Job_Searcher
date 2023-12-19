@@ -14,7 +14,10 @@ import ru.practicum.android.diploma.vacancy.ui.viewmodel.VacancyViewModel
 val viewModeModule = module {
 
     viewModel {
-        FiltrationViewModel()
+        FiltrationViewModel(
+            filterInteractor = get(),
+            filterSavingInteractor = get()
+        )
     }
 
     viewModel {
@@ -37,7 +40,8 @@ val viewModeModule = module {
 
     viewModel {
         FiltrationIndustryViewModel(
-            filterInteractor = get()
+            filterInteractor = get(),
+            filterSavingInteractor = get()
         )
     }
 

@@ -32,6 +32,8 @@ class FiltrationIndustryFragment : Fragment() {
 
     private var onIndustryClickListener: IndustryAdapter.IndustryClickListener? = null
 
+    private val saveIndustry: FiltrationIndustryViewModel? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,10 +52,7 @@ class FiltrationIndustryFragment : Fragment() {
             render(it)
         }
 
-        viewModel.getFilterTrigger().observe(viewLifecycleOwner) { industry ->
-            applyFilter(industry)
-        }
-
+        viewModel.loadSavingIndustry()
         setRecyclerView()
         setEditText()
         setListTouchListeners()
@@ -105,8 +104,7 @@ class FiltrationIndustryFragment : Fragment() {
     private fun setRecyclerView() {
         binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
         adapter = IndustryAdapter(
-            emptyList(),
-            onIndustryClickListener ?: throw NullPointerException("onIndustryClickListener equals null")
+            emptyList(), onIndustryClickListener ?: throw NullPointerException("onIndustryClickListener equals null")
         )
         binding.rvIndustry.adapter = adapter
     }
@@ -123,14 +121,6 @@ class FiltrationIndustryFragment : Fragment() {
         }
     }
 
-
-    private fun applyFilter(industry: Industry?) {
-        setFragmentResult(
-            INDUSTRY_RESULT_KEY, bundleOf(INDUSTRY_RESULT_VAL to industry)
-        )
-        findNavController().navigateUp()
-    }
-
     private fun setClickListeners() {
         binding.filtrationIndustryArrowBack.setOnClickListener {
             findNavController().navigateUp()
@@ -143,6 +133,7 @@ class FiltrationIndustryFragment : Fragment() {
         onIndustryClickListener = IndustryAdapter.IndustryClickListener {
             binding.applyButtonIndustry.isVisible = true
         }
+
         binding.btnClear.setOnClickListener {
             if (binding.etFiltrationIndustry.text.isNullOrEmpty()) {
                 binding.etFiltrationIndustry.requestFocus()
@@ -155,8 +146,4 @@ class FiltrationIndustryFragment : Fragment() {
         }
     }
 
-    companion object {
-        const val INDUSTRY_RESULT_KEY = "industry_key"
-        const val INDUSTRY_RESULT_VAL = "industry_val"
-    }
 }
