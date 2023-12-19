@@ -32,7 +32,7 @@ class FiltrationIndustryFragment : Fragment() {
 
     private var onIndustryClickListener: IndustryAdapter.IndustryClickListener? = null
 
-    private val saveIndustry: FiltrationIndustryViewModel? = null
+    private var saveIndustry: Industry? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -128,10 +128,12 @@ class FiltrationIndustryFragment : Fragment() {
         }
 
         binding.applyButtonIndustry.setOnClickListener {
+            viewModel.onIndustryClicked(saveIndustry!!)
             findNavController().navigateUp()
         }
 
         onIndustryClickListener = IndustryAdapter.IndustryClickListener {
+            saveIndustry = it
             binding.applyButtonIndustry.isVisible = true
         }
 
