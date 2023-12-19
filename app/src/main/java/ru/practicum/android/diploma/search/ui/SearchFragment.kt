@@ -216,6 +216,11 @@ class SearchFragment : Fragment() {
                 binding.etSearch.requestFocus()
             }
         }
+
+        binding.btnFilter.setOnClickListener {
+            findNavController().navigate(R.id.action_searchFragment_to_filtrationFragment)
+        }
+
         onVacancyClickListener = {
             if (viewModel.clickDebounce()) {
                 val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())

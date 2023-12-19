@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.di
 
+import android.content.Context
 import androidx.room.Room
 import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
@@ -14,6 +15,7 @@ import ru.practicum.android.diploma.core.network.RetrofitNetworkClient
 import ru.practicum.android.diploma.favorites.data.FavouritesDbMapper
 
 private const val BASE_URL = "https://api.hh.ru/"
+private const val SHARED_PREFS = "app_preferences"
 
 val dataModule = module {
 
@@ -34,6 +36,10 @@ val dataModule = module {
         )
     }
 
+    single {
+        androidContext()
+            .getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+    }
     single {
         Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database.db").build()
     }
