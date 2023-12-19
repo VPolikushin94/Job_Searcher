@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import ru.practicum.android.diploma.core.network.NetworkClient
+import ru.practicum.android.diploma.filter.domain.api.FilterSavingRepository
+import ru.practicum.android.diploma.filter.domain.models.Industry
 import ru.practicum.android.diploma.search.data.convertor.VacancyDtoConvertor
 import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
 import ru.practicum.android.diploma.search.data.dto.VacancySearchResponse
@@ -19,6 +21,7 @@ import ru.practicum.android.diploma.util.NetworkResultCode
 class SearchRepositoryImpl(
     private val networkClient: NetworkClient,
     private val vacancyDtoConvertor: VacancyDtoConvertor,
+    private val filterSavingRepository: FilterSavingRepository
 ) : SearchRepository {
 
     override fun searchVacancy(
@@ -36,10 +39,7 @@ class SearchRepositoryImpl(
                 emit(
                     Resource.Success(
                         SearchVacancyResult(
-                            vacancyList,
-                            vacancyResponse.found,
-                            vacancyResponse.page,
-                            vacancyResponse.pages
+                            vacancyList, vacancyResponse.found, vacancyResponse.page, vacancyResponse.pages
                         )
                     )
                 )
@@ -49,4 +49,16 @@ class SearchRepositoryImpl(
             else -> emit(Resource.Error(ErrorType.SERVER_ERROR))
         }
     }.flowOn(Dispatchers.IO)
+
+    override fun getSavedIndustries(): Industry? {
+        return filterSavingRepository.getSavedIndustries()
+    }
+
+    override fun getSalary(): String {
+        return filterSavingRepository.getSalary()
+    }
+
+    override fun getSalaryOnly(): Boolean {
+        return filterSavingRepository.getSalaryOnly()
+    }
 }

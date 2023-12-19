@@ -81,7 +81,6 @@ class FiltrationFragment : Fragment() {
         }
 
         binding.applyButton.setOnClickListener {
-            viewModel.setSalary(inputSalary)
             findNavController().popBackStack()
         }
 
@@ -102,6 +101,7 @@ class FiltrationFragment : Fragment() {
                     requireContext(),
                     binding.salaryFiltrationEditText
                 )
+                viewModel.setSalary(inputSalary)
             }
             false
         }
