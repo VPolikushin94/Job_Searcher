@@ -1,7 +1,9 @@
 package ru.practicum.android.diploma.filter.data.repository
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import ru.practicum.android.diploma.core.dto.Request
 import ru.practicum.android.diploma.core.network.NetworkClient
 import ru.practicum.android.diploma.filter.data.dto.IndustryResponse
@@ -26,12 +28,12 @@ class FilterRepositoryImpl(
                     (response as IndustryResponse).industries.flatMap { industryResponseDto ->
                         IndustryResponseMapper.map(industryResponseDto)
                     }.sortedBy { it.name }
-                Resource.Success(result)
+                emit(Resource.Success(result))
             }
 
             else -> emit(Resource.Error(SERVER_ERROR))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     companion object {
         const val NO_INTERNET = "Check internet connection"

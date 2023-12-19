@@ -1,6 +1,7 @@
 package ru.practicum.android.diploma.search.domain.impl
 
 import kotlinx.coroutines.flow.Flow
+import ru.practicum.android.diploma.filter.domain.models.Industry
 import ru.practicum.android.diploma.search.domain.api.SearchInteractor
 import ru.practicum.android.diploma.search.domain.api.SearchRepository
 import ru.practicum.android.diploma.search.domain.models.Resource
@@ -23,5 +24,17 @@ class SearchInteractorImpl(
                 perPage
             )
         )
+    }
+
+    override fun getSavedIndustries(): Industry? {
+        return searchRepository.getSavedIndustries()
+    }
+
+    override fun getSalary(): String {
+        return searchRepository.getSalary()
+    }
+
+    override fun getSalaryOnly(): Boolean {
+        return searchRepository.getSalaryOnly()
     }
 }
