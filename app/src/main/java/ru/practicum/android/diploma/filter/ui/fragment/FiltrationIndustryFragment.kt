@@ -104,7 +104,8 @@ class FiltrationIndustryFragment : Fragment() {
     private fun setRecyclerView() {
         binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
         adapter = IndustryAdapter(
-            emptyList(), onIndustryClickListener ?: throw NullPointerException("onIndustryClickListener equals null")
+            emptyList(),
+            onIndustryClickListener ?: throw NullPointerException("onIndustryClickListener equals null")
         )
         binding.rvIndustry.adapter = adapter
     }

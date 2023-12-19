@@ -3,19 +3,19 @@
 
     <style name="developers_team">
         <item name="fontFamily">@font/ys_display_medium</item>
-        <item name="android:textSize">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="team">
         <item name="fontFamily">@font/ys_display_medium</item>
-        <item name="android:textSize">@dimen/margin_22</item>
+        <item name="android:textSize">@dimen/text_size_22</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="team_main_title">
         <item name="fontFamily">@font/ys_display_bold</item>
-        <item name="android:textSize">@dimen/margin_32</item>
+        <item name="android:textSize">@dimen/text_size_32</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
@@ -24,7 +24,7 @@
         <item name="android:layout_marginTop">@dimen/margin_18</item>
         <item name="android:fontFamily">"@font/ys_display_medium"</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:textSize">@dimen/margin_22</item>
+        <item name="android:textSize">@dimen/text_size_22</item>
     </style>
 
     <style name="arrow_back_iv_style" parent="Widget.AppCompat.ImageButton">
@@ -43,8 +43,8 @@
         <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
         <item name="android:fontFamily">@font/ys_text_regular</item>
         <item name="android:textColor">@color/black_universal</item>
-        <item name="android:textSize">@dimen/margin_16</item>
         <item name="cursorColor">@drawable/et_cursor</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:layout_marginVertical">@dimen/margin_8</item>
         <item name="android:layout_marginHorizontal">@dimen/margin_16</item>
         <item name="android:imeOptions">actionDone</item>
@@ -63,7 +63,7 @@
         <item name="itemPaddingBottom">@dimen/margin_8</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:fontFamily">@font/ys_text_regular</item>
-        <item name="android:textSize">@dimen/margin_12</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
     </style>
 
     <style name="filtering_text_input_layout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
@@ -82,7 +82,7 @@
 
     <style name="filtering_text_input_et">
         <item name="android:fontFamily">@font/ys_text_regular</item>
-        <item name="android:textSize">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:focusableInTouchMode">false</item>
         <item name="android:inputType">textNoSuggestions</item>
         <item name="android:lines">1</item>
@@ -104,7 +104,7 @@
 
     <style name="hint_salary_filtration">
         <item name="fontFamily">@font/ys_text_regular</item>
-        <item name="android:textSize">@dimen/margin_12</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
         <item name="textAllCaps">false</item>
         <item name="android:fontWeight">500</item>
     </style>
@@ -171,36 +171,36 @@
 
     <style name="additional_heading_vacancy">
         <item name="fontFamily">@font/ys_display_medium</item>
-        <item name="android:textSize">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="text_vacancy">
         <item name="fontFamily">@font/ys_text_regular</item>
-        <item name="android:textSize">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="text_vacancy_blue">
         <item name="fontFamily">@font/ys_text_regular</item>
-        <item name="android:textSize">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:textColor">@color/blue</item>
     </style>
 
     <style name="main_heading_vacancy">
         <item name="fontFamily">@font/ys_display_medium</item>
-        <item name="android:textSize">@dimen/margin_22</item>
+        <item name="android:textSize">@dimen/text_size_22</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="name_vacancy">
         <item name="fontFamily">@font/ys_display_bold</item>
-        <item name="android:textSize">@dimen/margin_32</item>
+        <item name="android:textSize">@dimen/text_size_32</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="button_similar">
-        <item name="android:textSize">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
         <item name="android:textAllCaps">false</item>
         <item name="cornerRadius">@dimen/margin_12</item>
