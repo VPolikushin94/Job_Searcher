@@ -6,7 +6,7 @@ import ru.practicum.android.diploma.filter.domain.api.FilterSavingRepository
 import ru.practicum.android.diploma.filter.domain.models.Industry
 
 class FilterSavingRepositoryImpl(
-    val gson: Gson,
+    private val gson: Gson,
     private val sharedPreferences: SharedPreferences,
 ) : FilterSavingRepository {
 
@@ -39,8 +39,8 @@ class FilterSavingRepositoryImpl(
     }
 
     companion object {
-        private const val INDUSTRY_SETTINGS = "filtration_settings"
-        private const val SALARY_SETTINGS = "filtration_settings"
-        private const val SALARY_ONLY_SETTINGS = "filtration_settings"
+        private const val INDUSTRY_SETTINGS = "INDUSTRY_SETTINGS"
+        private const val SALARY_SETTINGS = "SALARY_SETTINGS"
+        private const val SALARY_ONLY_SETTINGS = "SALARY_ONLY_SETTINGS"
     }
 }

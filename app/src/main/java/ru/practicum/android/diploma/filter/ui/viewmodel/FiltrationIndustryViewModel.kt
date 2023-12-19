@@ -75,4 +75,6 @@ class FiltrationIndustryViewModel(
     fun loadSavingIndustry() {
         savedIndustry.value = filterSavingInteractor.getSavedIndustry()
     }
+
+
 }

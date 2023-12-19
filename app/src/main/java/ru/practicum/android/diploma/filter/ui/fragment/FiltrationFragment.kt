@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -13,6 +14,7 @@ import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.FragmentFiltrationBinding
 import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
 import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationViewModel
+import ru.practicum.android.diploma.util.changeKeyboardVisibility
 
 class FiltrationFragment : Fragment() {
 
@@ -62,6 +64,7 @@ class FiltrationFragment : Fragment() {
 
         viewModel.getFiltrationSettings()
         setClickListeners()
+        setEditorActionListener()
     }
 
     private fun setClickListeners() {
@@ -88,5 +91,19 @@ class FiltrationFragment : Fragment() {
         binding.workIndustryEditText.setText(settings.industry?.name ?: "")
         binding.salaryFiltrationEditText.setText(settings.salary)
         binding.filtrationCheckBox.isChecked = settings.salaryOnly
+    }
+
+    private fun setEditorActionListener() {
+        binding.salaryFiltrationEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_GO) {
+                binding.salaryFiltrationEditText.clearFocus()
+                changeKeyboardVisibility(
+                    false,
+                    requireContext(),
+                    binding.salaryFiltrationEditText
+                )
+            }
+            false
+        }
     }
 }
