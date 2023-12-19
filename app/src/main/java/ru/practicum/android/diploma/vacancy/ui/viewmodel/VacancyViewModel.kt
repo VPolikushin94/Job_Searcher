@@ -13,13 +13,13 @@ import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 class VacancyViewModel(
     private val savedStateHandle: SavedStateHandle,
     private val favoritesInteractor: FavoritesInteractor,
-    private val vacancyInteractor: VacancyInteractor
+    private val vacancyInteractor: VacancyInteractor,
 ) : ViewModel() {
 
     private var isClickAllowed = true
 
     init {
-        getDetailsVacancy()
+        getData()
     }
 
     private val _screenState = MutableLiveData<VacancyState>(VacancyState.Loading)
@@ -31,12 +31,29 @@ class VacancyViewModel(
     private var _inFavouritesMutable = MutableLiveData<Boolean>()
     val inFavouritesMutable = _inFavouritesMutable
 
-    private fun getDetailsVacancy() {
+    private fun getData() {
+        val id = savedStateHandle.get<String>(BUNDLE_KEY)
         viewModelScope.launch {
-            val id = savedStateHandle.get<String>(BUNDLE_KEY)
-            vacancyInteractor.getSelectedVacancy(id.toString()).collect { pair ->
+            if (favoritesInteractor.inFavourites(id.toString())) {
+                getFavouritesVacancy(id.toString())
+            } else {
+                getDetailsVacancy(id.toString())
+            }
+        }
+    }
+
+    private fun getDetailsVacancy(id: String) {
+        viewModelScope.launch {
+            vacancyInteractor.getSelectedVacancy(id).collect { pair ->
                 processResult(pair.first, pair.second)
             }
+        }
+    }
+
+    private fun getFavouritesVacancy(id: String) {
+        viewModelScope.launch {
+            val vacancy = favoritesInteractor.getVacancyById(id)
+            _screenState.value = VacancyState.Success(vacancy)
         }
     }
 
