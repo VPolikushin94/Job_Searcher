@@ -25,7 +25,7 @@ val interactorModule = module {
     }
 
     single<FavoritesInteractor> {
-        FavoritesInteractorImpl()
+        FavoritesInteractorImpl(get())
     }
 
     single<FilterInteractor> {

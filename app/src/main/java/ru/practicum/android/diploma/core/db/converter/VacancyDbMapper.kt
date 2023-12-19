@@ -8,9 +8,9 @@ class VacancyDbMapper {
         return SearchedVacancy(
             id = vacancyEntity.id.toInt(),
             img = vacancyEntity.employerLogo,
-            vacancy = vacancyEntity.name,
+            vacancy = vacancyEntity.name.toString(),
             area = vacancyEntity.employerCity.toString(),
-            employerName = vacancyEntity.employmentName.toString(),
+            employerName = vacancyEntity.employerName.toString(),
             salaryFrom = vacancyEntity.salaryFrom,
             salaryTo = vacancyEntity.salaryTo,
             currency = vacancyEntity.salaryCurrency.toString()
