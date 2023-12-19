@@ -33,7 +33,7 @@ class FiltrationViewModel(
     }
 
     fun updateSalary(inputText: String) {
-        if (inputText != (filtrationSettingsLiveData.value?.salary ?: "")) observeLiveData.postValue(true)
+        if (inputText != filtrationSettingsLiveData.value?.salary ?: "") observeLiveData.postValue(true)
     }
 
     fun getFiltrationSettings() {

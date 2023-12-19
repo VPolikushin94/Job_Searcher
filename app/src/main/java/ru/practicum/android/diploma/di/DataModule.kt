@@ -38,7 +38,6 @@ val dataModule = module {
         androidContext()
             .getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
     }
-    
     single {
         Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database.db").build()
     }

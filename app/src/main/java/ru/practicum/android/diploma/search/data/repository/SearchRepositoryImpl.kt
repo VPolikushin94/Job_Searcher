@@ -39,7 +39,10 @@ class SearchRepositoryImpl(
                 emit(
                     Resource.Success(
                         SearchVacancyResult(
-                            vacancyList, vacancyResponse.found, vacancyResponse.page, vacancyResponse.pages
+                            vacancyList,
+                            vacancyResponse.found,
+                            vacancyResponse.page,
+                            vacancyResponse.pages
                         )
                     )
                 )
