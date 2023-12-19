@@ -15,7 +15,6 @@ val viewModeModule = module {
 
     viewModel {
         FiltrationViewModel(
-            filterInteractor = get(),
             filterSavingInteractor = get()
         )
     }

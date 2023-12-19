@@ -54,6 +54,10 @@ class FiltrationFragment : Fragment() {
 
         binding.salaryFiltrationEditText.addTextChangedListener(simpleTextWatcher)
 
+        binding.salaryFiltration.setEndIconOnClickListener {
+            binding.salaryFiltrationEditText.setText("")
+        }
+
         viewModel.observeFiltrationSettings().observe(viewLifecycleOwner) {
             showSettings(it)
         }
@@ -82,6 +86,10 @@ class FiltrationFragment : Fragment() {
 
         binding.applyButton.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.cancelButton.setOnClickListener {
+            viewModel.deleteAllFilters()
         }
 
     }

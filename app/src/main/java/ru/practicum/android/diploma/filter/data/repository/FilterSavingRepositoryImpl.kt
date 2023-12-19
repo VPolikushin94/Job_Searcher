@@ -38,6 +38,10 @@ class FilterSavingRepositoryImpl(
         return sharedPreferences.getBoolean(SALARY_ONLY_SETTINGS, false)
     }
 
+    override fun allDelete() {
+        sharedPreferences.edit().clear().apply()
+    }
+
     companion object {
         private const val INDUSTRY_SETTINGS = "INDUSTRY_SETTINGS"
         private const val SALARY_SETTINGS = "SALARY_SETTINGS"

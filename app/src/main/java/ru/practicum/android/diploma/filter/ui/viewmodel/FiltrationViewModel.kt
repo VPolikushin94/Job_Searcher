@@ -5,13 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.practicum.android.diploma.filter.domain.api.FilterInteractor
 import ru.practicum.android.diploma.filter.domain.api.FilterSavingInteractor
 import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
 import ru.practicum.android.diploma.util.debounce
 
 class FiltrationViewModel(
-    private val filterInteractor: FilterInteractor,
     private val filterSavingInteractor: FilterSavingInteractor
 ) : ViewModel() {
 
@@ -53,6 +51,11 @@ class FiltrationViewModel(
     fun saveSalaryOnlyItem(isChecked: Boolean) {
         filterSavingInteractor.setSalaryOnly(isChecked)
         observeLiveData.postValue(true)
+    }
+
+    fun deleteAllFilters() {
+        filterSavingInteractor.allDelete()
+        getFiltrationSettings()
     }
 
     companion object {

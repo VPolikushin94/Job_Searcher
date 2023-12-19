@@ -18,4 +18,6 @@ interface FilterSavingInteractor {
     fun setSalaryOnly(isChecked: Boolean)
 
     fun getSalaryOnly(): Boolean
+
+    fun allDelete()
 }
