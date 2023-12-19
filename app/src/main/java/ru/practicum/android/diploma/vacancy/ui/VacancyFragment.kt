@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.R.string.salary_from
@@ -162,6 +163,7 @@ class VacancyFragment : Fragment() {
                 .with(requireActivity())
                 .load(data.employerLogo)
                 .placeholder(R.drawable.logo1)
+                .transform(RoundedCorners(requireContext().resources.getDimensionPixelSize(R.dimen.margin_12)))
                 .into(binding.ivFrameLogo)
         }
         if (data.employerName == null) {

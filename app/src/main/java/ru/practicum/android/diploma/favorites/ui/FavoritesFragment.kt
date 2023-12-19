@@ -41,20 +41,16 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         onVacancyClickListener = {
-            it
+            if (viewModel.clickDebounce()) {
+                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
+                findNavController().navigate(R.id.action_favoritesFragment_to_vacancyFragment, bundle)
+            }
         }
         setRecyclerViewAdapter()
         viewModel.getVacancyList()
 
         viewModel.screenState.observe(viewLifecycleOwner) {
             render(it)
-        }
-
-        vacancyListAdapter?.onVacancyClickListener = {
-            if (viewModel.clickDebounce()) {
-                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
-                findNavController().navigate(R.id.action_favoritesFragment_to_vacancyFragment, bundle)
-            }
         }
     }
 
