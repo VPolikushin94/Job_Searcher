@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/filtrationLocationArrowBack"
+        style="@style/arrow_back_iv_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/filtrationLocationHeaderTv"
+        style="@style/header_tv_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/work_location_choice"
+        app:layout_constraintStart_toEndOf="@+id/filtrationLocationArrowBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/workLocationCountry"
+        style="@style/filtering_text_input_layout"
+        android:layout_width="@dimen/margin_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_36"
+        android:hint="@string/country"
+        app:endIconDrawable="@drawable/icon_arrow_forward"
+        app:endIconMode="custom"
+        app:endIconTint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filtrationLocationHeaderTv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/workLocationCountryEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/filtering_text_input_et"
+            tools:text="Страна Андройдия" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/workLocationRegion"
+        style="@style/filtering_text_input_layout"
+        android:layout_width="@dimen/margin_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:hint="@string/region"
+        app:endIconDrawable="@drawable/icon_arrow_forward"
+        app:endIconMode="custom"
+        app:endIconTint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workLocationCountry">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/workLocationRegionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/filtering_text_input_et"
+            tools:text="Крайний Юг" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/apply_button_location"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_60"
+        android:layout_marginHorizontal="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_24"
+        android:backgroundTint="@color/blue"
+        android:text="@string/select"
+        android:textAppearance="@style/salary_filtration_edit_text"
+        android:textColor="?attr/colorPrimary"
+        app:cornerRadius="@dimen/margin_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

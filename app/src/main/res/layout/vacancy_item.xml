@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="9dp"
+    android:orientation="horizontal">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/search_iv_size_48"
+        android:layout_height="@dimen/search_iv_size_48"
+        app:cardCornerRadius="@dimen/radius_12"
+        app:cardElevation="0dp"
+        app:strokeWidth="@dimen/search_iv_border_padding_1dp"
+        app:strokeColor="@color/light_gray">
+        <ImageView
+            android:id="@+id/iv_vacancy_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_vacancy_placeholder"
+            android:contentDescription="@string/logo" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_vacancy_and_area"
+            style="@style/search_tv_medium_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Разработчик платформы данных, Санкт-Петербург" />
+
+        <TextView
+            android:id="@+id/tv_employer_name"
+            style="@style/search_tv_display_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Алиса" />
+
+        <TextView
+            android:id="@+id/tv_salary"
+            style="@style/search_tv_display_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="от 1 000 до 1 500 €" />
+
+    </LinearLayout>
+
+</LinearLayout>

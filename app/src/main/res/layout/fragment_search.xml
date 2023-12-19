@@ -1,15 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".search.ui.SearchFragment"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    tools:context=".search.ui.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_header"
+        style="@style/search_tv_header_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/search_vacancy"
+        app:layout_constraintBottom_toBottomOf="@id/btn_filter"
+        app:layout_constraintEnd_toStartOf="@id/btn_filter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_filter" />
 
-</FrameLayout>
+    <ImageButton
+        android:id="@+id/btn_filter"
+        style="@style/search_btn_filter_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/filter_btn"
+        android:src="@drawable/icon_filter_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_header"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fl_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_filter">
+
+        <EditText
+            android:id="@+id/et_search"
+            style="@style/search_et_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/btn_clear"
+            style="@style/search_btn_clear_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/clear_search_text"
+            android:src="@drawable/icon_search" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_found"
+        style="@style/search_tv_vacancy_counter_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_search"
+        tools:text="Найдено 286 вакансий" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:indeterminateTint="@color/blue"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_search" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar_paging"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_search">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_vacancy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="38dp"
+            android:paddingHorizontal="@dimen/header_tv_start_margin_16"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/vacancy_item" />
+
+        <TextView
+            android:id="@+id/placeholder_no_internet"
+            style="@style/search_tv_medium_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/search_placeholder_drawable_padding_16"
+            android:text="@string/no_internet"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:drawableTopCompat="@drawable/placeholder_no_internet_skull" />
+
+        <TextView
+            android:id="@+id/placeholder_got_empty_list"
+            style="@style/search_tv_medium_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/search_placeholder_drawable_padding_16"
+            android:text="@string/placeholder_vacancy_empty_list"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:drawableTopCompat="@drawable/placeholder_error_cat" />
+
+        <ImageView
+            android:id="@+id/placeholder_not_searched_yet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/no_search"
+            android:src="@drawable/placeholder_search"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/placeholder_server_error"
+            style="@style/search_tv_medium_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/search_placeholder_drawable_padding_16"
+            android:text="@string/server_error"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:drawableTopCompat="@drawable/placeholder_server_error_towels" />
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_paging"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:indeterminateTint="@color/blue"
+        android:layout_marginVertical="@dimen/margin_16"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

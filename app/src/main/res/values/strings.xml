@@ -7,4 +7,62 @@
     <string name="developer1">Греков Иван</string>
     <string name="developer2">Поликушин Владислав</string>
     <string name="developer3">Козловский Дмитрий</string>
+    <string name="filteringSettings">Настройки фильтрации</string>
+    <string name="workLocation">Место работы</string>
+    <string name="industry">Отрасль</string>
+    <string name="expected_salary">Ожидаемая зарплата</string>
+    <string name="enter_the_sum">Введите сумму</string>
+    <string name="no_salary_no_show">Не показывать без зарплаты</string>
+    <string name="apply">Применить</string>
+    <string name="cancel">Сбросить</string>
+    <string name="search_vacancy">Поиск вакансий</string>
+    <string name="filter_btn">Кнопка фильтр</string>
+    <string name="enter_request">Введите запрос</string>
+    <string name="clear_search_text">Кнопка отчистить поиск</string>
+    <string name="vacancy_area">%1$s, %2$s</string>
+    <string name="salary_from">от %s</string>
+    <string name="salary_to">до %s</string>
+    <string name="salary_empty">Зарплата не указана</string>
+    <string name="ruble">₽</string>
+    <string name="euro">€</string>
+    <string name="dollar">$</string>
+    <string name="vacancy_img">Картинка вакансии</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="placeholder_vacancy_empty_list">Не удалось получить\nсписок вакансий</string>
+    <string name="server_error">Ошибка сервера</string>
+    <string name="no_search">Картинка не было поиска</string>
+
+    <string name="no_salary">Зарплата не указана</string>
+    <string name="rur">RUR</string>
+    <string name="eur">EUR</string>
+    <string name="usd">USD</string>
+    <string name="vacancy_found">Найдено %d вакансий</string>
+    <string name="logo">лого</string>
+
+    <string name="vacancy">Вакансия</string>
+    <string name="job_description">Описание вакансии</string>
+    <string name="required_experience">Требуемый опыт</string>
+    <string name="responsibilities">Обязанности</string>
+    <string name="requirements">Требования</string>
+    <string name="conditions">Условия</string>
+    <string name="key_skills">Ключевые навыки</string>
+    <string name="contacts">Контакты</string>
+    <string name="contact_person">Контактное лицо</string>
+    <string name="e_mail">E-mail</string>
+    <string name="telephone">Телефон</string>
+    <string name="comment">Комментарий</string>
+    <string name="similar_jobs">Похожие вакансии</string>
+
+    <string name="work_location_choice">Выбор места работы</string>
+    <string name="country">Страна</string>
+    <string name="region">Регион</string>
+    <string name="select">Выбрать</string>
+    <string name="work_country_choice">Выбор страны</string>
+    <string name="get_list_error">Не удалось получить\nсписок</string>
+    <string name="favorites">Избранное</string>
+    <string name="favorites_empty">Список пуст</string>
+    <string name="placeholder_favorites_error">Не удалось получить\nсписок вакансий</string>
+    <string name="check_internet">Проверьте подключение\nк интернету</string>
+    <string name="error_occured">Произошла ошибка</string>
+
 </resources>
