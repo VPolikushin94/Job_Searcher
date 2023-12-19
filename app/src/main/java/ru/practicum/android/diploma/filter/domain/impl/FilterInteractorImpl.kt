@@ -5,18 +5,19 @@ import kotlinx.coroutines.flow.map
 import ru.practicum.android.diploma.filter.domain.api.FilterInteractor
 import ru.practicum.android.diploma.filter.domain.api.FilterRepository
 import ru.practicum.android.diploma.filter.domain.models.Industry
+import ru.practicum.android.diploma.filter.domain.models.IndustryResult
 import ru.practicum.android.diploma.util.Resource
 
 class FilterInteractorImpl(private val repository: FilterRepository) : FilterInteractor {
-    override suspend fun getIndustries(): Flow<Pair<List<Industry>?, String?>> {
+    override suspend fun getIndustries(): Flow<IndustryResult<Industry>> {
         return repository.getIndustries().map { result ->
             when (result) {
                 is Resource.Success -> {
-                    Pair(result.data, null)
+                    IndustryResult(result.data)
                 }
 
                 is Resource.Error -> {
-                    Pair(null, result.message)
+                    IndustryResult(isError = true)
                 }
             }
         }

@@ -13,7 +13,6 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
@@ -218,24 +217,14 @@ class SearchFragment : Fragment() {
             }
         }
 
-
         binding.btnFilter.setOnClickListener {
             findNavController().navigate(R.id.action_searchFragment_to_filtrationFragment)
         }
-//        vacancyListAdapter?.onVacancyClickListener = {
-//            if (viewModel.clickDebounce()) {
-//
-//            }
-//        }
-//        binding.btnFilter.setOnClickListener {
-//
-//        }
-        vacancyListAdapter?.onVacancyClickListener = {
-            onVacancyClickListener = {
-                if (viewModel.clickDebounce()) {
-                    val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
-                    findNavController().navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
-                }
+
+        onVacancyClickListener = {
+            if (viewModel.clickDebounce()) {
+                val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to it.id.toString())
+                findNavController().navigate(R.id.action_searchFragment_to_vacancyFragment, bundle)
             }
         }
     }
