@@ -38,7 +38,8 @@ class SearchViewModel(
 
     private val _screenState = MutableLiveData<SearchScreenState>(
         SearchScreenState.Placeholder(
-            SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET, false
+            SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET,
+            false
         )
     )
     val screenState: LiveData<SearchScreenState> = _screenState
