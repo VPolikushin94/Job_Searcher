@@ -56,9 +56,9 @@ class FiltrationFragment : Fragment() {
         }
 
         binding.workIndustry.setEndIconOnClickListener {
-            if (binding.workIndustryEditText.text.isNullOrEmpty())
+            if (binding.workIndustryEditText.text.isNullOrEmpty()) {
                 findNavController().navigate(R.id.action_filtrationFragment_to_filtrationIndustryFragment)
-            else {
+            } else {
                 binding.workIndustryEditText.setText("")
                 viewModel.removeIndustries()
             }
@@ -142,12 +142,14 @@ class FiltrationFragment : Fragment() {
     }
 
     private fun iconVisibility() {
-        binding.salaryFiltration.isEndIconVisible = !(binding.salaryFiltrationEditText.text.isNullOrEmpty())
+        binding.salaryFiltration.isEndIconVisible = !binding.salaryFiltrationEditText.text.isNullOrEmpty()
     }
 
     private fun changeIcon() {
         if (binding.workIndustryEditText.text.isNullOrEmpty()) {
             binding.workIndustry.setEndIconDrawable(R.drawable.icon_arrow_forward)
-        } else binding.workIndustry.setEndIconDrawable(R.drawable.icon_cross)
+        } else {
+            binding.workIndustry.setEndIconDrawable(R.drawable.icon_cross)
+        }
     }
 }
