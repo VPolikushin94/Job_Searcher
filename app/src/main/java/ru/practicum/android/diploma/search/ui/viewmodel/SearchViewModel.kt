@@ -28,7 +28,12 @@ class SearchViewModel(
     private var isClickAllowed = true
 
     private val searchDebounce = debounce<String>(SEARCH_DEBOUNCE_DELAY_MILLIS, viewModelScope, true) {
-        searchVacancy(it, false, true, false)
+        searchVacancy(
+            it,
+            false,
+            true,
+            false
+        )
     }
 
     private val _screenState = MutableLiveData<SearchScreenState>(
@@ -63,7 +68,13 @@ class SearchViewModel(
         if (_searchedText != searchText && !isPagingSearch) {
             clearPagingVariables()
         }
-        if (isSearchCanceled(searchText, isPagingSearch, isDebounceSearch, isUpdatedFilterSearch)) {
+        if (isSearchCanceled(
+                searchText,
+                isPagingSearch,
+                isDebounceSearch,
+                isUpdatedFilterSearch
+            )
+        ) {
             return
         }
         if (searchText.isNotEmpty()) {
@@ -76,7 +87,9 @@ class SearchViewModel(
             viewModelScope.launch(Dispatchers.IO) {
                 _searchedText = searchText
                 searchInteractor.searchVacancy(
-                    searchText, page, PAGE_SIZE
+                    searchText,
+                    page,
+                    PAGE_SIZE
                 ).collect {
                     processResult(it)
                     isNextPageLoading = false
@@ -109,19 +122,27 @@ class SearchViewModel(
     }
 
     @Suppress(
-        "ReturnCount", "CollapsibleIfStatements", "CyclomaticComplexMethod", "ComplexCondition"
+        "ReturnCount",
+        "CollapsibleIfStatements",
+        "CyclomaticComplexMethod",
+        "ComplexCondition"
     )
     private fun isSearchCanceled(
-        searchText: String, isPagingSearch: Boolean, isDebounceSearch: Boolean, isUpdatedFilterSearch: Boolean
+        searchText: String,
+        isPagingSearch: Boolean,
+        isDebounceSearch: Boolean,
+        isUpdatedFilterSearch: Boolean
     ): Boolean {
         if (searchText.isEmpty()) {
             _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST, false)
             return true
         }
         if (screenState.value != SearchScreenState.Placeholder(
-                SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR, false
+                SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR,
+                false
             ) && screenState.value != SearchScreenState.Placeholder(
-                SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, false
+                SearchPlaceholderType.PLACEHOLDER_NO_INTERNET,
+                false
             ) || isDebounceSearch
         ) {
             if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch && !isUpdatedFilterSearch) {
@@ -139,18 +160,28 @@ class SearchViewModel(
             if (areFiltersChanged()) {
                 withContext(Dispatchers.Main) {
                     clearPagingVariables()
-                    searchVacancy(_searchedText, false, false, true)
+                    searchVacancy(
+                        _searchedText,
+                        false,
+                        false,
+                        true
+                    )
                 }
             } else {
-                if (screenState.value is SearchScreenState.Content || screenState.value == SearchScreenState.Placeholder(
-                        SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR, true
+                if (
+                    screenState.value is SearchScreenState.Content ||
+                    screenState.value == SearchScreenState.Placeholder(
+                        SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR,
+                        true
                     ) || screenState.value == SearchScreenState.Placeholder(
-                        SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, true
+                        SearchPlaceholderType.PLACEHOLDER_NO_INTERNET,
+                        true
                     )
                 ) {
                     _screenState.postValue(
                         SearchScreenState.Content(
-                            cachedVacancyList, found
+                            cachedVacancyList,
+                            found
                         )
                     )
                 }
@@ -162,7 +193,8 @@ class SearchViewModel(
         if (searchResult.vacancyList.isEmpty()) {
             _screenState.postValue(
                 SearchScreenState.Placeholder(
-                    SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST, false
+                    SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST,
+                    false
                 )
             )
         } else {
@@ -170,7 +202,8 @@ class SearchViewModel(
             cachedVacancyList.addAll(vacancyList)
             _screenState.postValue(
                 SearchScreenState.Content(
-                    cachedVacancyList, searchResult.found
+                    cachedVacancyList,
+                    searchResult.found
                 )
             )
             found = searchResult.found
@@ -189,13 +222,15 @@ class SearchViewModel(
                 when (searchedData.errorType) {
                     ErrorType.NO_INTERNET -> _screenState.postValue(
                         SearchScreenState.Placeholder(
-                            SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, isNextPageLoading
+                            SearchPlaceholderType.PLACEHOLDER_NO_INTERNET,
+                            isNextPageLoading
                         )
                     )
 
                     ErrorType.SERVER_ERROR -> _screenState.postValue(
                         SearchScreenState.Placeholder(
-                            SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR, isNextPageLoading
+                            SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR,
+                            isNextPageLoading
                         )
                     )
                 }
@@ -208,7 +243,8 @@ class SearchViewModel(
             hasSearchBlocked = true
             _searchedText = ""
             _screenState.value = SearchScreenState.Placeholder(
-                SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET, false
+                SearchPlaceholderType.PLACEHOLDER_NOT_SEARCHED_YET,
+                false
             )
         } else {
             hasSearchBlocked = false
