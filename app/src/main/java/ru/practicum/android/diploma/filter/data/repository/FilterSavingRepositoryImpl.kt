@@ -1,6 +1,7 @@
 package ru.practicum.android.diploma.filter.data.repository
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import com.google.gson.Gson
 import ru.practicum.android.diploma.filter.domain.api.FilterSavingRepository
 import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
@@ -11,7 +12,7 @@ class FilterSavingRepositoryImpl(
     private val sharedPreferences: SharedPreferences,
 ) : FilterSavingRepository {
 
-    private var cachedFiltrationSettings = getFilters()
+    private var cachedFiltrationSettings = getFiltrationSettings()
 
     override fun setIndustries(industry: Industry?) {
         val industryJson = gson.toJson(industry)
@@ -23,10 +24,17 @@ class FilterSavingRepositoryImpl(
         return gson.fromJson(industryJson, Industry::class.java)
     }
 
+    override fun removeIndustries() {
+        sharedPreferences.edit {
+            remove(INDUSTRY_SETTINGS)
+        }
+    }
+
     override fun setSalary(salary: String) {
-        sharedPreferences.edit()
-            .putString(SALARY_SETTINGS, salary)
-            .apply()
+        sharedPreferences.edit {
+            putString(SALARY_SETTINGS, salary)
+            apply()
+        }
     }
 
     override fun getSalary(): String {
@@ -34,7 +42,10 @@ class FilterSavingRepositoryImpl(
     }
 
     override fun setSalaryOnly(isChecked: Boolean) {
-        sharedPreferences.edit().putBoolean(SALARY_ONLY_SETTINGS, isChecked).apply()
+        sharedPreferences.edit {
+            putBoolean(SALARY_ONLY_SETTINGS, isChecked)
+            apply()
+        }
     }
 
     override fun getSalaryOnly(): Boolean {
@@ -42,10 +53,13 @@ class FilterSavingRepositoryImpl(
     }
 
     override fun allDelete() {
-        sharedPreferences.edit().clear().apply()
+        sharedPreferences.edit {
+            clear()
+            apply()
+        }
     }
 
-    override fun getFilters(): FiltrationSettings {
+    override fun getFiltrationSettings(): FiltrationSettings {
         val industry = getSavedIndustries()
         val salary = getSalary()
         val salaryOnly = getSalaryOnly()
@@ -57,7 +71,7 @@ class FilterSavingRepositoryImpl(
     }
 
     override suspend fun areFiltersChanged(): Boolean {
-        val currentFiltrationSettings = getFilters()
+        val currentFiltrationSettings = getFiltrationSettings()
         return if (currentFiltrationSettings != cachedFiltrationSettings) {
             cachedFiltrationSettings = currentFiltrationSettings
             true
@@ -67,7 +81,7 @@ class FilterSavingRepositoryImpl(
     }
 
     override suspend fun areFiltersEmpty(): Boolean {
-        val currentFiltrationSettings = getFilters()
+        val currentFiltrationSettings = getFiltrationSettings()
         return currentFiltrationSettings == FiltrationSettings(null, "", false)
     }
 

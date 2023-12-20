@@ -38,10 +38,6 @@ class FiltrationLocationCountryFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        //   binding.workLocationCountry.setOnClickListener {
-        //         findNavController().navigate(R.id.action_searchFragment_to_filtrationFragment)
-        //    }
-
     }
 
 }

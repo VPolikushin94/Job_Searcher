@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -45,6 +46,8 @@ class FiltrationFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 inputSalary = s?.toString() ?: ""
                 viewModel.updateSalary(inputSalary)
+                binding.salaryFiltration.isEndIconVisible = true
+                buttonVisibility()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -52,18 +55,32 @@ class FiltrationFragment : Fragment() {
             }
         }
 
+        binding.workIndustry.setEndIconOnClickListener {
+            if (binding.workIndustryEditText.text.isNullOrEmpty())
+                findNavController().navigate(R.id.action_filtrationFragment_to_filtrationIndustryFragment)
+            else {
+                binding.workIndustryEditText.setText("")
+                viewModel.removeIndustries()
+            }
+        }
+
         binding.salaryFiltrationEditText.addTextChangedListener(simpleTextWatcher)
 
         binding.salaryFiltration.setEndIconOnClickListener {
             binding.salaryFiltrationEditText.setText("")
+            binding.salaryFiltration.isEndIconVisible = false
         }
 
         viewModel.observeFiltrationSettings().observe(viewLifecycleOwner) {
             showSettings(it)
         }
 
+        viewModel.observeData().observe(viewLifecycleOwner) {
+        }
+
         binding.filtrationCheckBox.setOnClickListener {
             viewModel.saveSalaryOnlyItem(binding.filtrationCheckBox.isChecked)
+            buttonVisibility()
         }
 
         viewModel.getFiltrationSettings()
@@ -90,6 +107,7 @@ class FiltrationFragment : Fragment() {
 
         binding.cancelButton.setOnClickListener {
             viewModel.deleteAllFilters()
+            binding.salaryFiltration.isEndIconVisible = false
         }
 
     }
@@ -98,6 +116,9 @@ class FiltrationFragment : Fragment() {
         binding.workIndustryEditText.setText(settings.industry?.name ?: "")
         binding.salaryFiltrationEditText.setText(settings.salary)
         binding.filtrationCheckBox.isChecked = settings.salaryOnly
+        buttonVisibility()
+        iconVisibility()
+        changeIcon()
     }
 
     private fun setEditorActionListener() {
@@ -113,5 +134,20 @@ class FiltrationFragment : Fragment() {
             }
             false
         }
+    }
+
+    private fun buttonVisibility() {
+        binding.bottomButtonGroup.isVisible = !(binding.workIndustryEditText.text.isNullOrEmpty() &&
+            binding.salaryFiltrationEditText.text.isNullOrEmpty() && !binding.filtrationCheckBox.isChecked)
+    }
+
+    private fun iconVisibility() {
+        binding.salaryFiltration.isEndIconVisible = !(binding.salaryFiltrationEditText.text.isNullOrEmpty())
+    }
+
+    private fun changeIcon() {
+        if (binding.workIndustryEditText.text.isNullOrEmpty()) {
+            binding.workIndustry.setEndIconDrawable(R.drawable.icon_arrow_forward)
+        } else binding.workIndustry.setEndIconDrawable(R.drawable.icon_cross)
     }
 }

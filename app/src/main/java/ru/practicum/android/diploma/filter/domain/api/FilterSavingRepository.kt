@@ -9,6 +9,8 @@ interface FilterSavingRepository {
 
     fun getSavedIndustries(): Industry?
 
+    fun removeIndustries()
+
     fun setSalary(salary: String)
 
     fun getSalary(): String
@@ -19,7 +21,7 @@ interface FilterSavingRepository {
 
     fun allDelete()
 
-    fun getFilters(): FiltrationSettings
+    fun getFiltrationSettings(): FiltrationSettings
 
     suspend fun areFiltersChanged(): Boolean
 
