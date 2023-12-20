@@ -36,13 +36,6 @@ class FilterSavingInteractorImpl(private val filterSavingRepository: FilterSavin
     }
 
     override fun getFilters(): FiltrationSettings {
-        val industry = getSavedIndustry()
-        val salary = getSalary()
-        val salaryOnly = getSalaryOnly()
-        return FiltrationSettings(
-            industry,
-            salary,
-            salaryOnly
-        )
+        return filterSavingRepository.getFilters()
     }
 }

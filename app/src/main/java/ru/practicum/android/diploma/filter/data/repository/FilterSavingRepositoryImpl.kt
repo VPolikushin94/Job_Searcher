@@ -3,12 +3,15 @@ package ru.practicum.android.diploma.filter.data.repository
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import ru.practicum.android.diploma.filter.domain.api.FilterSavingRepository
+import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
 import ru.practicum.android.diploma.filter.domain.models.Industry
 
 class FilterSavingRepositoryImpl(
     private val gson: Gson,
     private val sharedPreferences: SharedPreferences,
 ) : FilterSavingRepository {
+
+    private var cachedFiltrationSettings = getFilters()
 
     override fun setIndustries(industry: Industry?) {
         val industryJson = gson.toJson(industry)
@@ -40,6 +43,32 @@ class FilterSavingRepositoryImpl(
 
     override fun allDelete() {
         sharedPreferences.edit().clear().apply()
+    }
+
+    override fun getFilters(): FiltrationSettings {
+        val industry = getSavedIndustries()
+        val salary = getSalary()
+        val salaryOnly = getSalaryOnly()
+        return FiltrationSettings(
+            industry,
+            salary,
+            salaryOnly
+        )
+    }
+
+    override suspend fun areFiltersChanged(): Boolean {
+        val currentFiltrationSettings = getFilters()
+        return if (currentFiltrationSettings != cachedFiltrationSettings) {
+            cachedFiltrationSettings = currentFiltrationSettings
+            true
+        } else {
+            false
+        }
+    }
+
+    override suspend fun areFiltersEmpty(): Boolean {
+        val currentFiltrationSettings = getFilters()
+        return currentFiltrationSettings == FiltrationSettings(null, "", false)
     }
 
     companion object {

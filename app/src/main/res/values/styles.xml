@@ -126,7 +126,6 @@
 
     <style name="search_btn_filter_style">
         <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
-        <item name="tint">?attr/colorOnPrimary</item>
         <item name="android:paddingHorizontal">@dimen/margin_12</item>
         <item name="android:paddingVertical">@dimen/margin_12</item>
         <item name="android:layout_marginVertical">@dimen/margin_8</item>

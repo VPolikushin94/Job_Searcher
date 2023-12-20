@@ -1,6 +1,8 @@
 package ru.practicum.android.diploma.di
 
 import org.koin.dsl.module
+import ru.practicum.android.diploma.favorites.data.FavouritesRepositoryImpl
+import ru.practicum.android.diploma.favorites.domain.api.FavouritesRepository
 import ru.practicum.android.diploma.filter.data.repository.FilterRepositoryImpl
 import ru.practicum.android.diploma.filter.data.repository.FilterSavingRepositoryImpl
 import ru.practicum.android.diploma.filter.domain.api.FilterRepository
@@ -18,8 +20,7 @@ val repositoryModule = module {
     single<SearchRepository> {
         SearchRepositoryImpl(
             networkClient = get(),
-            vacancyDtoConvertor = get(),
-            filterSavingRepository = get()
+            vacancyDtoConvertor = get()
         )
     }
 
@@ -35,4 +36,11 @@ val repositoryModule = module {
         FilterSavingRepositoryImpl(get(), get())
     }
 
+    single<FavouritesRepository> {
+        FavouritesRepositoryImpl(
+            appDatabase = get(),
+            vacancyDbMapper = get(),
+            favouritesDbMapper = get()
+        )
+    }
 }

@@ -16,7 +16,8 @@ val interactorModule = module {
 
     single<SearchInteractor> {
         SearchInteractorImpl(
-            searchRepository = get()
+            searchRepository = get(),
+            filterSavingRepository = get()
         )
     }
 

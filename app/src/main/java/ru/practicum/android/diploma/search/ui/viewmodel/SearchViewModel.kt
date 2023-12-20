@@ -1,7 +1,6 @@
 package ru.practicum.android.diploma.search.ui.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.practicum.android.diploma.core.models.Vacancy
 import ru.practicum.android.diploma.core.models.toVacancy
 import ru.practicum.android.diploma.search.domain.api.SearchInteractor
@@ -29,7 +29,7 @@ class SearchViewModel(
 
     private val searchDebounce =
         debounce<String>(SEARCH_DEBOUNCE_DELAY_MILLIS, viewModelScope, true) {
-            searchVacancy(it, false, true)
+            searchVacancy(it, false, true, false)
         }
 
     private val _screenState = MutableLiveData<SearchScreenState>(
@@ -56,18 +56,18 @@ class SearchViewModel(
 
     private var cachedVacancyList: MutableList<Vacancy> = mutableListOf()
 
-    fun searchVacancy(searchText: String, isPagingSearch: Boolean, isDebounceSearch: Boolean) {
+    fun searchVacancy(
+        searchText: String,
+        isPagingSearch: Boolean,
+        isDebounceSearch: Boolean,
+        isUpdatedFilterSearch: Boolean
+    ) {
         if (_searchedText != searchText && !isPagingSearch) {
-            page = 0
-            pages = 0
-            found = 0
-            cachedVacancyList.clear()
-            _triggerClearAdapter.value = true
+            clearPagingVariables()
         }
-        if (isSearchCanceled(searchText, isPagingSearch, isDebounceSearch)) {
+        if (isSearchCanceled(searchText, isPagingSearch, isDebounceSearch, isUpdatedFilterSearch)) {
             return
         }
-        Log.d("VIEW_SEarch", "SEARCHING")
         if (searchText.isNotEmpty()) {
             if (isPagingSearch) {
                 isNextPageLoading = true
@@ -75,8 +75,6 @@ class SearchViewModel(
             } else {
                 _screenState.value = SearchScreenState.Loading(false)
             }
-
-            _triggerClearAdapter.value = false
             viewModelScope.launch(Dispatchers.IO) {
                 _searchedText = searchText
                 searchInteractor.searchVacancy(
@@ -91,8 +89,27 @@ class SearchViewModel(
         }
     }
 
+    private fun clearPagingVariables() {
+        page = 0
+        pages = 0
+        found = 0
+        cachedVacancyList.clear()
+        _triggerClearAdapter.value = true
+    }
+
     fun getSearchedText(): String {
         return _searchedText
+    }
+
+    fun areFiltersEmpty() {
+        viewModelScope.launch {
+            val isEmpty = searchInteractor.areFiltersEmpty()
+            _btnFilterState.postValue(isEmpty)
+        }
+    }
+
+    private suspend fun areFiltersChanged(): Boolean {
+        return searchInteractor.areFiltersChanged()
     }
 
     @Suppress(
@@ -104,6 +121,7 @@ class SearchViewModel(
         searchText: String,
         isPagingSearch: Boolean,
         isDebounceSearch: Boolean,
+        isUpdatedFilterSearch: Boolean
     ): Boolean {
         if (searchText.isEmpty()) {
             _screenState.value = SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_GOT_EMPTY_LIST, false)
@@ -114,7 +132,7 @@ class SearchViewModel(
             screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, false) ||
             isDebounceSearch
         ) {
-            if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch) {
+            if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch && !isUpdatedFilterSearch) {
                 return true
             }
         }
@@ -125,17 +143,29 @@ class SearchViewModel(
     }
 
     fun getCachedVacancySearchResult() {
-        if (
-            screenState.value is SearchScreenState.Content ||
-            screenState.value == SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR, true) ||
-            screenState.value == SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, true)
-        ) {
-            _screenState.postValue(
-                SearchScreenState.Content(
-                    cachedVacancyList,
-                    found
-                )
-            )
+        viewModelScope.launch(Dispatchers.IO) {
+            if (areFiltersChanged()) {
+                withContext(Dispatchers.Main) {
+                    clearPagingVariables()
+                    searchVacancy(_searchedText, false, false, true)
+                }
+            } else {
+                if (
+                    screenState.value is SearchScreenState.Content ||
+                    screenState.value == SearchScreenState.Placeholder(
+                        SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR,
+                        true
+                    ) ||
+                    screenState.value == SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, true)
+                ) {
+                    _screenState.postValue(
+                        SearchScreenState.Content(
+                            cachedVacancyList,
+                            found
+                        )
+                    )
+                }
+            }
         }
     }
 
