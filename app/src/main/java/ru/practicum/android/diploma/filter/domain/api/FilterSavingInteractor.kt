@@ -9,6 +9,8 @@ interface FilterSavingInteractor {
 
     fun setIndustries(industry: Industry?)
 
+    fun removeIndustries()
+
     fun getSavedIndustry(): Industry?
 
     fun setSalary(salary: String)

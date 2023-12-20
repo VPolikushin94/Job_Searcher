@@ -58,6 +58,11 @@ class FiltrationViewModel(
         getFiltrationSettings()
     }
 
+    fun removeIndustries() {
+        filterSavingInteractor.removeIndustries()
+        getFiltrationSettings()
+    }
+
     companion object {
         const val CLICK_DEBOUNCE_DELAY = 1000L
     }
