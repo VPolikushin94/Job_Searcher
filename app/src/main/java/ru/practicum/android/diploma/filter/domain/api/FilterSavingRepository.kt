@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.filter.domain.api
 
+import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
 import ru.practicum.android.diploma.filter.domain.models.Industry
 
 interface FilterSavingRepository {
@@ -17,4 +18,10 @@ interface FilterSavingRepository {
     fun getSalaryOnly(): Boolean
 
     fun allDelete()
+
+    fun getFilters(): FiltrationSettings
+
+    suspend fun areFiltersChanged(): Boolean
+
+    suspend fun areFiltersEmpty(): Boolean
 }

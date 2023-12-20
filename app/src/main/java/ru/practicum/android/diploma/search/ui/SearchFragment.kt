@@ -47,12 +47,13 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setEditText()
+
         setListTouchListeners()
         setEditorActionListener()
         setClickListeners()
         setRecyclerViewAdapter()
         setRvScrollListener()
+        setEditText()
         viewModel.screenState.observe(viewLifecycleOwner) {
             render(it)
         }
@@ -60,9 +61,19 @@ class SearchFragment : Fragment() {
             setFilterState(it)
         }
         viewModel.triggerClearAdapter.observe(viewLifecycleOwner) {
-            if (it) {
-                vacancyListAdapter?.submitList(null)
-            }
+            vacancyListAdapter?.submitList(null)
+        }
+        viewModel.btnFilterState.observe(viewLifecycleOwner) {
+            setBtnFilterIcon(it)
+        }
+        viewModel.areFiltersEmpty()
+    }
+
+    private fun setBtnFilterIcon(isEmpty: Boolean) {
+        if (isEmpty) {
+            binding.btnFilter.setImageResource(R.drawable.icon_filter_off)
+        } else {
+            binding.btnFilter.setImageResource(R.drawable.icon_filter_on)
         }
     }
 
@@ -85,6 +96,7 @@ class SearchFragment : Fragment() {
                             viewModel.searchVacancy(
                                 binding.etSearch.text.toString(),
                                 true,
+                                false,
                                 false
                             )
                         }
@@ -263,7 +275,12 @@ class SearchFragment : Fragment() {
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.blockSearch(false)
-                viewModel.searchVacancy(binding.etSearch.text.toString(), false, false)
+                viewModel.searchVacancy(
+                    binding.etSearch.text.toString(),
+                    false,
+                    false,
+                    false
+                )
                 binding.etSearch.clearFocus()
             }
             false

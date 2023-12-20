@@ -76,5 +76,4 @@ class FiltrationIndustryViewModel(
         savedIndustry.value = filterSavingInteractor.getSavedIndustry()
     }
 
-
 }
