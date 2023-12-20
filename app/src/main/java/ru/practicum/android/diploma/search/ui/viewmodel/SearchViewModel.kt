@@ -55,7 +55,10 @@ class SearchViewModel(
     private var cachedVacancyList: MutableList<Vacancy> = mutableListOf()
 
     fun searchVacancy(
-        searchText: String, isPagingSearch: Boolean, isDebounceSearch: Boolean, isUpdatedFilterSearch: Boolean
+        searchText: String,
+        isPagingSearch: Boolean,
+        isDebounceSearch: Boolean,
+        isUpdatedFilterSearch: Boolean
     ) {
         if (_searchedText != searchText && !isPagingSearch) {
             clearPagingVariables()
@@ -106,7 +109,7 @@ class SearchViewModel(
     }
 
     @Suppress(
-        "ReturnCount", "CollapsibleIfStatements", "CyclomaticComplexMethod"
+        "ReturnCount", "CollapsibleIfStatements", "CyclomaticComplexMethod", "ComplexCondition"
     )
     private fun isSearchCanceled(
         searchText: String, isPagingSearch: Boolean, isDebounceSearch: Boolean, isUpdatedFilterSearch: Boolean
@@ -116,21 +119,12 @@ class SearchViewModel(
             return true
         }
         if (screenState.value != SearchScreenState.Placeholder(
-                SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR,
-                false
+                SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR, false
             ) && screenState.value != SearchScreenState.Placeholder(
-                SearchPlaceholderType.PLACEHOLDER_NO_INTERNET,
-                false
+                SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, false
             ) || isDebounceSearch
         ) {
-            if (
-                (
-                    _searchedText == searchText ||
-                    hasSearchBlocked
-                ) &&
-                !isPagingSearch &&
-                !isUpdatedFilterSearch
-            ) {
+            if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch && !isUpdatedFilterSearch) {
                 return true
             }
         }
