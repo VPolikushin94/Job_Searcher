@@ -132,7 +132,10 @@ class SearchViewModel(
             screenState.value != SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, false) ||
             isDebounceSearch
         ) {
-            if ((_searchedText == searchText || hasSearchBlocked) && !isPagingSearch && !isUpdatedFilterSearch) {
+            if ((_searchedText == searchText || hasSearchBlocked) &&
+                !isPagingSearch &&
+                !isUpdatedFilterSearch
+            ) {
                 return true
             }
         }
@@ -156,7 +159,10 @@ class SearchViewModel(
                         SearchPlaceholderType.PLACEHOLDER_SERVER_ERROR,
                         true
                     ) ||
-                    screenState.value == SearchScreenState.Placeholder(SearchPlaceholderType.PLACEHOLDER_NO_INTERNET, true)
+                    screenState.value == SearchScreenState.Placeholder(
+                        SearchPlaceholderType.PLACEHOLDER_NO_INTERNET,
+                        true
+                    )
                 ) {
                     _screenState.postValue(
                         SearchScreenState.Content(
