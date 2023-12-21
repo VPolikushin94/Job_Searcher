@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
 import ru.practicum.android.diploma.filter.domain.models.Industry
 
-@SuppressLint("TooManyFunctions")
+@Suppress("TooManyFunctions")
 interface FilterSavingRepository {
 
     fun setIndustries(industry: Industry?)
