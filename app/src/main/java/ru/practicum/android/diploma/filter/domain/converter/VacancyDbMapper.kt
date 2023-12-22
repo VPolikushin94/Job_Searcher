@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.core.db.converter
+package ru.practicum.android.diploma.filter.domain.converter
 
 import ru.practicum.android.diploma.vacancy.data.entity.VacancyEntity
 import ru.practicum.android.diploma.core.models.SearchedVacancy
