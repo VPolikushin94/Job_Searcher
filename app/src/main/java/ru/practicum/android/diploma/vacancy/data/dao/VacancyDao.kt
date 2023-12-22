@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.core.db
+package ru.practicum.android.diploma.vacancy.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
