@@ -1,6 +1,6 @@
 package ru.practicum.android.diploma.filter.domain.converter
 
-import ru.practicum.android.diploma.core.entity.VacancyEntity
+import ru.practicum.android.diploma.core.data.db.entity.VacancyEntity
 import ru.practicum.android.diploma.core.models.SearchedVacancy
 
 class VacancyDbMapper {

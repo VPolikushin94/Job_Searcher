@@ -2,7 +2,7 @@ package ru.practicum.android.diploma.vacancy.data
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.practicum.android.diploma.core.network.NetworkClient
+import ru.practicum.android.diploma.core.data.network.NetworkClient
 import ru.practicum.android.diploma.util.NetworkResultCode
 import ru.practicum.android.diploma.util.Resource
 import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsRequest

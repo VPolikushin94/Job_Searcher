@@ -7,11 +7,11 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.practicum.android.diploma.db.AppDatabase
+import ru.practicum.android.diploma.core.data.db.AppDatabase
 import ru.practicum.android.diploma.filter.domain.converter.VacancyDbMapper
-import ru.practicum.android.diploma.core.network.HhApiService
-import ru.practicum.android.diploma.core.network.NetworkClient
-import ru.practicum.android.diploma.core.network.RetrofitNetworkClient
+import ru.practicum.android.diploma.core.data.network.HhApiService
+import ru.practicum.android.diploma.core.data.network.NetworkClient
+import ru.practicum.android.diploma.core.data.network.RetrofitNetworkClient
 import ru.practicum.android.diploma.favorites.data.FavouritesDbMapper
 
 private const val BASE_URL = "https://api.hh.ru/"

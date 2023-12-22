@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.core.network
+package ru.practicum.android.diploma.core.data.network
 
 import android.accounts.NetworkErrorException
 import android.content.Context

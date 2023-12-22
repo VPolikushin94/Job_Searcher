@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import ru.practicum.android.diploma.core.dto.Request
-import ru.practicum.android.diploma.core.network.NetworkClient
+import ru.practicum.android.diploma.core.data.network.NetworkClient
 import ru.practicum.android.diploma.filter.data.dto.IndustryResponse
 import ru.practicum.android.diploma.filter.data.mapper.IndustryResponseMapper
 import ru.practicum.android.diploma.filter.domain.api.FilterRepository

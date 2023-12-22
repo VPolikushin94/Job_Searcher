@@ -1,6 +1,6 @@
 package ru.practicum.android.diploma.favorites.data
 
-import ru.practicum.android.diploma.core.entity.VacancyEntity
+import ru.practicum.android.diploma.core.data.db.entity.VacancyEntity
 import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 
 class FavouritesDbMapper {
