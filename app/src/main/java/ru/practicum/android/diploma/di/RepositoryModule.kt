@@ -29,7 +29,7 @@ val repositoryModule = module {
     }
 
     single<FilterRepository> {
-        FilterRepositoryImpl(get())
+        FilterRepositoryImpl(get(), get())
     }
 
     single<FilterSavingRepository> {

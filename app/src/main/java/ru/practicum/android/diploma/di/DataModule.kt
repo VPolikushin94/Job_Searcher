@@ -13,6 +13,8 @@ import ru.practicum.android.diploma.core.data.network.HhApiService
 import ru.practicum.android.diploma.core.data.network.NetworkClient
 import ru.practicum.android.diploma.core.data.network.RetrofitNetworkClient
 import ru.practicum.android.diploma.favorites.data.FavouritesDbMapper
+import ru.practicum.android.diploma.filter.data.mapper.IndustryResponseMapper
+import ru.practicum.android.diploma.filter.data.mapper.Mapper
 
 private const val BASE_URL = "https://api.hh.ru/"
 private const val SHARED_PREFS = "app_preferences"
@@ -50,5 +52,15 @@ val dataModule = module {
 
     factory {
         VacancyDbMapper()
+    }
+
+    factory {
+        Mapper()
+    }
+
+    factory {
+        IndustryResponseMapper(
+            mapper = get()
+        )
     }
 }
