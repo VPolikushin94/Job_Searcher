@@ -114,6 +114,9 @@ class FiltrationIndustryFragment : Fragment() {
         binding.progressBar.isVisible = state is FilterIndustryScreenState.Loading
         binding.rvIndustry.isVisible = if (state is FilterIndustryScreenState.Content) {
             adapter?.addItems(state.industryList)
+            viewModel.checkedIndustry?.let {
+                binding.applyButtonIndustry.isVisible = true
+            }
             true
         } else {
             false
