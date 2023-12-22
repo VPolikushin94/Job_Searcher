@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.core.db.entity
+package ru.practicum.android.diploma.vacancy.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
