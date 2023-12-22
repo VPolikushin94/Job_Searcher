@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.practicum.android.diploma.filter.domain.api.FilterSavingInteractor
 import ru.practicum.android.diploma.filter.domain.models.FiltrationSettings
+import ru.practicum.android.diploma.filter.domain.models.Industry
 import ru.practicum.android.diploma.util.debounce
 
 class FiltrationViewModel(
@@ -18,6 +19,8 @@ class FiltrationViewModel(
 
     private val filtrationSettingsLiveData = MutableLiveData<FiltrationSettings>()
     fun observeFiltrationSettings(): LiveData<FiltrationSettings> = filtrationSettingsLiveData
+
+    fun getIndustry(): Industry? = filtrationSettingsLiveData.value?.industry
 
     private var isClickAllowed = true
     private val onTrackClickDebounce = debounce<Boolean>(CLICK_DEBOUNCE_DELAY, viewModelScope, false) {
