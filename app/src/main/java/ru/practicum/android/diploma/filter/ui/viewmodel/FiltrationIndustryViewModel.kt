@@ -16,10 +16,10 @@ class FiltrationIndustryViewModel(
     private val filterSavingInteractor: FilterSavingInteractor
 ) : ViewModel() {
 
-    private val savedIndustry = MutableLiveData<Industry?>()
     private val industryList: MutableList<Industry> = arrayListOf()
     private val screenState = MutableLiveData<FilterIndustryScreenState>()
     private val filteredIndustryList = mutableListOf<Industry>()
+    var checkedIndustry: Industry? = null
     fun observeState(): LiveData<FilterIndustryScreenState> = screenState
 
     init {
@@ -52,7 +52,7 @@ class FiltrationIndustryViewModel(
         filteredIndustryList.clear()
 
         industryList.forEach {
-            if (it.name.lowercase().contains(text.lowercase())) {
+            if (it.name.contains(text, ignoreCase = true)) {
                 filteredIndustryList.add(it)
             }
         }
@@ -70,10 +70,6 @@ class FiltrationIndustryViewModel(
 
     fun onIndustryClicked(industry: Industry) {
         filterSavingInteractor.setIndustries(industry)
-    }
-
-    fun loadSavingIndustry() {
-        savedIndustry.value = filterSavingInteractor.getSavedIndustry()
     }
 
 }

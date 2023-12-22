@@ -98,7 +98,10 @@ class FiltrationFragment : Fragment() {
         }
 
         binding.workIndustryEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_filtrationFragment_to_filtrationIndustryFragment)
+            findNavController().navigate(
+                R.id.action_filtrationFragment_to_filtrationIndustryFragment,
+                FiltrationIndustryFragment.getIndustryBundle(viewModel.getIndustry())
+            )
         }
 
         binding.applyButton.setOnClickListener {

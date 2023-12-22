@@ -8,10 +8,10 @@ import ru.practicum.android.diploma.filter.ui.viewholder.IndustryViewHolder
 
 class IndustryAdapter(
     private var items: List<Industry>,
-    private val clickListener: IndustryClickListener
+    private val clickListener: IndustryClickListener,
+    private var checkedIndustry: Industry?
 ) : RecyclerView.Adapter<IndustryViewHolder>() {
 
-    private var checkedIndustry: Industry? = null
     private var prevPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IndustryViewHolder {
@@ -23,8 +23,13 @@ class IndustryAdapter(
     }
 
     override fun onBindViewHolder(holder: IndustryViewHolder, @SuppressLint("RecyclerView") position: Int) {
-        val item = items[position]
-        holder.bind(item, checkedIndustry)
+        val item = if (items[position].id == checkedIndustry?.id) {
+            prevPosition = position
+            items[position].copy(isChecked = true)
+        } else {
+            items[position]
+        }
+        holder.bind(item)
         holder.itemView.setOnClickListener {
             checkedIndustry = item
             this.notifyItemChanged(prevPosition)

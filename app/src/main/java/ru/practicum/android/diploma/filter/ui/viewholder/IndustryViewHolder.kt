@@ -14,8 +14,8 @@ class IndustryViewHolder(parentView: ViewGroup) : RecyclerView.ViewHolder(
 
     private val industryNameView: RadioButton = itemView.findViewById(R.id.industry_item)
 
-    fun bind(model: Industry, checkedIndustry: Industry?) {
+    fun bind(model: Industry) {
         industryNameView.text = model.name
-        industryNameView.isChecked = model == checkedIndustry
+        industryNameView.isChecked = model.isChecked
     }
 }

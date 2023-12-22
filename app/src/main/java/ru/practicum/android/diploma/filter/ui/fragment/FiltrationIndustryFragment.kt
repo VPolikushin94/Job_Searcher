@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -30,8 +31,6 @@ class FiltrationIndustryFragment : Fragment() {
 
     private var onIndustryClickListener: IndustryAdapter.IndustryClickListener? = null
 
-    private var saveIndustry: Industry? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,8 +49,8 @@ class FiltrationIndustryFragment : Fragment() {
             render(it)
         }
 
-        viewModel.loadSavingIndustry()
-        setRecyclerView()
+        viewModel.checkedIndustry = arguments?.getParcelable(INDUSTRY_INFO)
+        setRecyclerView(viewModel.checkedIndustry)
         setEditText()
         setListTouchListeners()
     }
@@ -99,11 +98,12 @@ class FiltrationIndustryFragment : Fragment() {
         _binding = null
     }
 
-    private fun setRecyclerView() {
+    private fun setRecyclerView(industry: Industry?) {
         binding.rvIndustry.layoutManager = LinearLayoutManager(requireContext())
         adapter = IndustryAdapter(
             emptyList(),
-            onIndustryClickListener ?: throw NullPointerException("onIndustryClickListener equals null")
+            onIndustryClickListener ?: throw NullPointerException("onIndustryClickListener equals null"),
+            industry
         )
         binding.rvIndustry.adapter = adapter
     }
@@ -114,6 +114,9 @@ class FiltrationIndustryFragment : Fragment() {
         binding.progressBar.isVisible = state is FilterIndustryScreenState.Loading
         binding.rvIndustry.isVisible = if (state is FilterIndustryScreenState.Content) {
             adapter?.addItems(state.industryList)
+            viewModel.checkedIndustry?.let {
+                binding.applyButtonIndustry.isVisible = true
+            }
             true
         } else {
             false
@@ -126,12 +129,12 @@ class FiltrationIndustryFragment : Fragment() {
         }
 
         binding.applyButtonIndustry.setOnClickListener {
-            viewModel.onIndustryClicked(saveIndustry!!)
+            viewModel.onIndustryClicked(viewModel.checkedIndustry!!)
             findNavController().navigateUp()
         }
 
         onIndustryClickListener = IndustryAdapter.IndustryClickListener {
-            saveIndustry = it
+            viewModel.checkedIndustry = it
             binding.applyButtonIndustry.isVisible = true
         }
 
@@ -147,4 +150,11 @@ class FiltrationIndustryFragment : Fragment() {
         }
     }
 
+    companion object {
+
+        private const val INDUSTRY_INFO = "INDUSTRY_INFO"
+        fun getIndustryBundle(industry: Industry?): Bundle {
+            return bundleOf(INDUSTRY_INFO to industry)
+        }
+    }
 }
