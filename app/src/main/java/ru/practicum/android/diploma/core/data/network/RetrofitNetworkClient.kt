@@ -12,7 +12,6 @@ import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
 import ru.practicum.android.diploma.util.NetworkResultCode
 import ru.practicum.android.diploma.util.isInternetConnected
 import ru.practicum.android.diploma.vacancy.data.dto.SimilarVacancyRequest
-import ru.practicum.android.diploma.vacancy.data.dto.SimilarVacancyResponse
 import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsRequest
 import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsResponse
 
