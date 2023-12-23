@@ -94,9 +94,7 @@ class VacancyFragment : Fragment() {
 
         binding.btSimilar.setOnClickListener {
             val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to data.id.toString())
-            findNavController().navigate(
-                R.id.action_vacancyFragment_to_similarVacancyFragment, bundle
-            )
+            findNavController().navigate(R.id.action_vacancyFragment_to_similarVacancyFragment, bundle)
         }
 
         showSalary(data)
