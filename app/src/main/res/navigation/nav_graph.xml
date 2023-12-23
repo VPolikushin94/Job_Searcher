@@ -19,9 +19,13 @@
     </fragment>
     <fragment
         android:id="@+id/vacancyFragment"
-        android:name="ru.practicum.android.diploma.vacancy.ui.VacancyFragment"
+        android:name="ru.practicum.android.diploma.vacancy.ui.fragment.VacancyFragment"
         android:label="fragment_vacancy"
-        tools:layout="@layout/fragment_vacancy" />
+        tools:layout="@layout/fragment_vacancy" >
+        <action
+            android:id="@+id/action_vacancyFragment_to_similarVacancyFragment"
+            app:destination="@id/similarVacancyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/teamFragment"
         android:name="ru.practicum.android.diploma.team.ui.TeamFragment"
@@ -33,26 +37,9 @@
         android:label="fragment_filtration"
         tools:layout="@layout/fragment_filtration">
         <action
-            android:id="@+id/action_filtrationFragment_to_filtrationLocationFragment"
-            app:destination="@id/filtrationLocationFragment" />
-        <action
             android:id="@+id/action_filtrationFragment_to_filtrationIndustryFragment"
             app:destination="@id/filtrationIndustryFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/filtrationLocationFragment"
-        android:name="ru.practicum.android.diploma.filter.ui.fragment.FiltrationLocationFragment"
-        android:label="fragment_filtration_location"
-        tools:layout="@layout/fragment_filtration_location">
-        <action
-            android:id="@+id/action_filtrationLocationFragment_to_filtrationLocationCountryFragment"
-            app:destination="@id/filtrationLocationCountryFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/filtrationLocationCountryFragment"
-        android:name="ru.practicum.android.diploma.filter.ui.fragment.FiltrationLocationCountryFragment"
-        android:label="fragment_filtration_location_country"
-        tools:layout="@layout/fragment_filtration_location_country" />
     <fragment
         android:id="@+id/filtrationIndustryFragment"
         android:name="ru.practicum.android.diploma.filter.ui.fragment.FiltrationIndustryFragment"
@@ -71,4 +58,9 @@
             android:id="@+id/action_favoritesFragment_to_vacancyFragment"
             app:destination="@id/vacancyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/similarVacancyFragment"
+        android:name="ru.practicum.android.diploma.vacancy.ui.fragment.SimilarVacancyFragment"
+        android:label="fragment_similar_vacancy"
+        tools:layout="@layout/fragment_similar_vacancy" />
 </navigation>

@@ -9,7 +9,9 @@ import ru.practicum.android.diploma.filter.domain.impl.FilterInteractorImpl
 import ru.practicum.android.diploma.filter.domain.impl.FilterSavingInteractorImpl
 import ru.practicum.android.diploma.search.domain.api.SearchInteractor
 import ru.practicum.android.diploma.search.domain.impl.SearchInteractorImpl
+import ru.practicum.android.diploma.vacancy.domain.api.SimilarVacancyInteractor
 import ru.practicum.android.diploma.vacancy.domain.api.VacancyInteractor
+import ru.practicum.android.diploma.vacancy.domain.impl.SimilarVacancyInteractorImpl
 import ru.practicum.android.diploma.vacancy.domain.impl.VacancyInteractorImpl
 
 val interactorModule = module {
@@ -35,6 +37,10 @@ val interactorModule = module {
 
     single<FilterSavingInteractor> {
         FilterSavingInteractorImpl(get())
+    }
+
+    single<SimilarVacancyInteractor> {
+        SimilarVacancyInteractorImpl(get())
     }
 
 }

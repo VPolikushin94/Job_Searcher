@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.vacancy.data
+package ru.practicum.android.diploma.vacancy.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -7,6 +7,7 @@ import ru.practicum.android.diploma.util.NetworkResultCode
 import ru.practicum.android.diploma.util.Resource
 import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsRequest
 import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsResponse
+import ru.practicum.android.diploma.vacancy.data.mapToDetailsVacancy
 import ru.practicum.android.diploma.vacancy.domain.api.VacancyRepository
 import ru.practicum.android.diploma.vacancy.domain.model.DetailsVacancy
 

@@ -1,9 +1,9 @@
-package ru.practicum.android.diploma.filter.ui.viewmodel
+package ru.practicum.android.diploma.vacancy.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class FiltrationLocationViewModel : ViewModel() {
+class SimilarVacancyViewModel : ViewModel() {
 
     private val _screenState = MutableLiveData(false)
 
