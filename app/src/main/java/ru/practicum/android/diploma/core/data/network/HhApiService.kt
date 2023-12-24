@@ -28,8 +28,12 @@ interface HhApiService {
     @GET("/industries")
     suspend fun getIndustry(): List<IndustryResponseDto>
 
+    @Headers(
+        "Authorization: Bearer ${BuildConfig.HH_ACCESS_TOKEN}",
+        "HH-User-Agent: Practicum Vacancy"
+    )
     @GET("/vacancies/{vacancy_id}/similar_vacancies")
     suspend fun getSimilarVacancy(
-        @Path("vacancy_id") id: String,
+        @Path("vacancy_id") vacancy: String,
     ): SimilarVacancyResponse
 }

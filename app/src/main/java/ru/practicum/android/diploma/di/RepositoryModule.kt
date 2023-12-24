@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.di
 
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import ru.practicum.android.diploma.favorites.data.FavouritesRepositoryImpl
 import ru.practicum.android.diploma.favorites.domain.api.FavouritesRepository
@@ -47,6 +48,10 @@ val repositoryModule = module {
     }
 
     single<SimilarVacancyRepository> {
-        SimilarVacancyRepositoryImpl(get(), get())
+        SimilarVacancyRepositoryImpl(
+            networkClient = get(),
+            vacancyDtoConvertor = get(),
+            application = androidApplication()
+        )
     }
 }

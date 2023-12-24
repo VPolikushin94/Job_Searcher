@@ -8,6 +8,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -55,12 +56,6 @@ class VacancyFragment : Fragment() {
         binding.ivVacancyBack.setOnClickListener {
             view.findNavController().popBackStack()
         }
-
-        binding.btSimilar.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_vacancyFragment_to_similarVacancyFragment
-            )
-        }
     }
 
     private fun render(state: VacancyState) {
@@ -96,6 +91,11 @@ class VacancyFragment : Fragment() {
         binding.tvVacancyErrorServer.isVisible = false
         binding.screenDetailVacancy.isVisible = true
         binding.tvVacancyName.text = data.name
+
+        binding.btSimilar.setOnClickListener {
+            val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to data.id.toString())
+            findNavController().navigate(R.id.action_vacancyFragment_to_similarVacancyFragment, bundle)
+        }
 
         showSalary(data)
         showEmployer(data)

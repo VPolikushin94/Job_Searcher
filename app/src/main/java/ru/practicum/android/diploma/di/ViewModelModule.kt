@@ -30,7 +30,7 @@ val viewModeModule = module {
     }
 
     viewModel {
-        SimilarVacancyViewModel()
+        SimilarVacancyViewModel(get(), get())
     }
 
     viewModel {
