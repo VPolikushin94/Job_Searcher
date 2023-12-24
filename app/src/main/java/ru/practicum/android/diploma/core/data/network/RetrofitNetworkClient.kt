@@ -11,6 +11,7 @@ import ru.practicum.android.diploma.filter.data.dto.IndustryResponse
 import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
 import ru.practicum.android.diploma.util.NetworkResultCode
 import ru.practicum.android.diploma.util.isInternetConnected
+import ru.practicum.android.diploma.vacancy.data.dto.SimilarVacancyRequest
 import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsRequest
 import ru.practicum.android.diploma.vacancy.data.dto.VacancyDetailsResponse
 
@@ -34,6 +35,7 @@ class RetrofitNetworkClient(
                     is VacancySearchRequest -> hhApiService.searchVacancy(dto.vacancySearchParams)
                     is Request.IndustryRequest -> IndustryResponse(hhApiService.getIndustry())
                     is VacancyDetailsRequest -> VacancyDetailsResponse(hhApiService.getVacancy(dto.id))
+                    is SimilarVacancyRequest -> hhApiService.getSimilarVacancy(dto.id)
                     else -> throw NetworkErrorException("Wrong dto")
                 }
                 response.apply { resultCode = NetworkResultCode.RESULT_OK }

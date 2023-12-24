@@ -8,6 +8,7 @@ import ru.practicum.android.diploma.BuildConfig
 import ru.practicum.android.diploma.filter.data.dto.IndustryResponseDto
 import ru.practicum.android.diploma.search.data.dto.VacancySearchResponse
 import ru.practicum.android.diploma.vacancy.data.details.DetailVacancyDto
+import ru.practicum.android.diploma.vacancy.data.dto.SimilarVacancyResponse
 
 interface HhApiService {
     @Headers(
@@ -26,4 +27,13 @@ interface HhApiService {
 
     @GET("/industries")
     suspend fun getIndustry(): List<IndustryResponseDto>
+
+    @Headers(
+        "Authorization: Bearer ${BuildConfig.HH_ACCESS_TOKEN}",
+        "HH-User-Agent: Practicum Vacancy"
+    )
+    @GET("/vacancies/{vacancy_id}/similar_vacancies")
+    suspend fun getSimilarVacancy(
+        @Path("vacancy_id") vacancy: String,
+    ): SimilarVacancyResponse
 }
