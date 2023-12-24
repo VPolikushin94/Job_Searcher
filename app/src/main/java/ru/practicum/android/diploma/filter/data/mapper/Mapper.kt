@@ -4,7 +4,7 @@ import ru.practicum.android.diploma.filter.data.dto.IndustryDto
 import ru.practicum.android.diploma.filter.data.dto.IndustryResponseDto
 import ru.practicum.android.diploma.filter.domain.models.Industry
 
-object Mapper {
+class Mapper {
     fun map(industryDto: IndustryDto): Industry {
         return Industry(
             id = industryDto.id,

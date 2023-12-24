@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import ru.practicum.android.diploma.core.network.NetworkClient
+import ru.practicum.android.diploma.core.data.network.NetworkClient
 import ru.practicum.android.diploma.search.data.convertor.VacancyDtoConvertor
 import ru.practicum.android.diploma.search.data.dto.VacancySearchRequest
 import ru.practicum.android.diploma.search.data.dto.VacancySearchResponse

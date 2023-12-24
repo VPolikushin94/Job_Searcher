@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -89,7 +90,7 @@ class FiltrationFragment : Fragment() {
         }
 
         binding.workLocationEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_filtrationFragment_to_filtrationLocationFragment)
+            Toast.makeText(context, R.string.next_time, Toast.LENGTH_SHORT).show()
         }
 
         binding.workIndustryEditText.setOnClickListener {
