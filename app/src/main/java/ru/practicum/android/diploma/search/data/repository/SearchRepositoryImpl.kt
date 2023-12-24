@@ -18,7 +18,7 @@ import ru.practicum.android.diploma.util.NetworkResultCode
 
 class SearchRepositoryImpl(
     private val networkClient: NetworkClient,
-    private val vacancyDtoConvertor: VacancyDtoConvertor,
+    private val vacancyDtoConvertor: VacancyDtoConvertor
 ) : SearchRepository {
 
     override fun searchVacancy(

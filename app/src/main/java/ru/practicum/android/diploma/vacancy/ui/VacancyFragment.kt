@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.R.string.salary_from
@@ -95,10 +96,15 @@ class VacancyFragment : Fragment() {
         showKeySkills(data)
         showContact(data)
 
-        // viewModel.inFavourites(data.id.toString())
-        /* viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
+        viewModel.inFavourites(data.id.toString())
+        viewModel.inFavouritesMutable.observe(viewLifecycleOwner) {
             isFavourites = it
-        } */
+            if (isFavourites) {
+                binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
+            } else {
+                binding.vacancyFavourite.setImageResource(R.drawable.icon_like_off)
+            }
+        }
 
         binding.vacancyFavourite.setOnClickListener {
             isFavourites = if (isFavourites) {
@@ -108,7 +114,7 @@ class VacancyFragment : Fragment() {
                 binding.vacancyFavourite.setImageResource(R.drawable.icon_like_on)
                 true
             }
-            // viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
+            viewModel.addFavourites(vacancy = data, isFavourites = isFavourites)
         }
 
         binding.vacancyShare.setOnClickListener {
@@ -157,6 +163,7 @@ class VacancyFragment : Fragment() {
                 .with(requireActivity())
                 .load(data.employerLogo)
                 .placeholder(R.drawable.logo1)
+                .transform(RoundedCorners(requireContext().resources.getDimensionPixelSize(R.dimen.margin_12)))
                 .into(binding.ivFrameLogo)
         }
         if (data.employerName == null) {

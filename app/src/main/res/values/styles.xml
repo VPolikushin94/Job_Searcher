@@ -27,11 +27,11 @@
         <item name="android:textSize">@dimen/text_size_22</item>
     </style>
 
-    <style name="arrow_back_iv_style">
+    <style name="arrow_back_iv_style" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_marginStart">@dimen/margin_16</item>
         <item name="android:layout_marginTop">@dimen/margin_20</item>
-        <item name="android:src">"@drawable/icon_arrow_back"</item>
-
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="srcCompat">@drawable/icon_arrow_back</item>
     </style>
 
     <style name="search_et_style">
@@ -43,8 +43,8 @@
         <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
         <item name="android:fontFamily">@font/ys_text_regular</item>
         <item name="android:textColor">@color/black_universal</item>
+        <item name="cursorColor">@drawable/et_cursor</item>
         <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:textCursorDrawable">@drawable/et_cursor</item>
         <item name="android:layout_marginVertical">@dimen/margin_8</item>
         <item name="android:layout_marginHorizontal">@dimen/margin_16</item>
         <item name="android:imeOptions">actionDone</item>
@@ -126,7 +126,6 @@
 
     <style name="search_btn_filter_style">
         <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
-        <item name="tint">?attr/colorOnPrimary</item>
         <item name="android:paddingHorizontal">@dimen/margin_12</item>
         <item name="android:paddingVertical">@dimen/margin_12</item>
         <item name="android:layout_marginVertical">@dimen/margin_8</item>
@@ -208,7 +207,7 @@
         <item name="backgroundTint">@color/blue</item>
     </style>
 
-    <style name="track_arrow_country_item">
+    <style name="arrow_forward_style">
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentEnd">true</item>
@@ -232,4 +231,43 @@
         <item name="android:textSize">@dimen/header_tv_size_text_22</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+
+    <style name="filtration_industry_et_style">
+        <item name="android:background">@drawable/et_background</item>
+        <item name="android:maxLines">1</item>
+        <item name="singleLine">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:importantForAutofill">no</item>
+        <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
+        <item name="android:fontFamily">@font/ys_text_regular</item>
+        <item name="android:textColor">@color/black_universal</item>
+        <item name="android:textSize">@dimen/margin_16</item>
+        <item name="android:textCursorDrawable">@drawable/et_cursor</item>
+        <item name="android:layout_marginVertical">@dimen/margin_8</item>
+        <item name="android:layout_marginHorizontal">@dimen/margin_16</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:paddingHorizontal">@dimen/margin_16</item>
+        <item name="android:paddingStart">@dimen/margin_16</item>
+        <item name="android:paddingEnd">@dimen/margin_60</item>
+        <item name="android:paddingVertical">@dimen/margin_16</item>
+    </style>
+
+    <style name="industry_item_tv">
+        <item name="android:fontFamily">@font/ys_text_regular</item>
+        <item name="android:minHeight">@dimen/margin_60</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="filtration_industry_item_style">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">@dimen/margin_8</item>
+        <item name="android:drawableEnd">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="drawableTint">@color/blue</item>
+        <item name="android:fontFamily">@font/ys_text_regular</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
 </resources>

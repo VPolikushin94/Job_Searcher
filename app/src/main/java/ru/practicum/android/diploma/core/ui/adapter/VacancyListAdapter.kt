@@ -9,7 +9,7 @@ import ru.practicum.android.diploma.core.ui.viewholder.VacancyViewHolder
 import ru.practicum.android.diploma.databinding.VacancyItemBinding
 
 class VacancyListAdapter(
-    private val onVacancyClickListener: ((Vacancy) -> Unit),
+    private var onVacancyClickListener: ((Vacancy) -> Unit),
 ) : ListAdapter<Vacancy, VacancyViewHolder>(VacancyDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VacancyViewHolder {

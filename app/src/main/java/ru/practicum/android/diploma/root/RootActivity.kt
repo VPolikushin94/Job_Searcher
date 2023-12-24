@@ -105,7 +105,10 @@ class RootActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.filterSettingsFragment -> {
+                R.id.filtrationFragment,
+                R.id.filtrationLocationFragment,
+                R.id.filtrationLocationCountryFragment,
+                R.id.filtrationIndustryFragment -> {
                     binding.bottomNav.isVisible = false
                     binding.separator.isVisible = false
                 }
