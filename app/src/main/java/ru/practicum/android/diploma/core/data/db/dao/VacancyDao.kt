@@ -1,11 +1,11 @@
-package ru.practicum.android.diploma.core.db
+package ru.practicum.android.diploma.core.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ru.practicum.android.diploma.core.db.entity.VacancyEntity
+import ru.practicum.android.diploma.core.data.db.entity.VacancyEntity
 
 @Dao
 interface VacancyDao {

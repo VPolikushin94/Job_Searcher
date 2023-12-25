@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.vacancy.ui
+package ru.practicum.android.diploma.vacancy.ui.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,9 +8,11 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -89,6 +91,11 @@ class VacancyFragment : Fragment() {
         binding.tvVacancyErrorServer.isVisible = false
         binding.screenDetailVacancy.isVisible = true
         binding.tvVacancyName.text = data.name
+
+        binding.btSimilar.setOnClickListener {
+            val bundle = bundleOf(VacancyViewModel.BUNDLE_KEY to data.id.toString())
+            findNavController().navigate(R.id.action_vacancyFragment_to_similarVacancyFragment, bundle)
+        }
 
         showSalary(data)
         showEmployer(data)

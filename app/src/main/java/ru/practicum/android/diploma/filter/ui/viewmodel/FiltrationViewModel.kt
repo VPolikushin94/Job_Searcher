@@ -14,14 +14,12 @@ class FiltrationViewModel(
     private val filterSavingInteractor: FilterSavingInteractor
 ) : ViewModel() {
 
-    private val observeLiveData = MutableLiveData(false)
-    fun observeData(): LiveData<Boolean> = observeLiveData
-
     private val filtrationSettingsLiveData = MutableLiveData<FiltrationSettings>()
     fun observeFiltrationSettings(): LiveData<FiltrationSettings> = filtrationSettingsLiveData
 
     fun getIndustry(): Industry? = filtrationSettingsLiveData.value?.industry
 
+    var inputSalary: String = ""
     private var isClickAllowed = true
     private val onTrackClickDebounce = debounce<Boolean>(CLICK_DEBOUNCE_DELAY, viewModelScope, false) {
         isClickAllowed = it
@@ -35,14 +33,9 @@ class FiltrationViewModel(
         filterSavingInteractor.setSalary(inputText)
     }
 
-    fun updateSalary(inputText: String) {
-        if (inputText != filtrationSettingsLiveData.value?.salary ?: "") observeLiveData.postValue(true)
-    }
-
     fun getFiltrationSettings() {
         viewModelScope.launch {
             val settings = filterSavingInteractor.getFilters()
-            if (filtrationSettingsLiveData.value != null) observeLiveData.postValue(true)
             postSettings(settings)
         }
     }
@@ -53,7 +46,6 @@ class FiltrationViewModel(
 
     fun saveSalaryOnlyItem(isChecked: Boolean) {
         filterSavingInteractor.setSalaryOnly(isChecked)
-        observeLiveData.postValue(true)
     }
 
     fun deleteAllFilters() {

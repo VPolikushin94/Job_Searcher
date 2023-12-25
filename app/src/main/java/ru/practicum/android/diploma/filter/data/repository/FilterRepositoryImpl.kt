@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import ru.practicum.android.diploma.core.dto.Request
-import ru.practicum.android.diploma.core.network.NetworkClient
+import ru.practicum.android.diploma.core.data.network.NetworkClient
 import ru.practicum.android.diploma.filter.data.dto.IndustryResponse
 import ru.practicum.android.diploma.filter.data.mapper.IndustryResponseMapper
 import ru.practicum.android.diploma.filter.domain.api.FilterRepository
@@ -15,6 +15,7 @@ import ru.practicum.android.diploma.util.Resource
 
 class FilterRepositoryImpl(
     private val networkClient: NetworkClient,
+    private val mapper: IndustryResponseMapper
 ) : FilterRepository {
     override fun getIndustries(): Flow<Resource<List<Industry>>> = flow {
         val response = networkClient.request(Request.IndustryRequest)
@@ -26,7 +27,7 @@ class FilterRepositoryImpl(
             NetworkResultCode.RESULT_OK -> {
                 val result =
                     (response as IndustryResponse).industries.flatMap { industryResponseDto ->
-                        IndustryResponseMapper.map(industryResponseDto)
+                        mapper.map(industryResponseDto)
                     }.sortedBy { it.name }
                 emit(Resource.Success(result))
             }

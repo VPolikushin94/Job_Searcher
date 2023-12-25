@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -18,8 +19,6 @@ import ru.practicum.android.diploma.filter.ui.viewmodel.FiltrationViewModel
 import ru.practicum.android.diploma.util.changeKeyboardVisibility
 
 class FiltrationFragment : Fragment() {
-
-    private var inputSalary: String = ""
 
     private var _binding: FragmentFiltrationBinding? = null
     private val binding get() = _binding!!
@@ -44,9 +43,9 @@ class FiltrationFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                inputSalary = s?.toString() ?: ""
-                viewModel.updateSalary(inputSalary)
-                binding.salaryFiltration.isEndIconVisible = true
+                viewModel.inputSalary = s?.toString() ?: ""
+                viewModel.setSalary(viewModel.inputSalary)
+                binding.salaryFiltration.isEndIconVisible = s!!.isNotEmpty()
                 buttonVisibility()
             }
 
@@ -75,9 +74,6 @@ class FiltrationFragment : Fragment() {
             showSettings(it)
         }
 
-        viewModel.observeData().observe(viewLifecycleOwner) {
-        }
-
         binding.filtrationCheckBox.setOnClickListener {
             viewModel.saveSalaryOnlyItem(binding.filtrationCheckBox.isChecked)
             buttonVisibility()
@@ -94,7 +90,7 @@ class FiltrationFragment : Fragment() {
         }
 
         binding.workLocationEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_filtrationFragment_to_filtrationLocationFragment)
+            Toast.makeText(context, R.string.next_time, Toast.LENGTH_SHORT).show()
         }
 
         binding.workIndustryEditText.setOnClickListener {
@@ -105,6 +101,7 @@ class FiltrationFragment : Fragment() {
         }
 
         binding.applyButton.setOnClickListener {
+            viewModel.setSalary(viewModel.inputSalary)
             findNavController().popBackStack()
         }
 
@@ -133,7 +130,7 @@ class FiltrationFragment : Fragment() {
                     requireContext(),
                     binding.salaryFiltrationEditText
                 )
-                viewModel.setSalary(inputSalary)
+                viewModel.setSalary(viewModel.inputSalary)
             }
             false
         }

@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.core.network
+package ru.practicum.android.diploma.core.data.network
 
 import ru.practicum.android.diploma.core.dto.Request
 import ru.practicum.android.diploma.core.dto.Response
