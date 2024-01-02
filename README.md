@@ -3,21 +3,22 @@
 Проект представляет собой небольшое приложение для поиска работы,
 использующее [API сервиса HeadHunter](https://github.com/hhru/api). Приложение предоставляет следующую функциональность:
 
+
 - Поиск вакансий
 
-  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/9348569e-415d-4eed-a4bd-64d855e23f5a" width="250"/>
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/fa8a2330-675e-4afc-8719-4315d61cb7bc" width="250"/>
 
 - Указание фильтров для поиска
 
-  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/3e29620e-a8a8-4911-a4d3-3e8ce916f436" width="250"/>
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/2443debe-f562-4b29-b438-23b717ab8a39" width="250"/>
 
 - Просмотр деталей отдельной вакансии
 
-  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/7a16eb2c-6061-4042-9a96-200dc8351bdb" width="250"/>
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/776bf72e-bd3b-4bbb-ae06-f76cd0b5bbd7" width="250"/>
 
 - И добавление вакансий в список "Избранного"
 
-  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/aa5a7c74-3e6e-4ab6-8375-577ad12d1bda" width="250"/>
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/bb818f1b-3b33-4e76-910d-41ad534c6b01" width="250"/>
 
 Ниже представлен список требований и особенностей различных экранов приложения.
 
