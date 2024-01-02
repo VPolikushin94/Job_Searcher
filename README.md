@@ -5,19 +5,19 @@
 
 - Поиск вакансий
 
-  <img src="https://github.com/VPolikushin94/Practicum-Android-Diploma/assets/121296133/42e4528d-c0bd-4a4c-bf61-718f43e2b49e" width="250"/>
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/9348569e-415d-4eed-a4bd-64d855e23f5a" width="250"/>
 
 - Указание фильтров для поиска
 
-  <img src="https://github.com/VPolikushin94/Practicum-Android-Diploma/assets/121296133/7a4c12db-d10c-4d3c-9510-7d954501f894" width="250"/>
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/3e29620e-a8a8-4911-a4d3-3e8ce916f436" width="250"/>
 
 - Просмотр деталей отдельной вакансии
 
-  <img src="https://github.com/VPolikushin94/Practicum-Android-Diploma/assets/121296133/fba004c2-65bf-46cc-a694-6d7c75a198d7" width="250"/>
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/7a16eb2c-6061-4042-9a96-200dc8351bdb" width="250"/>
 
 - И добавление вакансий в список "Избранного"
-  
-  <img src="https://github.com/VPolikushin94/Practicum-Android-Diploma/assets/121296133/22ecf5e6-2639-46e0-8305-ea7c4dc821db" width="250"/>
+
+  <img src="https://github.com/VPolikushin94/practicum-android-diploma/assets/121296133/aa5a7c74-3e6e-4ab6-8375-577ad12d1bda" width="250"/>
 
 Ниже представлен список требований и особенностей различных экранов приложения.
 
