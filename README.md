@@ -150,3 +150,7 @@ hhAccessToken=my_access_token
 открытый доступ. Значения, записанные в файл `develop.properties`, будут добавлены в приложение на стадии сборки и
 попадут в специальный объект, который называется `BuildConfig`. Подробнее про этот объект можно почитать
 в [документации](https://developer.android.com/build/gradle-tips#share-custom-fields-and-resource-values-with-your-app-code).
+
+## Стэк
+
+MVVM, Kotlin, Coroutines, Room, Koin, Retrofit, Gson, ListAdapter, DiffUtil, ViewBinding, Navigation Component
